@@ -11,7 +11,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 650px;
+  min-height: 580px;
+  scroll-margin-top: 0;
   overflow: hidden;
   background-color: var(--color-deep-burgundy);
   background: 
@@ -69,12 +70,12 @@
   z-index: 2;
   width: 100%;
   max-width: 1920px;
-  height: calc(100vh - clamp(40px, 6vh, 65px));
+  height: 100%;
   margin: 0;
   padding-left: clamp(40px, 5.83vw, 112px);
   padding-right: clamp(40px, 5.0vw, 96px);
-  padding-top: clamp(80px, 9.5vh, 96px);
-  padding-bottom: clamp(10px, 1.5vh, 20px);
+  padding-top: clamp(55px, 7.2vh, 75px);
+  padding-bottom: clamp(75px, 9.5vh, 98px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -88,12 +89,10 @@
 .about-visual-column {
   flex-shrink: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  align-self: flex-start;
-  margin-top: clamp(-36px, -4.5vh, -18px);
   height: 100%;
-  max-height: calc(100vh - clamp(95px, 12vh, 130px));
+  max-height: calc(100vh - clamp(140px, 18vh, 185px));
   width: auto;
   max-width: clamp(340px, 28vw, 540px);
 }
@@ -102,7 +101,7 @@
   height: 100%;
   width: auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
@@ -122,9 +121,7 @@
 .about-content-column {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-self: flex-start;
-  margin-top: clamp(4px, 0.8vh, 10px);
+  justify-content: center;
   max-width: clamp(580px, 54vw, 1040px);
   z-index: 3;
 }
@@ -134,7 +131,7 @@
   display: flex;
   align-items: center;
   gap: 22px;
-  margin-bottom: clamp(10px, 1.4vh, 16px);
+  margin-bottom: clamp(10px, 1.6vh, 18px);
 }
 
 .about-tag {
@@ -157,11 +154,11 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(3.2rem, 4.8vw, 92px);
+  font-size: clamp(3.0rem, 4.5vw, 86px);
   line-height: 1.0;
   letter-spacing: -0.015em;
   color: #fdf1de;
-  margin: 0 0 clamp(12px, 1.8vh, 20px) -6px;
+  margin: 0 0 clamp(12px, 2vh, 22px) -6px;
   text-shadow: 0 2px 14px rgba(23, 3, 6, 0.4);
   white-space: nowrap;
 }
@@ -303,7 +300,7 @@
  * ========================================= */
 .about-scroll-wrap {
   position: absolute;
-  bottom: clamp(38px, 5.8vh, 68px);
+  bottom: clamp(20px, 2.8vh, 34px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;

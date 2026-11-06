@@ -65,7 +65,10 @@
 
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+            window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: 'smooth'
+            });
             if (history.pushState) {
               history.pushState(null, null, '#' + targetId);
             }
