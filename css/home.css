@@ -284,11 +284,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   color: rgba(246, 223, 193, 0.78);
   text-decoration: none;
   font-family: var(--font-serif);
-  font-size: clamp(0.9rem, 1.0vw, 1.12rem);
+  font-size: clamp(1.12rem, 1.25vw, 1.35rem);
   letter-spacing: 0.02em;
   padding: 6px 12px;
   cursor: pointer;
@@ -304,10 +304,10 @@
 }
 
 .hero-scroll-chevron {
-  width: 18px;
-  height: 18px;
+  width: 25px;
+  height: 15px;
   stroke: currentColor;
-  stroke-width: 2.2;
+  stroke-width: 2.3;
   transition: transform var(--duration-fast) var(--ease-smooth);
 }
 
