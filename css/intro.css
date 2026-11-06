@@ -5,6 +5,17 @@
  */
 
 /* -----------------------------------------
+ * Font-Face Declaration (Local + Web Fallback)
+ * ----------------------------------------- */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------------------------------------
  * Intro Viewport Container
  * ----------------------------------------- */
 #intro-screen {
@@ -132,11 +143,27 @@
 /* -----------------------------------------
  * Main Title Group: KEERTHANA DEVAN Letters
  * ----------------------------------------- */
-.intro-letter {
+.intro-title-group {
+  font-family: 'Bebas Neue', 'Anton', 'Oswald', sans-serif;
+  font-size: 117px;
+  font-weight: 400;
   fill: #fdf1de;
+  letter-spacing: 0;
+}
+
+.intro-letter {
   opacity: 0;
   transform: translateY(6px);
   animation: letterReveal 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.intro-letter text {
+  fill: #fdf1de;
+  stroke: #fdf1de;
+  stroke-width: 1.8px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  dominant-baseline: alphabetic;
 }
 
 /* Staggered letter-by-letter delays */
