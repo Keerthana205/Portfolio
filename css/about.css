@@ -15,7 +15,7 @@
   scroll-margin-top: 0;
   overflow: hidden;
   background-color: var(--color-deep-burgundy);
-  background: 
+  background:
     radial-gradient(ellipse 65% 55% at 20% 50%, rgba(165, 38, 28, 0.42) 0%, rgba(85, 14, 22, 0.2) 45%, transparent 75%),
     radial-gradient(ellipse 75% 65% at 65% 50%, rgba(78, 12, 20, 0.45) 0%, #260308 80%),
     #260308;
@@ -91,9 +91,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(clamp(14px, 2.0vh, 28px));
   height: 100%;
-  max-height: calc(100vh - clamp(185px, 23vh, 240px));
+  max-height: calc(100vh - clamp(140px, 18vh, 185px));
   width: auto;
   max-width: clamp(340px, 28vw, 540px);
 }
@@ -226,8 +225,8 @@
   flex-direction: column;
   justify-content: space-between;
   transition: transform var(--duration-fast) var(--ease-smooth),
-              border-color var(--duration-fast) var(--ease-smooth),
-              box-shadow var(--duration-fast) var(--ease-smooth);
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth);
 }
 
 .about-feature-card:hover {
@@ -364,7 +363,7 @@
   justify-content: center;
   color: var(--color-warm-cream);
   transition: color var(--duration-fast) var(--ease-smooth),
-              transform var(--duration-fast) var(--ease-smooth);
+    transform var(--duration-fast) var(--ease-smooth);
 }
 
 .interest-item:hover .interest-icon-box {
@@ -421,7 +420,7 @@
   background: transparent;
   border: none;
   transition: color var(--duration-fast) var(--ease-smooth),
-              transform var(--duration-fast) var(--ease-smooth);
+    transform var(--duration-fast) var(--ease-smooth);
 }
 
 .about-scroll-wrap:hover {
