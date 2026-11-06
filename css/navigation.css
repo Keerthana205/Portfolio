@@ -44,15 +44,16 @@
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(10px, 1.2vw, 16px);
   color: var(--color-warm-cream);
   text-decoration: none;
   font-family: var(--font-serif);
-  font-size: clamp(0.88rem, 1.0vw, 0.98rem);
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-size: clamp(0.88rem, 1.05vw, 1.18rem);
+  font-weight: 400;
+  letter-spacing: clamp(0.14em, 0.2vw, 0.22em);
   text-transform: uppercase;
   transition: color var(--duration-fast) var(--ease-smooth);
+  flex-shrink: 0;
 }
 
 .nav-brand:hover {
@@ -62,14 +63,16 @@
 .nav-brand-title {
   display: inline-block;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .nav-brand-line {
   display: inline-block;
-  width: clamp(22px, 2.0vw, 32px);
+  width: clamp(26px, 3.2vw, 65px);
   height: 1px;
   background-color: var(--color-muted-gold);
-  opacity: 0.6;
+  opacity: 0.75;
+  flex-shrink: 0;
 }
 
 .nav-brand-star {
@@ -77,11 +80,12 @@
   align-items: center;
   justify-content: center;
   color: var(--color-muted-gold);
+  flex-shrink: 0;
 }
 
 .nav-brand-star .star-four-point {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   fill: currentColor;
 }
 
@@ -91,18 +95,19 @@
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 2.2vw, 32px);
+  gap: clamp(14px, 2.0vw, 36px);
 }
 
 .nav-link {
   position: relative;
-  font-family: var(--font-sans);
-  font-size: clamp(0.84rem, 0.92vw, 0.92rem);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 1.1vw, 1.2rem);
+  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--color-text-secondary);
   text-decoration: none;
-  padding: 6px 2px;
+  padding: 6px 4px;
+  white-space: nowrap;
   transition: color var(--duration-fast) var(--ease-smooth);
 }
 
@@ -141,9 +146,10 @@
   background-color: var(--color-warm-cream) !important;
   color: var(--color-deep-burgundy) !important;
   border-radius: var(--radius-pill) !important;
-  padding: 6px 18px !important;
-  font-size: clamp(0.82rem, 0.88vw, 0.88rem) !important;
-  font-weight: 600 !important;
+  padding: 9px 26px !important;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.02rem, 1.15vw, 1.2rem) !important;
+  font-weight: 400 !important;
   transition: background-color var(--duration-fast) var(--ease-smooth),
               transform var(--duration-fast) var(--ease-smooth),
               box-shadow var(--duration-fast) var(--ease-smooth);
@@ -165,30 +171,31 @@
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 1.4vw, 18px);
+  gap: clamp(14px, 1.6vw, 22px);
 }
 
 .nav-separator {
   width: 1px;
-  height: 20px;
-  background-color: rgba(246, 223, 193, 0.22);
+  height: 24px;
+  background-color: rgba(246, 223, 193, 0.35);
 }
 
 .btn-resume {
-  padding: 6px 16px;
-  font-family: var(--font-sans);
-  font-size: clamp(0.78rem, 0.84vw, 0.85rem);
-  font-weight: 500;
+  padding: 8px clamp(12px, 1.4vw, 22px);
+  font-family: var(--font-serif);
+  font-size: clamp(0.86rem, 0.98vw, 1.1rem);
+  font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--color-warm-cream);
   background-color: transparent;
-  border: 1px solid rgba(246, 223, 193, 0.45);
+  border: 1.2px solid rgba(246, 223, 193, 0.5);
   border-radius: var(--radius-pill);
   transition: all var(--duration-normal) var(--ease-smooth);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-resume:hover {

@@ -43,7 +43,7 @@
   max-width: 100%;
   height: 100%;
   margin: 0;
-  padding-left: clamp(28px, 4.8vw, 68px);
+  padding-left: clamp(32px, 5.2vw, 84px);
   padding-right: 0;
   display: flex;
   align-items: center;
@@ -59,9 +59,9 @@
   z-index: 3;
   display: flex;
   align-items: flex-start;
-  gap: clamp(22px, 2.6vw, 36px);
-  max-width: clamp(420px, 42vw, 540px);
-  margin-top: clamp(-16px, -2vh, -4px);
+  gap: clamp(20px, 2.4vw, 36px);
+  max-width: clamp(520px, 52vw, 820px);
+  margin-top: clamp(-10px, -1.2vh, 0px);
 }
 
 /* Vertical Decorative Line with 4-Pointed Star */
@@ -71,10 +71,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: clamp(190px, 28vh, 230px);
-  width: 16px;
+  height: clamp(365px, 47vh, 400px);
+  width: 28px;
   flex-shrink: 0;
-  margin-top: clamp(8px, 1.2vh, 14px);
+  margin-top: clamp(-60px, -7.0vh, -48px);
 }
 
 .hero-decor-line {
@@ -84,24 +84,24 @@
   width: 1px;
   background: linear-gradient(
     180deg,
-    rgba(201, 154, 104, 0) 0%,
-    rgba(201, 154, 104, 0.5) 20%,
-    rgba(201, 154, 104, 0.75) 50%,
-    rgba(201, 154, 104, 0.5) 80%,
-    rgba(201, 154, 104, 0) 100%
+    rgba(246, 223, 193, 0) 0%,
+    rgba(246, 223, 193, 0.65) 15%,
+    rgba(246, 223, 193, 0.9) 50%,
+    rgba(246, 223, 193, 0.65) 85%,
+    rgba(246, 223, 193, 0) 100%
   );
 }
 
 .hero-decor-star {
   position: absolute;
-  top: 50%;
+  top: 48%;
   transform: translateY(-50%);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 13px;
-  height: 13px;
+  width: clamp(20px, 1.5vw, 26px);
+  height: clamp(20px, 1.5vw, 26px);
   color: #fdf1de;
   filter: drop-shadow(0 0 6px rgba(246, 223, 193, 0.7));
 }
@@ -121,12 +121,12 @@
 /* Main Heading: "Hello, I'm Keerthana Devan." */
 .hero-heading {
   font-family: var(--font-serif);
-  font-weight: 500;
+  font-weight: 400;
   color: #fdf1de;
-  font-size: clamp(2.5rem, 3.4vw, 3.6rem);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  margin: 0 0 clamp(14px, 2.0vh, 20px) 0;
+  font-size: clamp(3.0rem, 5.0vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 clamp(72px, 9.4vh, 94px) 0;
   text-shadow: 0 2px 14px rgba(23, 3, 6, 0.4);
 }
 
@@ -144,20 +144,20 @@
 /* Subtitle / Description */
 .hero-description {
   font-family: var(--font-serif);
-  font-size: clamp(0.98rem, 1.08vw, 1.15rem);
+  font-size: clamp(1.18rem, 1.38vw, 1.4rem);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.52;
   color: rgba(246, 223, 193, 0.88);
   letter-spacing: 0.01em;
-  max-width: clamp(380px, 36vw, 460px);
-  margin: 0 0 clamp(20px, 2.8vh, 30px) 0;
+  max-width: clamp(380px, 35.5vw, 550px);
+  margin: 0 0 clamp(56px, 7.2vh, 76px) 0;
 }
 
 /* CTA Buttons Row */
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 1.4vw, 18px);
+  gap: clamp(14px, 1.6vw, 22px);
   flex-wrap: wrap;
 }
 
@@ -166,18 +166,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: clamp(9px, 1.1vh, 12px) clamp(22px, 1.8vw, 28px);
+  gap: 12px;
+  padding: clamp(17px, 2.25vh, 23px) clamp(36px, 2.75vw, 46px);
   background-color: var(--color-warm-cream);
   color: #1a0306;
-  font-family: var(--font-sans);
-  font-size: clamp(0.88rem, 0.95vw, 0.96rem);
+  font-family: var(--font-serif);
+  font-size: clamp(1.06rem, 1.2vw, 1.25rem);
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
-  box-shadow: 0 0 22px rgba(229, 143, 101, 0.35), 0 3px 12px rgba(23, 3, 6, 0.35);
+  box-shadow: 0 0 24px rgba(229, 143, 101, 0.38), 0 4px 16px rgba(23, 3, 6, 0.4);
   transition: background-color var(--duration-normal) var(--ease-smooth),
               box-shadow var(--duration-normal) var(--ease-smooth),
               transform var(--duration-normal) var(--ease-smooth);
@@ -185,15 +185,15 @@
 
 .btn-hero-primary:hover {
   background-color: #ffffff;
-  box-shadow: 0 0 30px rgba(246, 223, 193, 0.6), 0 5px 16px rgba(23, 3, 6, 0.45);
+  box-shadow: 0 0 32px rgba(246, 223, 193, 0.65), 0 6px 20px rgba(23, 3, 6, 0.5);
   transform: translateY(-2px);
 }
 
 .btn-hero-primary svg {
-  width: 13px;
-  height: 13px;
+  width: 17px;
+  height: 17px;
   stroke: currentColor;
-  stroke-width: 2.2;
+  stroke-width: 2.4;
   transition: transform var(--duration-fast) var(--ease-smooth);
 }
 
@@ -206,16 +206,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(8.5px, 1.05vh, 11.5px) clamp(22px, 1.8vw, 28px);
+  padding: clamp(16px, 2.15vh, 22px) clamp(32px, 2.5vw, 42px);
   background-color: transparent;
   color: var(--color-warm-cream);
-  font-family: var(--font-sans);
-  font-size: clamp(0.88rem, 0.95vw, 0.96rem);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(1.06rem, 1.2vw, 1.25rem);
+  font-weight: 400;
   letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(246, 223, 193, 0.55);
+  border: 1.5px solid rgba(246, 223, 193, 0.6);
   transition: border-color var(--duration-normal) var(--ease-smooth),
               background-color var(--duration-normal) var(--ease-smooth),
               color var(--duration-normal) var(--ease-smooth),
@@ -226,7 +226,7 @@
 .btn-hero-secondary:hover {
   border-color: var(--color-warm-cream);
   background-color: rgba(246, 223, 193, 0.08);
-  box-shadow: 0 0 16px rgba(201, 154, 104, 0.2);
+  box-shadow: 0 0 18px rgba(201, 154, 104, 0.2);
   transform: translateY(-2px);
 }
 
@@ -235,11 +235,11 @@
  * ========================================= */
 .hero-visual-wrapper {
   position: absolute;
-  right: 0;
-  bottom: clamp(16px, 3.2vh, 34px);
-  height: clamp(310px, 70vh, 480px);
+  right: clamp(-10px, 0vw, 0px);
+  bottom: clamp(6px, 1.0vh, 16px);
+  height: clamp(520px, 92vh, 830px);
   width: auto;
-  max-width: clamp(420px, 52vw, 680px);
+  max-width: clamp(640px, 66vw, 1080px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -341,6 +341,10 @@
 
   .hero-heading-italic {
     white-space: normal;
+  }
+
+  .hero-desc-br {
+    display: none;
   }
 
   .hero-visual-wrapper {
