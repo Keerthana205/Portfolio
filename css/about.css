@@ -88,10 +88,12 @@
 .about-visual-column {
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  align-self: flex-start;
+  margin-top: clamp(-36px, -4.5vh, -18px);
   height: 100%;
-  max-height: calc(100vh - clamp(130px, 16vh, 170px));
+  max-height: calc(100vh - clamp(95px, 12vh, 130px));
   width: auto;
   max-width: clamp(340px, 28vw, 540px);
 }
@@ -100,7 +102,7 @@
   height: 100%;
   width: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -363,6 +365,7 @@
   .about-visual-column {
     height: clamp(340px, 45vh, 460px);
     max-width: 90%;
+    margin-top: 0;
   }
 
   .about-content-column {
