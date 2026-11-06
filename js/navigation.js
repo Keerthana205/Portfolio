@@ -54,6 +54,10 @@
         if (href && href.startsWith('#')) {
           e.preventDefault();
           const targetId = href.substring(1);
+          
+          // Instantly switch active state with zero lag
+          updateActiveNav(targetId);
+
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -76,6 +80,7 @@
         const href = this.getAttribute('href');
         if (href && href.startsWith('#')) {
           e.preventDefault();
+          updateActiveNav('home');
           const homeSection = document.getElementById('home');
           if (homeSection) {
             homeSection.scrollIntoView({ behavior: 'smooth' });
@@ -91,7 +96,7 @@
     if ('IntersectionObserver' in window && sections.length > 0) {
       const observerOptions = {
         root: null,
-        rootMargin: '-30% 0px -50% 0px',
+        rootMargin: '-20% 0px -30% 0px',
         threshold: 0
       };
 
@@ -107,6 +112,13 @@
       sections.forEach(function (sec) {
         sectionObserver.observe(sec);
       });
+
+      // Quick activation for Contact when scrolled near bottom of page
+      window.addEventListener('scroll', function () {
+        if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60)) {
+          updateActiveNav('contact');
+        }
+      }, { passive: true });
     }
 
     function updateActiveNav(activeId) {

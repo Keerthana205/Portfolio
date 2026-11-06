@@ -157,8 +157,12 @@
   font-size: clamp(1.02rem, 1.12vw, 1.22rem) !important;
   font-weight: 500 !important;
   box-shadow: none !important;
-  transition: background-color var(--duration-fast) var(--ease-smooth),
-              transform var(--duration-fast) var(--ease-smooth);
+  outline: 1.5px solid transparent !important;
+  outline-offset: 3px !important;
+  transition: background-color var(--duration-normal) var(--ease-smooth),
+              color var(--duration-normal) var(--ease-smooth),
+              outline-color var(--duration-normal) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth) !important;
 }
 
 .nav-contact-btn:hover {
@@ -176,8 +180,7 @@
   background-color: #ffffff !important;
   color: var(--color-deep-burgundy) !important;
   box-shadow: none !important;
-  outline: 1.5px solid rgba(246, 223, 193, 0.85);
-  outline-offset: 3px;
+  outline-color: rgba(246, 223, 193, 0.85) !important;
 }
 
 .nav-contact-btn::after {
