@@ -59,6 +59,10 @@
           // Instantly switch active state with zero lag
           updateActiveNav(targetId);
 
+          if (targetId === 'home' && typeof window.playHeroTypewriter === 'function') {
+            window.playHeroTypewriter();
+          }
+
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -90,6 +94,9 @@
             homeSection.scrollIntoView({ behavior: 'smooth' });
           } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          if (typeof window.playHeroTypewriter === 'function') {
+            window.playHeroTypewriter();
           }
         }
       });
@@ -125,7 +132,17 @@
       }, { passive: true });
     }
 
+    let lastActiveSection = null;
+
     function updateActiveNav(activeId) {
+      if (lastActiveSection !== activeId) {
+        const prev = lastActiveSection;
+        lastActiveSection = activeId;
+        window.dispatchEvent(new CustomEvent('sectionEnter', {
+          detail: { sectionId: activeId, previousSection: prev }
+        }));
+      }
+
       navLinks.forEach(function (link) {
         const linkHref = link.getAttribute('href');
         if (linkHref === `#${activeId}`) {

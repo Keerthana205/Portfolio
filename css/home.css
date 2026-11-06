@@ -156,12 +156,15 @@
   vertical-align: -0.04em;
   border-radius: 1px;
   box-shadow: 0 0 10px rgba(246, 223, 193, 0.7);
-  animation: heroCursorBlink 0.95s ease-in-out infinite;
-  transition: opacity 0.8s ease;
+  animation: heroCursorBlink 0.75s ease-in-out infinite;
+  transition: opacity 0.2s ease;
 }
 
 .hero-typewriter-cursor.cursor-faded {
-  opacity: 0;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
 }
 
 @keyframes heroCursorBlink {

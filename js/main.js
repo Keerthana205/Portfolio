@@ -60,44 +60,82 @@
       return;
     }
 
-    // Clear initial text for animated typing reveal
-    target.textContent = '';
+    let typeTimeout = null;
+    let fadeTimeout = null;
+    let isTyping = false;
 
-    function startTyping() {
-      let index = 0;
+    function playTypewriter() {
+      // Clear any pending timeouts
+      if (typeTimeout) clearTimeout(typeTimeout);
+      if (fadeTimeout) clearTimeout(fadeTimeout);
+
+      isTyping = true;
       target.textContent = '';
+      if (cursor) {
+        cursor.classList.remove('cursor-faded');
+        cursor.style.display = 'inline-block';
+        cursor.style.opacity = '1';
+        cursor.style.visibility = 'visible';
+      }
+
+      let index = 0;
 
       function typeChar() {
         if (index < fullText.length) {
           target.textContent += fullText.charAt(index);
           index++;
           const char = fullText.charAt(index - 1);
-          let delay = 65;
-          if (char === ' ') delay = 120;
-          else if (char === '.') delay = 240;
-          setTimeout(typeChar, delay);
+          let delay = 60;
+          if (char === ' ') delay = 110;
+          else if (char === '.') delay = 200;
+          typeTimeout = setTimeout(typeChar, delay);
         } else {
-          // After finishing typing, leave cursor gently blinking for 4 seconds then fade
-          setTimeout(function () {
-            if (cursor) cursor.classList.add('cursor-faded');
-          }, 4000);
+          isTyping = false;
+          // Writing cursor disappears right after writing completes
+          fadeTimeout = setTimeout(function () {
+            if (cursor) {
+              cursor.classList.add('cursor-faded');
+              cursor.style.display = 'none';
+            }
+          }, 150);
         }
       }
 
-      setTimeout(typeChar, 200);
+      typeTimeout = setTimeout(typeChar, 200);
     }
+
+    // Expose globally so navigation or external triggers can play it
+    window.playHeroTypewriter = playTypewriter;
+
+    // Listen for sectionEnter event from navigation.js whenever user enters Home
+    window.addEventListener('sectionEnter', function (e) {
+      if (e.detail && e.detail.sectionId === 'home') {
+        // Trigger once when arriving from another section
+        if (e.detail.previousSection && e.detail.previousSection !== 'home') {
+          playTypewriter();
+        }
+      }
+    });
 
     const introScreen = document.getElementById('intro-screen');
     const alreadySeen = sessionStorage.getItem('keerthana_portfolio_intro_seen') === 'true';
     const urlParams = new URLSearchParams(window.location.search);
     const skipIntro = urlParams.get('skip_intro') === 'true';
+    const initialHash = window.location.hash;
+    const isHomeStart = !initialHash || initialHash === '#home';
 
-    if (introScreen && !alreadySeen && !skipIntro && introScreen.style.display !== 'none') {
-      window.addEventListener('introFinished', function () {
-        setTimeout(startTyping, 250);
-      }, { once: true });
+    if (isHomeStart) {
+      if (introScreen && !alreadySeen && !skipIntro && introScreen.style.display !== 'none') {
+        window.addEventListener('introFinished', function () {
+          setTimeout(playTypewriter, 250);
+        }, { once: true });
+      } else {
+        setTimeout(playTypewriter, 300);
+      }
     } else {
-      setTimeout(startTyping, 350);
+      // If landing directly on #about or another section, show text statically
+      target.textContent = fullText;
+      if (cursor) cursor.style.display = 'none';
     }
   }
 
