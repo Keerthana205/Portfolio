@@ -166,6 +166,22 @@
   transform: translateY(-1px);
 }
 
+.nav-contact-btn:active {
+  transform: scale(0.96) translateY(1px) !important;
+  background-color: #ebd0ad !important;
+}
+
+/* Active Section State: Highlighted when Contact is the active section */
+.nav-contact-btn.active {
+  background-color: #ffffff !important;
+  color: var(--color-deep-burgundy) !important;
+  box-shadow: 
+    0 0 14px rgba(255, 246, 232, 0.7),
+    0 0 24px rgba(220, 65, 35, 0.35) !important;
+  outline: 1.5px solid rgba(246, 223, 193, 0.85);
+  outline-offset: 3px;
+}
+
 .nav-contact-btn::after {
   display: none !important;
 }
