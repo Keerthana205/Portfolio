@@ -120,7 +120,7 @@
 /* Active State: Glowing luminous filament matching reference */
 .nav-link.active {
   color: #ffffff;
-  text-shadow: 0 0 14px rgba(220, 50, 30, 0.45);
+  text-shadow: 0 0 8px rgba(246, 223, 193, 0.35);
 }
 
 .nav-link::after {
@@ -129,12 +129,11 @@
   bottom: 4px;
   left: 2px;
   right: 2px;
-  height: 2.5px;
-  background: #fff6e8;
+  height: 2px;
+  background: #fbebd8;
   box-shadow: 
-    0 0 3px 1px #ffdfb5,
-    0 0 8px 2px rgba(224, 60, 32, 0.82),
-    0 0 16px 4px rgba(180, 24, 20, 0.55);
+    0 0 4px rgba(251, 235, 216, 0.55),
+    0 0 7px rgba(220, 65, 35, 0.28);
   border-radius: 999px;
   opacity: 0;
   transform: scaleX(0.4);
