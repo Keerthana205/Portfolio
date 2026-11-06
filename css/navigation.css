@@ -153,9 +153,9 @@
   background-color: var(--color-warm-cream) !important;
   color: var(--color-deep-burgundy) !important;
   border-radius: var(--radius-pill) !important;
-  padding: 12px clamp(30px, 1.95vw, 38px) !important;
+  padding: 8px clamp(22px, 1.4vw, 28px) !important;
   font-family: var(--font-serif) !important;
-  font-size: clamp(1.1rem, 1.22vw, 1.32rem) !important;
+  font-size: clamp(1.02rem, 1.12vw, 1.22rem) !important;
   font-weight: 500 !important;
   box-shadow: none !important;
   transition: background-color var(--duration-fast) var(--ease-smooth),
