@@ -133,6 +133,15 @@
         }
       });
     }
+    // Check initial hash on load (e.g. #about)
+    const initialHash = window.location.hash;
+    if (initialHash && initialHash.length > 1) {
+      const targetSec = document.querySelector(initialHash);
+      if (targetSec) {
+        window.scrollTo(0, targetSec.offsetTop);
+        updateActiveNav(initialHash.substring(1));
+      }
+    }
   }
 
   if (document.readyState === 'loading') {

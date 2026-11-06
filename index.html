@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/intro.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/about.css">
 </head>
 
 <body>
@@ -184,6 +185,18 @@
   <!-- Main Content Anchor -->
   <main id="main-content">
     <!-- Home Section (01) — Exact Recreation of Image 1 Reference -->
+    <script>
+      if (new URLSearchParams(window.location.search).get('test_view') === 'about') {
+        document.addEventListener('DOMContentLoaded', function() {
+          const homeEl = document.getElementById('home');
+          if (homeEl) homeEl.style.display = 'none';
+          const aboutLink = document.querySelector('a[href="#about"]');
+          const homeLink = document.querySelector('a[href="#home"]');
+          if (homeLink) homeLink.classList.remove('active');
+          if (aboutLink) aboutLink.classList.add('active');
+        });
+      }
+    </script>
     <section id="home" aria-label="Introduction: Keerthana Devan">
       <div class="hero-container">
         <!-- Left Column: Decorative line with star, heading, description, CTAs -->
@@ -243,23 +256,113 @@
       </a>
     </section>
 
-    <!-- About Section Anchor (02) -->
-    <section id="about" class="section" style="border-top: 1px solid var(--color-border-subtle);">
-      <div class="container">
-        <div class="section-tag">02 / About Me</div>
-        <h2 class="heading-2">About <span class="heading-italic">the developer</span></h2>
-        <p class="text-lead" style="margin-top: var(--space-sm);">
-          I'm Keerthana Devan, a 4th Year B.Tech CSE student who enjoys building meaningful digital solutions. I'm
-          curious about AI, web development and creating products that solve real problems.
-        </p>
+    <!-- About Section (Phase 02) — Exact Recreation of Image 2 Reference -->
+    <section id="about" class="about-section" aria-label="About Keerthana Devan">
+      <!-- Ambient Background Glow & Decorative Leaves Accent -->
+      <div class="about-bg-glow" aria-hidden="true"></div>
+      <img src="assets/images/about-leaves.png" alt="" class="about-bg-leaves" aria-hidden="true" />
 
-        <button class="scroll-indicator-wrap" data-scroll-to="#projects" aria-label="Scroll to Projects section">
-          <div class="scroll-mouse" aria-hidden="true">
-            <div class="scroll-mouse-wheel"></div>
+      <div class="about-container">
+        <!-- Left Column: Character in Arch with Books -->
+        <div class="about-visual-column">
+          <div class="about-character-box">
+            <img src="assets/images/about-illustration.png"
+                 alt="Keerthana Devan — Illustration of developer in arched frame with books"
+                 class="about-character-img"
+                 loading="lazy" />
           </div>
-          <span>Scroll</span>
-        </button>
+        </div>
+
+        <!-- Right Column: Header, Title, Biography & Interests -->
+        <div class="about-content-column">
+          <!-- Section Tag with Horizontal Golden Line -->
+          <div class="about-tag-wrap">
+            <span class="about-tag">ABOUT ME</span>
+            <span class="about-tag-line" aria-hidden="true"></span>
+          </div>
+
+          <!-- Main Heading -->
+          <h2 class="about-heading">
+            A little about me.
+          </h2>
+
+          <!-- Biography Description -->
+          <p class="about-bio">
+            I'm Keerthana Devan, a 4th Year B.Tech CSE student who<br class="about-bio-br">
+            enjoys building meaningful digital solutions. I'm curious about<br class="about-bio-br">
+            AI, web development and creating products that solve real problems.
+          </p>
+
+          <!-- 4 Interest Elements with Vertical Separators -->
+          <div class="about-interests-row">
+            <div class="interest-item">
+              <div class="interest-icon-box">
+                <svg class="interest-icon" viewBox="0 0 54 36" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="14 7 3 18 14 29"></polyline>
+                  <line x1="31" y1="4" x2="23" y2="32"></line>
+                  <polyline points="40 7 51 18 40 29"></polyline>
+                </svg>
+              </div>
+              <span class="interest-label">Build</span>
+            </div>
+
+            <div class="interest-separator" aria-hidden="true"></div>
+
+            <div class="interest-item">
+              <div class="interest-icon-box">
+                <svg class="interest-icon" viewBox="0 0 52 42" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 4C10.5 4 2 11.5 2 21c0 8.5 7 15 16.5 15 3.5 0 6-2 7.5-4.5 1.2-2 2.5-3 4.5-3h2.5c6.5 0 12-5.5 12-12 0-9.5-8-16.5-18-16.5z" />
+                  <circle cx="12" cy="18" r="2.2" fill="currentColor" stroke="none" />
+                  <circle cx="19" cy="12" r="2.2" fill="currentColor" stroke="none" />
+                  <circle cx="28" cy="12" r="2.2" fill="currentColor" stroke="none" />
+                  <path d="M38 7l11-5-5 11" stroke-width="2" />
+                  <line x1="44" y1="7.5" x2="31" y2="23" stroke-width="2.4" />
+                </svg>
+              </div>
+              <span class="interest-label">Design</span>
+            </div>
+
+            <div class="interest-separator" aria-hidden="true"></div>
+
+            <div class="interest-item">
+              <div class="interest-icon-box">
+                <svg class="interest-icon" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="23" y1="2" x2="23" y2="6"></line>
+                  <line x1="8.5" y1="8" x2="11.5" y2="11"></line>
+                  <line x1="37.5" y1="8" x2="34.5" y2="11"></line>
+                  <line x1="3" y1="22.5" x2="7" y2="22.5"></line>
+                  <line x1="43" y1="22.5" x2="39" y2="22.5"></line>
+                  <path d="M14 22.5c0-4.97 4.03-9 9-9s9 4.03 9 9c0 3.2-1.67 6-4.17 7.62-.97.63-1.83 1.88-1.83 3.05v1.83h-6v-1.83c0-1.17-.86-2.42-1.83-3.05C15.67 28.5 14 25.7 14 22.5z"></path>
+                  <line x1="18" y1="38.5" x2="28" y2="38.5"></line>
+                  <line x1="20" y1="42.5" x2="26" y2="42.5"></line>
+                </svg>
+              </div>
+              <span class="interest-label">Learn</span>
+            </div>
+
+            <div class="interest-separator" aria-hidden="true"></div>
+
+            <div class="interest-item">
+              <div class="interest-icon-box">
+                <svg class="interest-icon" viewBox="0 0 54 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="25" cy="23" r="11"></circle>
+                  <ellipse cx="25" cy="23" rx="22" ry="7.5" transform="rotate(-23 25 23)"></ellipse>
+                  <path d="M46 3l1 3.5 3.5 1-3.5 1-1 3.5-1-3.5-3.5-1 3.5-1z" fill="currentColor" stroke="none"></path>
+                </svg>
+              </div>
+              <span class="interest-label">Explore</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Bottom Center: Scroll Indicator -->
+      <a href="#projects" class="about-scroll-wrap" aria-label="Scroll to Projects section">
+        <span>Scroll</span>
+        <svg class="about-scroll-chevron" viewBox="0 0 24 14" fill="none" stroke="currentColor">
+          <path d="M1.5 2l10.5 10.5 10.5-10.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </section>
 
     <!-- Projects Section Anchor (03) -->
