@@ -47,8 +47,9 @@
       });
     }
 
-    // Nav links smooth scroll & mobile close
-    navLinks.forEach(function (link) {
+    // All internal anchor links smooth scroll & active state update
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    internalLinks.forEach(function (link) {
       link.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
         if (href && href.startsWith('#')) {
@@ -61,6 +62,9 @@
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
+            if (history.pushState) {
+              history.pushState(null, null, '#' + targetId);
+            }
           }
 
           // Close mobile menu if open
@@ -96,7 +100,7 @@
     if ('IntersectionObserver' in window && sections.length > 0) {
       const observerOptions = {
         root: null,
-        rootMargin: '-20% 0px -30% 0px',
+        rootMargin: '-35% 0px -35% 0px',
         threshold: 0
       };
 
