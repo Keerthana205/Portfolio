@@ -126,7 +126,7 @@
   font-size: clamp(3.6rem, 5.52vw, 6.625rem);
   line-height: 0.95;
   letter-spacing: -0.01em;
-  margin: 0 0 clamp(64px, 7.5vh, 81px) 0;
+  margin: 0 0 clamp(32px, 4.2vh, 48px) 0;
   text-shadow: 0 2px 14px rgba(23, 3, 6, 0.4);
 }
 
