@@ -39,6 +39,66 @@
         }
       });
     });
+
+    // Typewriter writing effect for "Keerthana Devan."
+    initTypewriter();
+  }
+
+  function initTypewriter() {
+    const target = document.querySelector('.hero-typewriter-target');
+    const cursor = document.querySelector('.hero-typewriter-cursor');
+    if (!target) return;
+
+    const fullText = target.getAttribute('data-text') || target.textContent.trim() || 'Keerthana Devan.';
+    target.setAttribute('data-text', fullText);
+
+    // Accessibility: instant text if user prefers reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      target.textContent = fullText;
+      if (cursor) cursor.style.display = 'none';
+      return;
+    }
+
+    // Clear initial text for animated typing reveal
+    target.textContent = '';
+
+    function startTyping() {
+      let index = 0;
+      target.textContent = '';
+
+      function typeChar() {
+        if (index < fullText.length) {
+          target.textContent += fullText.charAt(index);
+          index++;
+          const char = fullText.charAt(index - 1);
+          let delay = 65;
+          if (char === ' ') delay = 120;
+          else if (char === '.') delay = 240;
+          setTimeout(typeChar, delay);
+        } else {
+          // After finishing typing, leave cursor gently blinking for 4 seconds then fade
+          setTimeout(function () {
+            if (cursor) cursor.classList.add('cursor-faded');
+          }, 4000);
+        }
+      }
+
+      setTimeout(typeChar, 200);
+    }
+
+    const introScreen = document.getElementById('intro-screen');
+    const alreadySeen = sessionStorage.getItem('keerthana_portfolio_intro_seen') === 'true';
+    const urlParams = new URLSearchParams(window.location.search);
+    const skipIntro = urlParams.get('skip_intro') === 'true';
+
+    if (introScreen && !alreadySeen && !skipIntro && introScreen.style.display !== 'none') {
+      window.addEventListener('introFinished', function () {
+        setTimeout(startTyping, 250);
+      }, { once: true });
+    } else {
+      setTimeout(startTyping, 350);
+    }
   }
 
   if (document.readyState === 'loading') {

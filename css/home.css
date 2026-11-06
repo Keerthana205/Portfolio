@@ -146,6 +146,33 @@
   margin-top: 10px;
 }
 
+/* Typewriter writing effect cursor */
+.hero-typewriter-cursor {
+  display: inline-block;
+  width: clamp(2px, 0.22vw, 4px);
+  height: 0.82em;
+  background-color: var(--color-warm-cream);
+  margin-left: 5px;
+  vertical-align: -0.04em;
+  border-radius: 1px;
+  box-shadow: 0 0 10px rgba(246, 223, 193, 0.7);
+  animation: heroCursorBlink 0.95s ease-in-out infinite;
+  transition: opacity 0.8s ease;
+}
+
+.hero-typewriter-cursor.cursor-faded {
+  opacity: 0;
+}
+
+@keyframes heroCursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Subtitle / Description */
 .hero-description {
   font-family: var(--font-serif);
