@@ -1,0 +1,262 @@
+/**
+ * Keerthana Devan — Personal Portfolio
+ * Navigation Bar & Header Styles
+ * Reference: PRD v1.0 Section 2.1 & 2.2
+ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: var(--z-header);
+  background: rgba(38, 3, 8, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201, 154, 104, 0.12);
+  transition: background var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth),
+              border-color var(--duration-normal) var(--ease-smooth);
+}
+
+.site-header.scrolled {
+  background: rgba(30, 2, 6, 0.92);
+  border-bottom-color: rgba(201, 154, 104, 0.22);
+  box-shadow: 0 4px 24px rgba(23, 3, 6, 0.6);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* -----------------------------------------
+ * Left: Wordmark with Decorative Line & Star
+ * ----------------------------------------- */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-warm-cream);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.nav-brand:hover {
+  color: #ffffff;
+}
+
+.nav-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-brand-line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-muted-gold);
+  opacity: 0.6;
+}
+
+.nav-brand-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted-gold);
+}
+
+/* -----------------------------------------
+ * Centre: Navigation Links
+ * ----------------------------------------- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.nav-link {
+  position: relative;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-secondary);
+  padding: 8px 4px;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.nav-link:hover {
+  color: var(--color-warm-cream);
+}
+
+/* Active State: Subtle warm underline / glow */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-muted-gold), transparent);
+  box-shadow: 0 0 8px var(--color-warm-glow);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity var(--duration-normal) var(--ease-smooth),
+              transform var(--duration-normal) var(--ease-smooth);
+}
+
+.nav-link.active {
+  color: var(--color-warm-cream);
+}
+
+.nav-link.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* -----------------------------------------
+ * Right: Vertical Separator & Résumé Button
+ * ----------------------------------------- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav-separator {
+  width: 1px;
+  height: 24px;
+  background-color: var(--color-border-subtle);
+}
+
+.btn-resume {
+  padding: 9px 20px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-warm-cream);
+  background-color: rgba(67, 11, 19, 0.85);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-resume:hover {
+  background-color: var(--color-wine-red);
+  border-color: var(--color-muted-gold);
+  box-shadow: 0 0 16px var(--color-glow-ambient);
+  transform: translateY(-1px);
+}
+
+.btn-resume svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+/* -----------------------------------------
+ * Mobile Hamburger Toggle & Overlay
+ * ----------------------------------------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: calc(var(--z-header) + 1);
+}
+
+.nav-toggle-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-warm-cream);
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.nav-toggle.open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Drawer Responsive Queries */
+@media (max-width: 900px) {
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(30, 2, 6, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--color-border-subtle);
+    padding: calc(var(--header-height) + 24px) 24px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: transform var(--duration-normal) var(--ease-cinematic);
+    box-shadow: -8px 0 32px rgba(23, 3, 6, 0.8);
+    z-index: var(--z-header);
+  }
+
+  .nav-menu.open {
+    transform: translateX(0);
+  }
+
+  .nav-link {
+    font-size: var(--text-base);
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  .nav-separator {
+    display: none;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-menu .nav-mobile-resume {
+    display: flex;
+    margin-top: 16px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 901px) {
+  .nav-mobile-resume {
+    display: none;
+  }
+}
