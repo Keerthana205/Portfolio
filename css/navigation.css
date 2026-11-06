@@ -175,9 +175,7 @@
 .nav-contact-btn.active {
   background-color: #ffffff !important;
   color: var(--color-deep-burgundy) !important;
-  box-shadow: 
-    0 0 14px rgba(255, 246, 232, 0.7),
-    0 0 24px rgba(220, 65, 35, 0.35) !important;
+  box-shadow: none !important;
   outline: 1.5px solid rgba(246, 223, 193, 0.85);
   outline-offset: 3px;
 }
