@@ -91,8 +91,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(clamp(14px, 2.0vh, 28px));
   height: 100%;
-  max-height: calc(100vh - clamp(140px, 18vh, 185px));
+  max-height: calc(100vh - clamp(185px, 23vh, 240px));
   width: auto;
   max-width: clamp(340px, 28vw, 540px);
 }
