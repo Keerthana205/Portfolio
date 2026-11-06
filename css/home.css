@@ -43,7 +43,7 @@
   max-width: 100%;
   height: 100%;
   margin: 0;
-  padding-left: clamp(32px, 5.2vw, 84px);
+  padding-left: clamp(40px, 4.6vw, 86px);
   padding-right: 0;
   display: flex;
   align-items: center;
@@ -59,9 +59,9 @@
   z-index: 3;
   display: flex;
   align-items: flex-start;
-  gap: clamp(20px, 2.4vw, 36px);
-  max-width: clamp(520px, 52vw, 820px);
-  margin-top: clamp(-10px, -1.2vh, 0px);
+  gap: clamp(24px, 3.3vw, 64px);
+  max-width: clamp(560px, 54vw, 980px);
+  margin-top: clamp(8px, 1.0vh, 12px);
 }
 
 /* Vertical Decorative Line with 4-Pointed Star */
@@ -71,10 +71,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: clamp(365px, 47vh, 400px);
-  width: 28px;
+  height: clamp(430px, 46.5vh, 495px);
+  width: 24px;
   flex-shrink: 0;
-  margin-top: clamp(-60px, -7.0vh, -48px);
+  margin-top: clamp(-66px, -6.0vh, -60px);
 }
 
 .hero-decor-line {
@@ -100,10 +100,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(20px, 1.5vw, 26px);
-  height: clamp(20px, 1.5vw, 26px);
+  width: clamp(20px, 1.4vw, 26px);
+  height: clamp(20px, 1.4vw, 26px);
   color: #fdf1de;
-  filter: drop-shadow(0 0 6px rgba(246, 223, 193, 0.7));
+  filter: drop-shadow(0 0 4px rgba(246, 223, 193, 0.45));
 }
 
 .hero-decor-star svg {
@@ -121,12 +121,12 @@
 /* Main Heading: "Hello, I'm Keerthana Devan." */
 .hero-heading {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   color: #fdf1de;
-  font-size: clamp(3.0rem, 5.0vw, 5.2rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  margin: 0 0 clamp(72px, 9.4vh, 94px) 0;
+  font-size: clamp(3.6rem, 5.52vw, 6.625rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(64px, 7.5vh, 81px) 0;
   text-shadow: 0 2px 14px rgba(23, 3, 6, 0.4);
 }
 
@@ -134,30 +134,35 @@
   display: block;
 }
 
+.hero-heading-hello {
+  margin-top: 24px;
+}
+
 .hero-heading-italic {
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.005em;
   white-space: nowrap; /* Ensures "I'm Keerthana Devan." stays on a single line */
+  margin-top: 10px;
 }
 
 /* Subtitle / Description */
 .hero-description {
   font-family: var(--font-serif);
-  font-size: clamp(1.18rem, 1.38vw, 1.4rem);
+  font-size: clamp(1.35rem, 1.62vw, 1.75rem);
   font-weight: 400;
-  line-height: 1.52;
+  line-height: 1.48;
   color: rgba(246, 223, 193, 0.88);
   letter-spacing: 0.01em;
-  max-width: clamp(380px, 35.5vw, 550px);
-  margin: 0 0 clamp(56px, 7.2vh, 76px) 0;
+  max-width: clamp(420px, 36.5vw, 700px);
+  margin: 0 0 clamp(55px, 6.5vh, 73px) 0;
 }
 
 /* CTA Buttons Row */
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(18px, 1.6vw, 26px);
   flex-wrap: wrap;
 }
 
@@ -166,12 +171,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: clamp(17px, 2.25vh, 23px) clamp(36px, 2.75vw, 46px);
+  gap: 14px;
+  padding: clamp(17px, 2.1vh, 23px) clamp(28px, 1.8vw, 36px);
   background-color: var(--color-warm-cream);
   color: #1a0306;
   font-family: var(--font-serif);
-  font-size: clamp(1.06rem, 1.2vw, 1.25rem);
+  font-size: clamp(1.15rem, 1.28vw, 1.36rem);
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -190,10 +195,10 @@
 }
 
 .btn-hero-primary svg {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   stroke: currentColor;
-  stroke-width: 2.4;
+  stroke-width: 2.2;
   transition: transform var(--duration-fast) var(--ease-smooth);
 }
 
@@ -206,16 +211,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(16px, 2.15vh, 22px) clamp(32px, 2.5vw, 42px);
+  padding: clamp(16px, 2.0vh, 22px) clamp(26px, 1.7vw, 34px);
   background-color: transparent;
   color: var(--color-warm-cream);
   font-family: var(--font-serif);
-  font-size: clamp(1.06rem, 1.2vw, 1.25rem);
+  font-size: clamp(1.15rem, 1.28vw, 1.36rem);
   font-weight: 400;
   letter-spacing: 0.01em;
   text-decoration: none;
   border-radius: var(--radius-pill);
-  border: 1.5px solid rgba(246, 223, 193, 0.6);
+  border: 2px solid rgba(246, 223, 193, 0.6);
   transition: border-color var(--duration-normal) var(--ease-smooth),
               background-color var(--duration-normal) var(--ease-smooth),
               color var(--duration-normal) var(--ease-smooth),
@@ -235,11 +240,11 @@
  * ========================================= */
 .hero-visual-wrapper {
   position: absolute;
-  right: clamp(-10px, 0vw, 0px);
-  bottom: clamp(6px, 1.0vh, 16px);
-  height: clamp(520px, 92vh, 830px);
+  right: 0;
+  bottom: 0;
+  height: clamp(540px, 91.7vh, 1000px);
   width: auto;
-  max-width: clamp(640px, 66vw, 1080px);
+  max-width: clamp(660px, 66vw, 1260px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -271,20 +276,20 @@
  * ========================================= */
 .hero-scroll-wrap {
   position: absolute;
-  bottom: 14px;
-  left: 50%;
+  bottom: clamp(12px, 1.8vh, 22px);
+  left: 49.8%;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   color: rgba(246, 223, 193, 0.72);
   text-decoration: none;
-  font-family: var(--font-sans);
-  font-size: 0.76rem;
-  letter-spacing: 0.05em;
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+  letter-spacing: 0.02em;
   padding: 6px 12px;
   cursor: pointer;
   background: transparent;

@@ -49,7 +49,7 @@
   /* -----------------------------------------
    * 3.2 Typography Tokens
    * ----------------------------------------- */
-  --font-serif: 'Libre Baskerville', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', 'Libre Baskerville', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Type Scale */
@@ -100,7 +100,7 @@
   --container-narrow-width: 900px;
   --container-padding: clamp(1.25rem, 4vw, 3rem);
 
-  --header-height: 80px;
+  --header-height: clamp(84px, 9.6vh, 108px);
 
   /* -----------------------------------------
    * Border Radii Tokens
