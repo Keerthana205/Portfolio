@@ -1,0 +1,431 @@
+/**
+ * Keerthana Devan — Personal Portfolio
+ * Phase 01: Home (Hero) Section Styles
+ * Exact visual fidelity to reference Image 1 & Image 2
+ */
+
+/* =========================================
+ * 1. Hero Section Layout
+ * ========================================= */
+#home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  background-color: var(--color-deep-burgundy);
+  background: 
+    radial-gradient(ellipse 65% 55% at 68% 46%, rgba(138, 25, 36, 0.45) 0%, rgba(67, 11, 19, 0.22) 55%, transparent 85%),
+    radial-gradient(ellipse 75% 65% at 42% 48%, rgba(78, 12, 20, 0.48) 0%, #260308 80%),
+    #260308;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Subtle cinematic background vignette */
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(23, 3, 6, 0.55) 100%);
+  z-index: 1;
+}
+
+/* Hero Content Container */
+.hero-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* =========================================
+ * 2. Left Column: Text & CTA
+ * ========================================= */
+.hero-left-wrapper {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  max-width: 580px;
+  margin-top: -6px; /* Accurately aligns "Hello," with y ~ 160px */
+}
+
+/* Vertical Decorative Line with 4-Pointed Star */
+.hero-decor-line-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 232px;
+  width: 16px;
+  flex-shrink: 0;
+  margin-top: 14px;
+}
+
+.hero-decor-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(201, 154, 104, 0) 0%,
+    rgba(201, 154, 104, 0.5) 20%,
+    rgba(201, 154, 104, 0.75) 50%,
+    rgba(201, 154, 104, 0.5) 80%,
+    rgba(201, 154, 104, 0) 100%
+  );
+}
+
+.hero-decor-star {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: #fdf1de;
+  filter: drop-shadow(0 0 6px rgba(246, 223, 193, 0.7));
+}
+
+.hero-decor-star svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+/* Text Content Area */
+.hero-text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Heading: "Hello, I'm Keerthana Devan." */
+.hero-heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: #fdf1de;
+  font-size: clamp(3.0rem, 4.0vw, 3.95rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(16px, 2.2vw, 24px) 0;
+  text-shadow: 0 2px 14px rgba(23, 3, 6, 0.4);
+}
+
+.hero-heading-line {
+  display: block;
+}
+
+.hero-heading-italic {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  white-space: nowrap; /* Ensures "I'm Keerthana Devan." stays on a single line */
+}
+
+/* Subtitle / Description */
+.hero-description {
+  font-family: var(--font-sans);
+  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.58;
+  color: var(--color-text-secondary);
+  max-width: 410px;
+  margin: 0 0 clamp(28px, 3.2vw, 38px) 0;
+}
+
+/* CTA Buttons Row */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Primary Button: "Explore My Work ↗" */
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12.5px 26px;
+  background-color: var(--color-warm-cream);
+  color: var(--color-deep-burgundy);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  box-shadow: 0 0 24px rgba(229, 143, 101, 0.35), 0 4px 16px rgba(23, 3, 6, 0.4);
+  transition: background-color var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth),
+              transform var(--duration-normal) var(--ease-smooth);
+}
+
+.btn-hero-primary:hover {
+  background-color: #ffffff;
+  box-shadow: 0 0 32px rgba(246, 223, 193, 0.6), 0 6px 20px rgba(23, 3, 6, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-hero-primary svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.btn-hero-primary:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Secondary Button: "About Me" */
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12.5px 28px;
+  background-color: transparent;
+  color: var(--color-warm-cream);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(246, 223, 193, 0.55);
+  transition: border-color var(--duration-normal) var(--ease-smooth),
+              background-color var(--duration-normal) var(--ease-smooth),
+              color var(--duration-normal) var(--ease-smooth),
+              transform var(--duration-normal) var(--ease-smooth),
+              box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.btn-hero-secondary:hover {
+  border-color: var(--color-warm-cream);
+  background-color: rgba(246, 223, 193, 0.08);
+  box-shadow: 0 0 18px rgba(201, 154, 104, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+ * 3. Right Column: Character Asset
+ * ========================================= */
+.hero-visual-wrapper {
+  position: absolute;
+  right: -6px;
+  bottom: 44px;
+  width: clamp(500px, 56vw, 574px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-character-box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.hero-character-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* =========================================
+ * 4. Bottom Scroll Indicator
+ * ========================================= */
+.hero-scroll-wrap {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: rgba(246, 223, 193, 0.72);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: color var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth);
+}
+
+.hero-scroll-wrap:hover {
+  color: #ffffff;
+  transform: translate(-50%, 2px);
+}
+
+.hero-scroll-chevron {
+  width: 13px;
+  height: 13px;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.hero-scroll-wrap:hover .hero-scroll-chevron {
+  transform: translateY(2px);
+}
+
+/* =========================================
+ * 5. Responsive Styles
+ * ========================================= */
+@media (max-width: 860px) {
+  #home {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    padding-top: calc(var(--header-height) + 20px);
+    padding-left: 24px;
+    padding-right: 24px;
+    height: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-left-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  .hero-heading-italic {
+    white-space: normal;
+  }
+
+  .hero-visual-wrapper {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 480px;
+    justify-content: center;
+  }
+
+  .hero-character-box {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .hero-character-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-scroll-wrap {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-container {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: calc(var(--header-height) + 12px);
+  }
+
+  .hero-decor-line-wrap {
+    display: none;
+  }
+
+  .hero-left-wrapper {
+    gap: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-heading {
+    font-size: clamp(1.8rem, 7.2vw, 2.25rem);
+    line-height: 1.15;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .hero-heading-italic {
+    white-space: normal;
+    display: inline;
+  }
+
+  .hero-description {
+    font-size: 0.92rem;
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .hero-visual-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-character-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-character-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}

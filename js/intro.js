@@ -18,10 +18,11 @@
     // Check if intro has already played in this browsing session
     const urlParams = new URLSearchParams(window.location.search);
     const forceIntro = urlParams.get('intro') === 'true' || window.location.hash === '#replay-intro';
+    const skipIntro = urlParams.get('skip_intro') === 'true';
     const alreadySeen = sessionStorage.getItem(STORAGE_KEY) === 'true';
 
-    if (alreadySeen && !forceIntro) {
-      // Skip intro immediately for repeat navigations
+    if ((alreadySeen || skipIntro) && !forceIntro) {
+      // Skip intro immediately for repeat navigations or test inspection
       introScreen.style.display = 'none';
       document.body.classList.add('intro-complete');
       return;

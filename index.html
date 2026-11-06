@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="css/navigation.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -146,14 +147,14 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="nav-link nav-contact-btn">Contact</a>
         <div class="nav-mobile-resume">
           <a href="resume/resume.pdf" class="btn-resume" download="Keerthana_Devan_Resume.pdf">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            Download Résumé
+            <span>Download Résumé</span>
           </a>
         </div>
       </nav>
@@ -165,7 +166,7 @@
           aria-label="Download Résumé PDF">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16" />
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
           <span>Download Résumé</span>
         </a>
@@ -182,26 +183,62 @@
 
   <!-- Main Content Anchor -->
   <main id="main-content">
-    <!-- Home Section Foundation (01) -->
-    <section id="home" class="section">
-      <div class="container">
-        <div class="section-tag">01 / Introduction</div>
-        <h1 class="heading-display">Hello, I’m <span class="heading-italic">Keerthana Devan.</span></h1>
-        <p class="text-lead" style="margin-top: var(--space-md); margin-bottom: var(--space-xl);">
-          I design and build digital solutions that turn ideas into real, useful products.
-        </p>
-        <div style="display: flex; gap: var(--space-md); flex-wrap: wrap;">
-          <a href="#projects" class="btn btn-primary">Explore My Work</a>
-          <a href="#about" class="btn btn-secondary">About Me</a>
+    <!-- Home Section (01) — Exact Recreation of Image 1 Reference -->
+    <section id="home" aria-label="Introduction: Keerthana Devan">
+      <div class="hero-container">
+        <!-- Left Column: Decorative line with star, heading, description, CTAs -->
+        <div class="hero-left-wrapper">
+          <div class="hero-decor-line-wrap" aria-hidden="true">
+            <div class="hero-decor-line"></div>
+            <div class="hero-decor-star">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="hero-text-content">
+            <h1 class="hero-heading">
+              <span class="hero-heading-line">Hello,</span>
+              <span class="hero-heading-line hero-heading-italic">I’m Keerthana Devan.</span>
+            </h1>
+
+            <p class="hero-description">
+              I design and build digital solutions that turn ideas into real, useful products.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn-hero-primary" aria-label="Explore My Work">
+                <span>Explore My Work</span>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M7 17L17 7M17 7H9M17 7V15" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a href="#about" class="btn-hero-secondary" aria-label="Learn more About Me">
+                <span>About Me</span>
+              </a>
+            </div>
+          </div>
         </div>
 
-        <button class="scroll-indicator-wrap" data-scroll-to="#about" aria-label="Scroll to About section">
-          <div class="scroll-mouse" aria-hidden="true">
-            <div class="scroll-mouse-wheel"></div>
+        <!-- Right Column: Character asset composition with laptop, desk, lamp, books, plant -->
+        <div class="hero-visual-wrapper" aria-hidden="true">
+          <div class="hero-character-box">
+            <img src="assets/images/hero-character.png"
+                 alt="Keerthana Devan — Illustration of developer at desk with laptop"
+                 class="hero-character-img"
+                 loading="eager" />
           </div>
-          <span>Scroll</span>
-        </button>
+        </div>
       </div>
+
+      <!-- Bottom Center: Scroll Indicator -->
+      <a href="#about" class="hero-scroll-wrap" aria-label="Scroll to About section">
+        <span>Scroll</span>
+        <svg class="hero-scroll-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </section>
 
     <!-- About Section Anchor (02) -->
