@@ -80,7 +80,8 @@ keerthana-portfolio/
 ## ✦ Roadmap & Phase Gates
 
 - [x] **Phase 00 — Project Foundation**: Repository init, design tokens (`variables.css`), typography, layout conventions, shared navigation, reusable button styles, asset library setup.
-- [ ] **Phase 01 — Intro & Home**: Title sequence animation, hero layout, original character illustration, scroll indicator.
+- [x] **Phase 01 — Intro Screen**: Cinematic title sequence faithfully matching approved reference (`PORTFOLIO SERIES`, arched `KEERTHANA DEVAN` clean vector glyphs, outward extending lines, 4-pointed celestial sparkle, letter-by-letter reveal, session storage control, auto-transition to Home).
+- [ ] **Phase 01 — Home Section**: Hero layout, original character illustration, action buttons, scroll indicator.
 - [ ] **Phase 02 — About**: Two-column layout, arched frame illustration, biographical profile, Build/Design/Learn/Explore interest elements.
 - [ ] **Phase 03 — Projects**: Layered front/behind manual carousel, detail view routes, verified implementation details.
 - [ ] **Phase 04 — Skills & Certifications**: Interactive two-state toggle, floating celestial rock, original certificate preview cards.
@@ -100,3 +101,4 @@ python -m http.server 8000
 # Open in browser:
 # http://localhost:8000
 ```
+

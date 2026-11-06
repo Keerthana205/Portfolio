@@ -40,3 +40,4 @@ const certificationsData = [
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = certificationsData;
 }
+
