@@ -124,7 +124,11 @@
       }, { passive: true });
     }
 
-    let lastActiveSection = null;
+    // Initialize active section from DOM (synchronously pre-set during HTML parsing)
+    const initialActiveLink = document.querySelector('.nav-link.active');
+    let lastActiveSection = initialActiveLink
+      ? (initialActiveLink.getAttribute('href') || '').replace(/^#/, '')
+      : null;
 
     function updateActiveNav(activeId) {
       if (lastActiveSection !== activeId) {
@@ -146,9 +150,43 @@
         }
       });
     }
-    // Check initial hash on load (e.g. #about)
+    // Check initial hash on load (e.g. #about or direct return to #projects)
     const initialHash = window.location.hash;
-    if (initialHash && initialHash.length > 1) {
+    const isInstantProjects = window.__IS_BACK_TO_PROJECTS ||
+      document.documentElement.classList.contains('instant-to-projects') ||
+      (window.location.search && (window.location.search.indexOf('skip_intro=true') !== -1 || window.location.search.indexOf('project=') !== -1)) ||
+      initialHash === '#projects';
+
+    if (isInstantProjects) {
+      const projSec = document.getElementById('projects');
+      if (projSec) {
+        window.scrollTo(0, projSec.offsetTop);
+        updateActiveNav('projects');
+      }
+      const introScreen = document.getElementById('intro-screen');
+      if (introScreen) {
+        introScreen.style.display = 'none';
+      }
+      document.body.classList.add('intro-complete');
+
+      // Clear immediate navigation guard classes synchronously
+      document.documentElement.classList.remove('instant-to-projects');
+      document.documentElement.style.scrollBehavior = '';
+      if (document.body) {
+        document.body.style.opacity = '';
+        document.body.style.pointerEvents = '';
+      }
+
+      // Re-affirm position and clean URL in next tick
+      requestAnimationFrame(function () {
+        if (projSec) {
+          window.scrollTo(0, projSec.offsetTop);
+        }
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + '#projects');
+        }
+      });
+    } else if (initialHash && initialHash.length > 1) {
       const targetSec = document.querySelector(initialHash);
       if (targetSec) {
         window.scrollTo(0, targetSec.offsetTop);

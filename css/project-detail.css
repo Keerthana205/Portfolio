@@ -1,0 +1,640 @@
+/**
+ * Keerthana Devan — Personal Portfolio
+ * Phase 03: Individual Project Detail Pages Stylesheet
+ * Exact Visual Reference: media_1794063307735_ae36621d.jpg
+ */
+
+/* ==========================================================================
+   1. Page Architecture & Atmospheric Canvas
+   ========================================================================== */
+body.project-detail-body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #260308;
+  color: var(--color-warm-cream);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Atmospheric Background Gradients & Glow */
+.project-detail-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 70% 36%, rgba(185, 48, 30, 0.42) 0%, rgba(98, 16, 24, 0.22) 48%, transparent 75%),
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(68, 10, 18, 0.35) 0%, #260308 80%),
+    radial-gradient(circle at center, transparent 40%, rgba(18, 2, 5, 0.55) 100%),
+    #260308;
+}
+
+/* Botanical Leaves in Bottom Corners */
+.detail-leaf-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: clamp(80px, 9vw, 130px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.65;
+}
+
+.detail-leaf-left img,
+.detail-leaf-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detail-leaf-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: clamp(75px, 8.5vw, 120px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.65;
+}
+
+/* Main Detail Content Container — Generous Desktop Spread Matching Reference */
+.detail-main {
+  position: relative;
+  z-index: 2;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(28px, 4.2vh, 46px);
+  padding-bottom: clamp(16px, 2.5vh, 32px);
+  box-sizing: border-box;
+}
+
+.detail-container {
+  width: 100%;
+  max-width: clamp(1000px, 88vw, 1360px);
+  margin: 0 auto;
+  padding-left: clamp(28px, 4vw, 64px);
+  padding-right: clamp(28px, 4vw, 64px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   2. Back to Projects Link (Enhanced Size & Comfortable Breathing Room)
+   ========================================================================== */
+.detail-back-bar {
+  margin-top: 0;
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+}
+
+.detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7.5px;
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.05vw, 15.5px);
+  font-weight: 500;
+  color: rgba(246, 223, 193, 0.9);
+  text-decoration: none;
+  letter-spacing: 0.015em;
+  transition: color 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.detail-back-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  transition: transform 0.25s ease;
+}
+
+.detail-back-link:hover {
+  color: #ffffff;
+  transform: translateX(-4px);
+}
+
+.detail-back-link:hover svg {
+  stroke: var(--color-muted-gold);
+}
+
+/* ==========================================================================
+   3. Hero Two-Column Layout (Project Info & Balanced Laptop Visual)
+   ========================================================================== */
+.detail-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 1fr) minmax(420px, 1.15fr);
+  align-items: center;
+  gap: clamp(28px, 3.8vw, 56px);
+  position: relative;
+  margin-top: clamp(4px, 0.8vh, 12px);
+  margin-bottom: clamp(8px, 1.4vh, 18px);
+}
+
+/* Left Hero Column: Bold Serif Title, Meta & Actions */
+.detail-hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.detail-project-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3.4rem, 5.2vw, 5.5rem);
+  line-height: 0.98;
+  color: var(--color-warm-cream);
+  margin: 0 0 clamp(4px, 0.6vh, 8px) 0;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.detail-project-subtitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 1.75vw, 1.85rem);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-warm-cream);
+  margin: 0 0 clamp(16px, 2.2vh, 26px) 0;
+  letter-spacing: 0.015em;
+  line-height: 1.25;
+}
+
+.detail-project-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(13.5px, 0.96vw, 15px);
+  line-height: 1.7;
+  color: rgba(246, 223, 193, 0.88);
+  margin: 0 0 clamp(20px, 2.8vh, 32px) 0;
+  max-width: clamp(360px, 34vw, 470px);
+}
+
+.detail-actions-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.3vw, 16px);
+  flex-wrap: wrap;
+}
+
+.btn-detail-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(180deg, #F8E7D5 0%, #E8CEB4 100%);
+  color: #260308;
+  font-family: var(--font-sans);
+  font-size: clamp(12.5px, 0.92vw, 14px);
+  font-weight: 600;
+  padding: clamp(8.5px, 1.05vh, 10.5px) clamp(20px, 1.6vw, 26px);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  line-height: 1;
+}
+
+.btn-detail-demo svg {
+  width: 14px;
+  height: 14px;
+  stroke: #260308;
+  stroke-width: 2.2;
+}
+
+.btn-detail-demo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(246, 222, 198, 0.35);
+  background: #ffffff;
+}
+
+.btn-detail-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(38, 3, 8, 0.65);
+  color: var(--color-warm-cream);
+  font-family: var(--font-sans);
+  font-size: clamp(12.5px, 0.92vw, 14px);
+  font-weight: 500;
+  padding: clamp(8px, 1vh, 10px) clamp(18px, 1.5vw, 24px);
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1.5px solid rgba(201, 154, 104, 0.65);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+  line-height: 1;
+}
+
+.btn-detail-github svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.btn-detail-github:hover {
+  transform: translateY(-2px);
+  border-color: #F6DEC6;
+  background: rgba(201, 154, 104, 0.15);
+  color: #ffffff;
+}
+
+/* Right Hero Column: Enriched Laptop Visual with Orbital Ring & Celestial Sparkle */
+.detail-visual-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* SVG Orbital Arc and Celestial Sparkle — Elevated Stacking & Generous Spacing Above Laptop */
+.detail-orbital-svg {
+  position: absolute;
+  top: -24%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 124%;
+  max-width: 720px;
+  height: 128%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* Prominent Laptop Mockup Component */
+.detail-laptop-mockup {
+  position: relative;
+  width: 100%;
+  max-width: clamp(400px, 42vw, 580px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  margin-top: 2px;
+}
+
+.detail-laptop-mockup .laptop-screen-bezel {
+  width: 100%;
+  background: #181719;
+  border-radius: clamp(10px, 1vw, 14px) clamp(10px, 1vw, 14px) 0 0;
+  padding: clamp(6.5px, 0.65vw, 9.5px) clamp(6.5px, 0.65vw, 9.5px) 0 clamp(6.5px, 0.65vw, 9.5px);
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.2);
+}
+
+.detail-laptop-mockup .laptop-camera-dot {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.5px;
+  height: 3.5px;
+  background: #333235;
+  border-radius: 50%;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+}
+
+.detail-laptop-mockup .laptop-screen-display {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0d0c0e;
+  border-radius: clamp(3px, 0.35vw, 5px) clamp(3px, 0.35vw, 5px) 0 0;
+}
+
+.detail-laptop-mockup .laptop-screen-display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.35s ease;
+}
+
+.detail-laptop-mockup .laptop-screen-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 40%, rgba(0, 0, 0, 0) 65%);
+}
+
+.detail-laptop-mockup .laptop-base {
+  width: calc(100% + clamp(22px, 2.4vw, 34px));
+  height: clamp(10px, 0.95vw, 14px);
+  background: linear-gradient(180deg, #444247 0%, #2b292e 40%, #171619 100%);
+  border-radius: 0 0 clamp(6px, 0.6vw, 9px) clamp(6px, 0.6vw, 9px);
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+}
+
+.detail-laptop-mockup .laptop-notch {
+  width: clamp(40px, 3.8vw, 56px);
+  height: clamp(3px, 0.28vw, 4px);
+  background: #0f0e10;
+  border-radius: 0 0 3px 3px;
+}
+
+/* Warm Radiant Ambient Glow Underneath & Behind Laptop */
+.detail-laptop-glow {
+  position: absolute;
+  bottom: -14px;
+  left: 3%;
+  width: 94%;
+  height: 36px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(235, 140, 60, 0.48) 0%, rgba(180, 40, 25, 0.28) 50%, transparent 80%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(6px);
+}
+
+/* ==========================================================================
+   4. Horizontal Divider Line — Positioned with Balanced Breathing Room
+   ========================================================================== */
+.detail-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-muted-gold);
+  opacity: 0.32;
+  margin-top: clamp(20px, 3vh, 36px);
+  margin-bottom: clamp(22px, 3.2vh, 38px);
+}
+
+/* ==========================================================================
+   5. Four-Column Information Grid (The Problem, The Solution, Features, Stack)
+   ========================================================================== */
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr 1fr;
+  gap: 0;
+  position: relative;
+  align-items: stretch;
+}
+
+.detail-info-col {
+  padding: 0 clamp(16px, 1.8vw, 26px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detail-info-col:first-child {
+  padding-left: 0;
+}
+
+.detail-info-col:last-child {
+  padding-right: 0;
+}
+
+.detail-info-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: 0;
+  width: 1px;
+  background-color: var(--color-muted-gold);
+  opacity: 0.28;
+}
+
+.detail-col-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
+}
+
+.detail-col-icon {
+  width: clamp(18px, 1.25vw, 21px);
+  height: clamp(18px, 1.25vw, 21px);
+  color: var(--color-muted-gold);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-col-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-muted-gold);
+  stroke-width: 1.8;
+}
+
+.detail-col-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 1.4vw, 1.52rem);
+  color: var(--color-warm-cream);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.detail-col-text {
+  font-family: var(--font-sans);
+  font-size: clamp(12.8px, 0.9vw, 14.2px);
+  line-height: 1.68;
+  color: rgba(246, 223, 193, 0.86);
+  margin: 0;
+}
+
+.detail-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.9vh, 10px);
+}
+
+.detail-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: clamp(12.4px, 0.88vw, 13.8px);
+  line-height: 1.52;
+  color: rgba(246, 223, 193, 0.86);
+}
+
+.detail-features-list li::before {
+  content: '•';
+  color: var(--color-muted-gold);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.detail-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 8px;
+  margin-top: 2px;
+}
+
+.detail-tech-pill {
+  padding: 5px 14px;
+  border: 1px solid rgba(201, 154, 104, 0.48);
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: clamp(11.5px, 0.82vw, 13px);
+  font-weight: 500;
+  color: var(--color-warm-cream);
+  background: rgba(201, 154, 104, 0.08);
+  white-space: nowrap;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  user-select: text;
+}
+
+.detail-tech-pill:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-muted-gold);
+  background: rgba(201, 154, 104, 0.18);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   6. Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 960px) {
+  .detail-main {
+    padding-top: clamp(24px, 3.6vh, 36px);
+    padding-bottom: 48px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .detail-back-bar {
+    margin-bottom: 20px;
+  }
+
+  .detail-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .detail-hero-left {
+    align-items: flex-start;
+  }
+
+  .detail-project-desc {
+    max-width: 100%;
+  }
+
+  .detail-visual-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .detail-divider {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  .detail-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+  }
+
+  .detail-info-col {
+    padding: 0 24px;
+  }
+
+  .detail-info-col:nth-child(2)::after {
+    display: none;
+  }
+
+  .detail-info-col:nth-child(2n+1) {
+    padding-left: 0;
+  }
+
+  .detail-info-col:nth-child(2n) {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .detail-main {
+    padding-top: 20px;
+  }
+
+  .detail-container {
+    padding: 0 20px;
+  }
+
+  .detail-back-bar {
+    margin-bottom: 16px;
+  }
+
+  .detail-project-title {
+    font-size: 2.8rem;
+  }
+
+  .detail-project-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+
+  .detail-project-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .detail-actions-row {
+    gap: 12px;
+  }
+
+  .btn-detail-demo,
+  .btn-detail-github {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  .detail-divider {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+  .detail-info-grid {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .detail-info-col {
+    padding: 0 0 20px 0;
+  }
+
+  .detail-info-col:not(:last-child)::after {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+  }
+
+  .detail-leaf-left,
+  .detail-leaf-right {
+    opacity: 0.35;
+    width: 75px;
+  }
+}

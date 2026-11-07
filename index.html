@@ -10,6 +10,39 @@
   <meta name="theme-color" content="#1f0408">
   <title>Keerthana Devan — Personal Portfolio</title>
 
+  <!-- Immediate Return Navigation Interceptor for Projects Section -->
+  <script>
+    (function () {
+      try {
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        var isBackToProjects = search.indexOf('skip_intro=true') !== -1 ||
+                               search.indexOf('project=') !== -1 ||
+                               hash === '#projects';
+        if (isBackToProjects) {
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+          document.documentElement.style.scrollBehavior = 'auto';
+          document.documentElement.classList.add('instant-to-projects');
+          window.__IS_BACK_TO_PROJECTS = true;
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html.instant-to-projects {
+      scroll-behavior: auto !important;
+    }
+    html.instant-to-projects body {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    html.instant-to-projects #intro-screen {
+      display: none !important;
+    }
+  </style>
+
   <!-- Google Fonts Preconnect & Stylesheets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +58,7 @@
   <link rel="stylesheet" href="css/intro.css?v=7.0">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/about.css">
-  <link rel="stylesheet" href="css/projects.css?v=7.1">
+  <link rel="stylesheet" href="css/projects.css?v=8.7">
 
   <!-- Direct Interactive Overrides for Text Selection & Tag Hover Colors -->
   <style id="projects-interactivity-override">
@@ -274,7 +307,7 @@
 
       <!-- Centre: Navigation Links -->
       <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
-        <a href="#home" class="nav-link active">Home</a>
+        <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#skills" class="nav-link">Skills</a>
@@ -288,6 +321,28 @@
             <span>Download Resumé</span>
           </a>
         </div>
+        <!-- Synchronous Pre-Paint Active Nav Initialization -->
+        <script>
+          (function () {
+            try {
+              var search = window.location.search || '';
+              var hash = window.location.hash || '';
+              var isBack = window.__IS_BACK_TO_PROJECTS ||
+                           search.indexOf('project=') !== -1 ||
+                           search.indexOf('skip_intro=true') !== -1 ||
+                           hash === '#projects';
+              var targetId = isBack ? 'projects' : (hash && hash.length > 1 ? hash.substring(1) : 'home');
+              var link = document.querySelector('.nav-menu a[href="#' + targetId + '"]');
+              if (!link && targetId !== 'home') {
+                link = document.querySelector('.nav-menu a[href="#home"]');
+              }
+              if (link) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+              }
+            } catch (e) {}
+          })();
+        </script>
       </nav>
 
       <!-- Right: Vertical Separator & Download Résumé Button -->
@@ -389,7 +444,7 @@
       </a>
     </section>
 
-    <!-- About Section (Phase 02) — Exact Recreation of Image 2 Reference -->
+<!-- About Section (Phase 02) — Exact Recreation of Image 2 Reference -->
     <section id="about" class="about-section" aria-label="About Keerthana Devan">
       <!-- Ambient Background Glow & Decorative Leaves Accent -->
       <div class="about-bg-glow" aria-hidden="true"></div>
@@ -556,7 +611,7 @@
       </a>
     </section>
 
-    <!-- Projects Showcase Section (02 / SELECTED WORK) -->
+<!-- Projects Showcase Section (02 / SELECTED WORK) -->
     <section id="projects" aria-label="Selected Work — Projects Showcase">
       <!-- Ambient Center Radial Glow -->
       <div class="projects-ambient-glow" aria-hidden="true"></div>
@@ -572,17 +627,17 @@
 
         <!-- Slot -1 (Left): UniX -->
         <article class="project-card slot--1" data-project-id="unix" aria-label="UniX project card">
-          <button class="project-expand-btn" aria-label="Open UniX live project" title="View UniX">
+          <a href="projects/unix.html" class="project-expand-btn" aria-label="View UniX project details" title="View UniX">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
+          </a>
           <div class="laptop-mockup" aria-hidden="true">
             <div class="laptop-screen-bezel">
               <div class="laptop-camera-dot"></div>
               <div class="laptop-screen-display">
                 <img src="assets/projects/unix-preview.png" alt="UniX Campus Ecosystem platform preview"
-                  loading="lazy" />
+                  loading="eager" />
                 <div class="laptop-screen-sheen"></div>
               </div>
             </div>
@@ -608,17 +663,17 @@
 
         <!-- Slot 0 (Center / Featured): SignBridge -->
         <article class="project-card slot-0" data-project-id="signbridge" aria-label="SignBridge featured project card">
-          <button class="project-expand-btn" aria-label="Open SignBridge project repository" title="View SignBridge">
+          <a href="projects/signbridge.html" class="project-expand-btn" aria-label="View SignBridge project details" title="View SignBridge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
+          </a>
           <div class="laptop-mockup" aria-hidden="true">
             <div class="laptop-screen-bezel">
               <div class="laptop-camera-dot"></div>
               <div class="laptop-screen-display">
                 <img src="assets/projects/signbridge-preview.png" alt="SignBridge AI Interview Platform preview"
-                  loading="lazy" />
+                  loading="eager" />
                 <div class="laptop-screen-sheen"></div>
               </div>
             </div>
@@ -645,17 +700,17 @@
 
         <!-- Slot 1 (Right): SkySense -->
         <article class="project-card slot-1" data-project-id="skysense" aria-label="SkySense project card">
-          <button class="project-expand-btn" aria-label="Open SkySense live project" title="View SkySense">
+          <a href="projects/skysense.html" class="project-expand-btn" aria-label="View SkySense project details" title="View SkySense">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
+          </a>
           <div class="laptop-mockup" aria-hidden="true">
             <div class="laptop-screen-bezel">
               <div class="laptop-camera-dot"></div>
               <div class="laptop-screen-display">
                 <img src="assets/projects/skysense-preview.png" alt="SkySense Weather Dashboard preview"
-                  loading="lazy" />
+                  loading="eager" />
                 <div class="laptop-screen-sheen"></div>
               </div>
             </div>
@@ -707,7 +762,49 @@
       </div>
     </section>
 
-    <!-- Skills & Certifications Section Anchor (04) -->
+    <!-- Synchronous Early Positioning & Carousel Alignment for Immediate Navigation -->
+    <script>
+      (function () {
+        try {
+          var search = window.location.search || '';
+          var hash = window.location.hash || '';
+          var isBackToProjects = search.indexOf('skip_intro=true') !== -1 ||
+                                 search.indexOf('project=') !== -1 ||
+                                 hash === '#projects';
+          if (isBackToProjects) {
+            var sec = document.getElementById('projects');
+            if (sec) {
+              var urlParams = new URLSearchParams(window.location.search);
+              var retProject = urlParams.get('project') || sessionStorage.getItem('portfolio_return_project');
+              if (retProject) {
+                var wrap = sec.querySelector('.projects-showcase-wrap');
+                if (wrap) {
+                  var cards = wrap.querySelectorAll('.project-card');
+                  cards.forEach(function (c) { c.style.transition = 'none'; });
+                  var cLeft = wrap.querySelector('.project-card.slot--1');
+                  var cCenter = wrap.querySelector('.project-card.slot-0');
+                  var cRight = wrap.querySelector('.project-card.slot-1');
+                  if (retProject === 'unix' && cLeft && cCenter && cRight) {
+                    cCenter.className = 'project-card slot-1';
+                    cLeft.className = 'project-card slot-0';
+                    cRight.className = 'project-card slot--1';
+                  } else if (retProject === 'skysense' && cLeft && cCenter && cRight) {
+                    cCenter.className = 'project-card slot--1';
+                    cRight.className = 'project-card slot-0';
+                    cLeft.className = 'project-card slot-1';
+                  }
+                }
+              }
+              window.scrollTo(0, sec.offsetTop);
+              document.documentElement.classList.remove('instant-to-projects');
+              document.documentElement.style.scrollBehavior = '';
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+<!-- Skills & Certifications Section Anchor (04) -->
     <section id="skills" class="section" style="border-top: 1px solid var(--color-border-subtle);">
       <div class="container">
         <div class="section-tag">04 / Skills & Certifications</div>
@@ -719,7 +816,7 @@
       </div>
     </section>
 
-    <!-- Contact Section Anchor (05) -->
+<!-- Contact Section Anchor (05) -->
     <section id="contact" class="section" style="border-top: 1px solid var(--color-border-subtle);">
       <div class="container">
         <div class="section-tag">05 / Contact</div>
@@ -729,7 +826,8 @@
         </p>
       </div>
     </section>
-  </main>
+
+</main>
 
   <!-- Global Footer (PRD 4.7) -->
   <footer class="site-footer" role="contentinfo">
@@ -788,9 +886,9 @@
   <script src="data/projects.js"></script>
   <script src="data/skills.js"></script>
   <script src="data/certifications.js"></script>
-  <script src="js/navigation.js"></script>
+  <script src="js/navigation.js?v=8.3"></script>
   <script src="js/intro.js"></script>
-  <script src="js/projects.js?v=6.0"></script>
+  <script src="js/projects.js?v=8.2"></script>
   <script src="js/main.js"></script>
 </body>
 

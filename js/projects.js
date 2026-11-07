@@ -12,7 +12,7 @@
  * - Move RIGHT: Right -> Left, Center -> Right, Left -> Center
  *
  * Triggers:
- * - Mouse wheel ONLY when hovering over the Center card
+ * - Mouse wheel when hovering over ANY of the 3 project cards (Left, Center, Right)
  * - Bottom navigation arrows (Right -> move Left, Left -> move Right)
  * - Side card clicks (bringing clicked card to center)
  * - Touch swipe on mobile
@@ -94,9 +94,77 @@
       right: initialRight
     };
 
+    // Restore previous carousel position if returning from detail page
+    (function restoreCarouselPosition() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        let returnProject = urlParams.get('project');
+        if (!returnProject) {
+          returnProject = sessionStorage.getItem('portfolio_return_project');
+        }
+        if (returnProject) {
+          sessionStorage.removeItem('portfolio_return_project');
+
+          // If the early inline script already positioned the target card in center, re-sync slot references
+          if (slots.center && slots.center.getAttribute('data-project-id') === returnProject) {
+            slots.left = wrap.querySelector('.project-card.slot--1');
+            slots.center = wrap.querySelector('.project-card.slot-0');
+            slots.right = wrap.querySelector('.project-card.slot-1');
+            return;
+          }
+
+          // Otherwise position cleanly without animation transition
+          wrap.querySelectorAll('.project-card').forEach(function (c) {
+            c.style.transition = 'none';
+          });
+
+          const prevLeft = slots.left;
+          const prevCenter = slots.center;
+          const prevRight = slots.right;
+
+          if (returnProject === 'unix') {
+            prevCenter.className = 'project-card slot-1';
+            prevLeft.className = 'project-card slot-0';
+            prevRight.className = 'project-card slot--1';
+            slots.left = prevRight;
+            slots.center = prevLeft;
+            slots.right = prevCenter;
+          } else if (returnProject === 'skysense') {
+            prevCenter.className = 'project-card slot--1';
+            prevRight.className = 'project-card slot-0';
+            prevLeft.className = 'project-card slot-1';
+            slots.left = prevCenter;
+            slots.center = prevRight;
+            slots.right = prevLeft;
+          }
+
+          // Force reflow and re-enable transition for user clicks
+          void wrap.offsetWidth;
+          requestAnimationFrame(function () {
+            wrap.querySelectorAll('.project-card').forEach(function (c) {
+              c.style.transition = '';
+            });
+          });
+        }
+      } catch (err) {}
+    })();
+
+    // Record clicked project in sessionStorage for seamless return navigation
+    wrap.querySelectorAll('.project-expand-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const card = this.closest('.project-card');
+        const projId = card ? card.getAttribute('data-project-id') : null;
+        if (projId) {
+          try {
+            sessionStorage.setItem('portfolio_return_project', projId);
+          } catch (e) {}
+        }
+      });
+    });
+
     let isAnimating = false;
     let wheelCooldown = false;
-    const ANIMATION_DURATION = 800; // 800ms matching CSS transition
+    const ANIMATION_DURATION = 800; // 800ms matching CSS --carousel-duration
 
     /**
      * Move one position to the LEFT:
@@ -130,7 +198,7 @@
       slots.center = prevRight;
       slots.right = prevLeft;
 
-      // 4. Settle transition after duration
+      // 4. Settle transition cleanly after duration without texture pop
       setTimeout(function () {
         prevRight.style.zIndex = '';
         prevCenter.style.zIndex = '';
@@ -171,7 +239,7 @@
       slots.center = prevLeft;
       slots.right = prevCenter;
 
-      // 4. Settle transition after duration
+      // 4. Settle transition cleanly after duration without texture pop
       setTimeout(function () {
         prevLeft.style.zIndex = '';
         prevCenter.style.zIndex = '';
@@ -199,16 +267,20 @@
       });
     }
 
-    // B. Card Clicks (Side cards bring into center, expand button opens URL)
+    // B. Card Clicks (Side cards bring into center, expand button navigates to detail page)
     wrap.addEventListener('click', function (e) {
-      // 1. Expand button handler
+      // 1. Expand button handler: Open dedicated project detail page in the existing tab
       const expandBtn = e.target.closest('.project-expand-btn');
       if (expandBtn) {
         e.stopPropagation();
+        e.preventDefault();
         const card = expandBtn.closest('.project-card');
         const id = card ? card.getAttribute('data-project-id') : null;
-        if (id && projectUrls[id]) {
-          window.open(projectUrls[id], '_blank', 'noopener,noreferrer');
+        if (id) {
+          try {
+            sessionStorage.setItem('portfolio_return_project', id);
+          } catch (err) {}
+          window.location.href = 'projects/' + id + '.html';
         }
         return;
       }
@@ -237,21 +309,20 @@
       // Clicking center card does not trigger any transition
     });
 
-    // C. Mouse Wheel Handler — STRICTLY RESTRICTED TO CENTER CARD
-    // Scrolling outside the center card allows normal browser page scrolling
+    // C. Mouse Wheel Handler — Active over ANY of the 3 Project Cards (Left, Center, Right)
+    // Scrolling when pointer is over any project card controls only the carousel without vertical page scrolling.
+    // Scrolling outside the project cards allows normal browser page scrolling.
     wrap.addEventListener('wheel', function (e) {
-      const centerCard = slots.center;
-      if (!centerCard) return;
-
-      // Check if mouse event occurred over the center card
-      const isOverCenter = Boolean(e.target.closest('.project-card.slot-0'));
-      if (!isOverCenter) {
-        // Outside the center card: do NOT prevent default, allow normal page scroll
+      // Check if mouse event occurred over any project card
+      const card = e.target.closest('.project-card');
+      if (!card) {
+        // Outside the project cards: do NOT prevent default, allow normal page scroll
         return;
       }
 
-      // Pointer IS over the center card: handle carousel rotation
+      // Pointer IS over a project card: prevent vertical page scroll and stop propagation
       e.preventDefault();
+      e.stopPropagation();
 
       if (isAnimating || wheelCooldown) return;
 
@@ -260,10 +331,10 @@
         wheelCooldown = true;
 
         if (e.deltaY > 0) {
-          // Scrolling down over center card -> moves one position to the LEFT
+          // Scrolling down over any card -> moves one position to the LEFT
           rotateLeft();
         } else {
-          // Scrolling up over center card -> moves one position to the RIGHT
+          // Scrolling up over any card -> moves one position to the RIGHT
           rotateRight();
         }
 

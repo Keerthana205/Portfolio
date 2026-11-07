@@ -92,7 +92,7 @@
 :root {
   --slide-offset: clamp(260px, 24vw, 350px);
   --carousel-duration: 800ms;
-  --carousel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --carousel-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .projects-showcase-wrap {
@@ -109,7 +109,7 @@
   flex: 1 1 auto;
 }
 
-/* Base Project Card */
+/* Base Project Card - CRISP VECTOR RENDERING, PERMANENTLY BLUR-FREE */
 .project-card {
   position: absolute;
   top: 50%;
@@ -117,35 +117,27 @@
   width: clamp(320px, 28vw, 420px);
   border-radius: clamp(18px, 2vw, 28px);
   box-sizing: border-box;
-  background: rgba(50, 8, 14, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #2a060c;
+  opacity: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   border: 1px solid rgba(201, 154, 104, 0.32);
   padding: clamp(14px, 1.8vh, 20px) clamp(14px, 1.6vw, 18px) clamp(10px, 1.2vh, 16px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
   display: flex;
   flex-direction: column;
-  will-change: transform, opacity;
+  transform-origin: center center;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  /* Transform & border transitions — PERMANENTLY BLUR-FREE GPU COMPOSITING */
   transition: transform var(--carousel-duration) var(--carousel-ease),
-    opacity var(--carousel-duration) var(--carousel-ease),
-    box-shadow var(--carousel-duration) var(--carousel-ease),
     border-color var(--carousel-duration) var(--carousel-ease);
 }
 
-/* Cream Parchment Overlay for Featured Center Card */
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, #F8E7D5 0%, #E8CEB4 100%);
-  opacity: 0;
-  transition: opacity var(--carousel-duration) var(--carousel-ease);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Ensure contents sit above the background overlay */
+/* Ensure contents sit neatly inside card */
 .project-card .laptop-mockup,
 .project-card .project-info {
   position: relative;
@@ -169,15 +161,14 @@
   justify-content: center;
   z-index: 15;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
-  transition: transform 0.25s ease,
-    background-color var(--carousel-duration) var(--carousel-ease),
-    border-color var(--carousel-duration) var(--carousel-ease),
-    color var(--carousel-duration) var(--carousel-ease),
-    box-shadow var(--carousel-duration) var(--carousel-ease),
-    left var(--carousel-duration) var(--carousel-ease),
-    right var(--carousel-duration) var(--carousel-ease);
+  text-decoration: none;
   line-height: 1;
   color: #F8E7D5;
+  transition: transform 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .project-expand-btn svg {
@@ -213,81 +204,229 @@
   left: auto;
 }
 
-/* Featured Center Card (Slot 0): High-contrast crisp opaque button on light parchment background */
+/* Center Card (Slot 0): Top-right position */
 .project-card.slot-0 .project-expand-btn {
   right: clamp(12px, 1.4vw, 16px);
   left: auto;
-  background: #FDF4E7;
-  border: 1.5px solid #260308;
-  color: #260308;
-  box-shadow: 0 3px 10px rgba(38, 3, 8, 0.22);
-}
-
-.project-card.slot-0 .project-expand-btn svg path {
-  stroke: #260308;
-  stroke-width: 2.8;
-}
-
-.project-card.slot-0 .project-expand-btn:hover {
-  background: #260308;
-  color: #FDF4E7;
-  border-color: #260308;
-  box-shadow: 0 5px 16px rgba(38, 3, 8, 0.4);
-}
-
-.project-card.slot-0 .project-expand-btn:hover svg path {
-  stroke: #F8E7D5;
 }
 
 /* --------------------------------------------------------------------------
-   Slot Positions (Horizontal Transforms & Scaling)
+   Slot Positions (Horizontal Transforms & Scaling — Sharp 2D Transitions)
    -------------------------------------------------------------------------- */
 
 /* Slot -1: Visible Left Card */
 .project-card.slot--1 {
-  transform: translate(-50%, -50%) translateX(calc(-1 * var(--slide-offset))) scale(0.82);
+  transform: translate3d(-50%, -50%, 0) translateX(calc(-1 * var(--slide-offset))) scale(0.82);
   opacity: 1;
   pointer-events: auto;
   cursor: pointer;
   z-index: 2;
-  border-color: rgba(201, 154, 104, 0.32);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
 .project-card.slot--1:hover {
-  border-color: rgba(235, 190, 140, 0.55);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.65), 0 0 24px rgba(201, 154, 104, 0.2);
+  opacity: 1;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65);
 }
 
-/* Slot 0: Center Featured Card (Warm Cream & Golden Aura) */
+/* Slot 0: Center Featured Card (Zero Blur / Maximum Crisp Contrast) */
 .project-card.slot-0 {
-  transform: translate(-50%, -50%) translateX(0) scale(1);
+  transform: translate3d(-50%, -50%, 0) translateX(0) scale(1);
   opacity: 1;
   pointer-events: auto;
   cursor: default;
   z-index: 10;
-  border-color: rgba(255, 255, 255, 0.48);
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.65), 0 0 55px rgba(235, 190, 140, 0.35);
-}
-
-.project-card.slot-0::before {
-  opacity: 1;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
 }
 
 /* Slot 1: Visible Right Card */
 .project-card.slot-1 {
-  transform: translate(-50%, -50%) translateX(var(--slide-offset)) scale(0.82);
+  transform: translate3d(-50%, -50%, 0) translateX(var(--slide-offset)) scale(0.82);
   opacity: 1;
   pointer-events: auto;
   cursor: pointer;
   z-index: 2;
-  border-color: rgba(201, 154, 104, 0.32);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
 .project-card.slot-1:hover {
-  border-color: rgba(235, 190, 140, 0.55);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.65), 0 0 24px rgba(201, 154, 104, 0.2);
+  opacity: 1;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.65);
+}
+
+/* ==========================================================================
+   Project-Specific Visual Identities (UniX, SignBridge, SkySense)
+   Permanent Project Color Identities Across Left, Center, and Right Positions
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. UniX — Warm Parchment / Muted Gold Palette (#ECE2CF -> #D0C0A7)
+   -------------------------------------------------------------------------- */
+/* Permanent Card Surface */
+.project-card[data-project-id="unix"] {
+  background: linear-gradient(180deg, #ECE2CF 0%, #DFD1BC 52%, #D0C0A7 100%);
+  border-color: rgba(175, 148, 108, 0.7);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(223, 209, 188, 0.12);
+}
+
+.project-card[data-project-id="unix"].slot-0 {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(223, 209, 188, 0.2);
+}
+
+/* Typography & Details in All Positions */
+.project-card[data-project-id="unix"] .project-name {
+  color: #24060b;
+}
+
+.project-card[data-project-id="unix"] .project-category-bar .cat-line {
+  background-color: #56340f;
+  opacity: 0.85;
+}
+
+.project-card[data-project-id="unix"] .project-category-bar .cat-text {
+  color: #56340f;
+}
+
+.project-card[data-project-id="unix"] .project-desc {
+  color: #301309;
+}
+
+.project-card[data-project-id="unix"] .project-expand-btn {
+  background: #DFD1BC;
+  border: 1.5px solid #24060b;
+  color: #24060b;
+  box-shadow: 0 3px 10px rgba(36, 6, 11, 0.22);
+}
+
+.project-card[data-project-id="unix"] .project-expand-btn svg path {
+  stroke: currentColor;
+}
+
+.project-card[data-project-id="unix"] .project-expand-btn:hover {
+  background: #24060b;
+  border-color: #24060b;
+  color: #F5EDE0;
+  box-shadow: 0 5px 16px rgba(36, 6, 11, 0.4);
+}
+
+.project-card[data-project-id="unix"] .project-tag-pill {
+  background: rgba(223, 209, 188, 0.65);
+  border-color: rgba(86, 52, 15, 0.4);
+  color: #24060b;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. SignBridge — Muted Lavender / Soft Violet Palette (#E8DFEE -> #CCBED7)
+   -------------------------------------------------------------------------- */
+/* Permanent Card Surface */
+.project-card[data-project-id="signbridge"] {
+  background: linear-gradient(180deg, #E8DFEE 0%, #DBCFE4 52%, #CCBED7 100%);
+  border-color: rgba(165, 140, 182, 0.7);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(219, 207, 228, 0.12);
+}
+
+.project-card[data-project-id="signbridge"].slot-0 {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(219, 207, 228, 0.2);
+}
+
+/* Typography & Details in All Positions */
+.project-card[data-project-id="signbridge"] .project-name {
+  color: #210629;
+}
+
+.project-card[data-project-id="signbridge"] .project-category-bar .cat-line {
+  background-color: #4c1c58;
+  opacity: 0.85;
+}
+
+.project-card[data-project-id="signbridge"] .project-category-bar .cat-text {
+  color: #4c1c58;
+}
+
+.project-card[data-project-id="signbridge"] .project-desc {
+  color: #2c0a35;
+}
+
+.project-card[data-project-id="signbridge"] .project-expand-btn {
+  background: #DBCFE4;
+  border: 1.5px solid #210629;
+  color: #210629;
+  box-shadow: 0 3px 10px rgba(33, 6, 41, 0.22);
+}
+
+.project-card[data-project-id="signbridge"] .project-expand-btn svg path {
+  stroke: currentColor;
+}
+
+.project-card[data-project-id="signbridge"] .project-expand-btn:hover {
+  background: #210629;
+  border-color: #210629;
+  color: #F7F0FA;
+  box-shadow: 0 5px 16px rgba(33, 6, 41, 0.4);
+}
+
+.project-card[data-project-id="signbridge"] .project-tag-pill {
+  background: rgba(219, 207, 228, 0.65);
+  border-color: rgba(76, 28, 88, 0.4);
+  color: #210629;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. SkySense — Muted Blue / Cool Teal Palette (#D5E3E5 -> #B5C8CD)
+   -------------------------------------------------------------------------- */
+/* Permanent Card Surface */
+.project-card[data-project-id="skysense"] {
+  background: linear-gradient(180deg, #D5E3E5 0%, #C6D8DB 52%, #B5C8CD 100%);
+  border-color: rgba(142, 172, 178, 0.7);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(198, 216, 219, 0.12);
+}
+
+.project-card[data-project-id="skysense"].slot-0 {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(198, 216, 219, 0.2);
+}
+
+/* Typography & Details in All Positions */
+.project-card[data-project-id="skysense"] .project-name {
+  color: #041920;
+}
+
+.project-card[data-project-id="skysense"] .project-category-bar .cat-line {
+  background-color: #094452;
+  opacity: 0.85;
+}
+
+.project-card[data-project-id="skysense"] .project-category-bar .cat-text {
+  color: #094452;
+}
+
+.project-card[data-project-id="skysense"] .project-desc {
+  color: #082c35;
+}
+
+.project-card[data-project-id="skysense"] .project-expand-btn {
+  background: #C6D8DB;
+  border: 1.5px solid #041920;
+  color: #041920;
+  box-shadow: 0 3px 10px rgba(4, 25, 32, 0.22);
+}
+
+.project-card[data-project-id="skysense"] .project-expand-btn svg path {
+  stroke: currentColor;
+}
+
+.project-card[data-project-id="skysense"] .project-expand-btn:hover {
+  background: #041920;
+  border-color: #041920;
+  color: #EDF5F6;
+  box-shadow: 0 5px 16px rgba(4, 25, 32, 0.4);
+}
+
+.project-card[data-project-id="skysense"] .project-tag-pill {
+  background: rgba(198, 216, 219, 0.65);
+  border-color: rgba(9, 68, 82, 0.4);
+  color: #041920;
 }
 
 /* ==========================================================================
@@ -345,7 +484,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .project-card.slot-0 .laptop-screen-display img:hover {
@@ -413,15 +553,16 @@
   line-height: 1.15;
   margin: 0;
   font-size: clamp(1.4rem, 1.8vw, 1.8rem);
-  color: var(--color-warm-cream);
+  color: #260308;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   user-select: text !important;
   -webkit-user-select: text !important;
   cursor: text !important;
-  transition: color var(--carousel-duration) var(--carousel-ease);
 }
 
 .project-card.slot-0 .project-name {
-  color: #260308;
   cursor: text !important;
 }
 
@@ -440,9 +581,8 @@
   display: inline-block;
   width: 20px;
   height: 1px;
-  background-color: var(--color-muted-gold);
-  opacity: 0.65;
-  transition: background-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  background-color: currentColor;
+  opacity: 0.85;
 }
 
 .project-category-bar .cat-text {
@@ -451,81 +591,59 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-muted-gold);
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   user-select: text !important;
   -webkit-user-select: text !important;
   cursor: text !important;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.project-card.slot-0 .project-category-bar .cat-line {
-  background-color: #7a222c;
-  opacity: 0.75;
-}
-
-.project-card.slot-0 .project-category-bar .cat-text {
-  color: #7a222c;
-  cursor: text !important;
-}
-
-/* Description paragraph (Fades & expands smoothly into center) */
+/* Description paragraph — Crisp immediate display in Center card */
 .project-desc {
   font-family: var(--font-sans);
   font-size: clamp(11px, 0.78vw, 12px);
   line-height: 1.4;
-  color: #3b0e16;
+  color: inherit;
   text-align: center;
   margin: 0 auto;
   max-width: 320px;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
+  display: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   user-select: text !important;
   -webkit-user-select: text !important;
   cursor: text !important;
-  transform: translateY(8px);
-  transition: opacity var(--carousel-duration) var(--carousel-ease),
-    max-height var(--carousel-duration) var(--carousel-ease),
-    margin var(--carousel-duration) var(--carousel-ease),
-    transform var(--carousel-duration) var(--carousel-ease);
 }
 
 .project-card.slot-0 .project-desc {
-  opacity: 1;
-  max-height: 52px;
+  display: block;
   margin: clamp(4px, 0.6vh, 7px) auto clamp(5px, 0.8vh, 8px) auto;
-  transform: translateY(0);
   cursor: text !important;
 }
 
 /* Tech Badges / Pills */
 .project-tags {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  padding: 0;
-  transform: translateY(8px);
-  transition: opacity var(--carousel-duration) var(--carousel-ease),
-    max-height var(--carousel-duration) var(--carousel-ease),
-    transform var(--carousel-duration) var(--carousel-ease);
+  padding: 3px 10px;
 }
 
 .project-card.slot-0 .project-tags {
-  opacity: 1;
-  max-height: 44px;
-  overflow: visible !important;
-  padding: 3px 10px;
-  transform: translateY(0);
+  display: flex;
 }
 
 .project-tag-pill {
   padding: clamp(2.5px, 0.4vh, 4.5px) clamp(8px, 0.9vw, 12px);
   border: 1px solid rgba(38, 3, 8, 0.35);
   border-radius: 999px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   user-select: text;
   -webkit-user-select: text;
   font-family: var(--font-sans);
@@ -788,23 +906,26 @@
   .project-card {
     width: clamp(300px, 86vw, 360px);
     padding: 18px 18px 22px 18px;
+    transition: transform var(--carousel-duration) var(--carousel-ease),
+      opacity var(--carousel-duration) var(--carousel-ease),
+      border-color var(--carousel-duration) var(--carousel-ease);
   }
 
   /* On mobile: slide smoothly horizontally offscreen */
   .project-card.slot--1 {
-    transform: translate(-50%, -50%) translateX(-120%) scale(0.85);
+    transform: translate3d(-50%, -50%, 0) translateX(-120%) scale(0.85);
     opacity: 0;
     pointer-events: none;
   }
 
   .project-card.slot-0 {
-    transform: translate(-50%, -50%) translateX(0) scale(1);
+    transform: translate3d(-50%, -50%, 0) translateX(0) scale(1);
     opacity: 1;
     pointer-events: auto;
   }
 
   .project-card.slot-1 {
-    transform: translate(-50%, -50%) translateX(120%) scale(0.85);
+    transform: translate3d(-50%, -50%, 0) translateX(120%) scale(0.85);
     opacity: 0;
     pointer-events: none;
   }
