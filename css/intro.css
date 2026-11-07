@@ -25,7 +25,7 @@
   width: 100vw;
   height: 100vh;
   z-index: var(--z-intro);
-  background-color: #1f0408;
+  background-color: #1d0407;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,21 +43,11 @@
 }
 
 /* -----------------------------------------
- * Cinematic Background Vignette & Ambient Glow
+ * Cinematic Background Layers & Atmospheric Haze
  * ----------------------------------------- */
-.intro-bg-vignette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse 92% 86% at 50% 50%,
-      transparent 38%,
-      rgba(13, 1, 3, 0.68) 100%);
-  z-index: 1;
-}
 
+
+/* Layer 1: Ambient Red Luminous Core & Glow */
 .intro-bg-glow {
   position: absolute;
   top: 0;
@@ -66,17 +56,75 @@
   bottom: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 680px 340px at 50% 57%,
-      rgba(118, 19, 21, 0.95) 0%,
-      rgba(98, 11, 17, 0.75) 30%,
-      rgba(60, 6, 12, 0.42) 65%,
+    /* Core focused crimson radiance right behind the letters & sparkle */
+    radial-gradient(ellipse 440px 190px at 50% 54%,
+      rgba(146, 18, 22, 0.92) 0%,
+      rgba(102, 11, 15, 0.66) 34%,
+      rgba(46, 5, 8, 0.28) 68%,
       transparent 100%),
-    radial-gradient(ellipse 260px 110px at 50% 54%,
-      rgba(158, 30, 26, 0.65) 0%,
-      transparent 80%);
+    /* Luminous hot-spot directly behind middle letters THANA & star */
+    radial-gradient(ellipse 220px 80px at 50% 53.5%,
+      rgba(176, 25, 24, 0.50) 0%,
+      transparent 75%),
+    /* Gentle ambient crimson spread */
+    radial-gradient(ellipse 580px 250px at 50% 53%,
+      rgba(68, 8, 12, 0.36) 0%,
+      transparent 75%);
+  z-index: 1;
   opacity: 0;
-  z-index: 2;
   animation: introGlowReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+/* Layer 2: Soft Atmospheric Drift (low-contrast subtle variations) */
+.intro-bg-plumes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background:
+    /* Subtle soft drift bottom-left */
+    radial-gradient(ellipse 650px 380px at 15% 82%, rgba(52, 6, 11, 0.22) 0%, transparent 75%),
+    /* Subtle soft drift bottom-right */
+    radial-gradient(ellipse 680px 400px at 85% 82%, rgba(48, 6, 10, 0.20) 0%, transparent 75%),
+    /* Faint lower-center atmosphere */
+    radial-gradient(ellipse 700px 320px at 50% 75%, rgba(55, 7, 12, 0.18) 0%, transparent 80%),
+    /* Faint upper-left drift */
+    radial-gradient(ellipse 550px 320px at 15% 25%, rgba(42, 5, 9, 0.18) 0%, transparent 75%);
+  z-index: 2;
+  opacity: 0;
+  animation: introFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+
+/* Layer 3: Faint Atmospheric Mist */
+.intro-bg-fog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  animation: introFogFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* Layer 4: Cinematic Vignette (subtle corner darkening) */
+.intro-bg-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 92% 86% at 50% 50%,
+      transparent 42%,
+      rgba(10, 1, 3, 0.65) 100%);
+  z-index: 4;
 }
 
 /* -----------------------------------------
@@ -84,21 +132,21 @@
  * ----------------------------------------- */
 .intro-content-wrapper {
   position: relative;
-  z-index: 3;
+  z-index: 10;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .intro-svg {
-  width: min(94vw, 167vh);
-  max-width: 1024px;
-  height: auto;
-  aspect-ratio: 1024 / 576;
+  width: min(100vw, calc(100vh * (1024 / 576)));
+  height: min(100vh, calc(100vw * (576 / 1024)));
+  max-width: 1650px;
   display: block;
+  overflow: visible;
 }
 
 /* -----------------------------------------
@@ -108,134 +156,109 @@
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.88em;
   text-anchor: middle;
-  fill: #fcf1e2;
+  fill: #f6dec6;
   opacity: 0;
   transform: translateY(-4px);
   animation: introTopFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
 .intro-line {
-  stroke: #fcf1e2;
-  stroke-width: 1.15;
-  stroke-opacity: 0.85;
+  stroke-width: 1.25;
 }
 
-.intro-line-top-left {
-  transform-origin: 335px 178px;
-  transform: scaleX(0);
-  animation: lineExtendLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
-}
-
+.intro-line-top-left,
 .intro-line-top-right {
-  transform-origin: 691px 178px;
-  transform: scaleX(0);
-  animation: lineExtendRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+  opacity: 0;
+  animation: introFadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
 }
 
 /* -----------------------------------------
- * Main Title Group: KEERTHANA DEVAN Letters
+ * Main Title Group: KEERTHANA DEVAN Letters (Traced Vector Paths)
  * ----------------------------------------- */
 .intro-title-group {
-  font-family: 'Bebas Neue', 'Anton', 'Oswald', sans-serif;
-  font-weight: 400;
-  fill: #fdf1de;
-  letter-spacing: 0;
+  fill: #fbe2ca;
 }
 
 .intro-letter {
+  fill: #fbe2ca;
   opacity: 0;
-  animation: letterReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.intro-letter text {
-  fill: #fdf1de;
-  stroke: #fdf1de;
-  stroke-width: 1.8px;
-  stroke-linejoin: round;
-  paint-order: stroke fill;
-  dominant-baseline: alphabetic;
+  animation: letterReveal 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Staggered letter-by-letter delays */
 .intro-letter-0 {
-  animation-delay: 0.40s;
+  animation-delay: 0.35s;
 }
 
 .intro-letter-1 {
-  animation-delay: 0.45s;
+  animation-delay: 0.40s;
 }
 
 .intro-letter-2 {
-  animation-delay: 0.50s;
+  animation-delay: 0.45s;
 }
 
 .intro-letter-3 {
-  animation-delay: 0.55s;
+  animation-delay: 0.50s;
 }
 
 .intro-letter-4 {
-  animation-delay: 0.60s;
+  animation-delay: 0.55s;
 }
 
 .intro-letter-5 {
-  animation-delay: 0.65s;
+  animation-delay: 0.60s;
 }
 
 .intro-letter-6 {
-  animation-delay: 0.70s;
+  animation-delay: 0.65s;
 }
 
 .intro-letter-7 {
-  animation-delay: 0.75s;
+  animation-delay: 0.70s;
 }
 
 .intro-letter-8 {
-  animation-delay: 0.80s;
+  animation-delay: 0.75s;
 }
 
 .intro-letter-9 {
-  animation-delay: 0.90s;
+  animation-delay: 0.82s;
 }
 
 .intro-letter-10 {
-  animation-delay: 0.95s;
+  animation-delay: 0.86s;
 }
 
 .intro-letter-11 {
-  animation-delay: 1.00s;
+  animation-delay: 0.90s;
 }
 
 .intro-letter-12 {
-  animation-delay: 1.05s;
+  animation-delay: 0.94s;
 }
 
 .intro-letter-13 {
-  animation-delay: 1.10s;
+  animation-delay: 0.98s;
 }
 
 /* -----------------------------------------
  * Bottom Group: Lines & 4-Pointed Star
  * ----------------------------------------- */
-.intro-line-bottom-left {
-  transform-origin: 484px 355px;
-  transform: scaleX(0);
-  animation: lineExtendLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
-}
-
+.intro-line-bottom-left,
 .intro-line-bottom-right {
-  transform-origin: 538px 355px;
-  transform: scaleX(0);
-  animation: lineExtendRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+  opacity: 0;
+  animation: introFadeIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
 }
 
 .intro-star {
-  fill: #fdf1de;
+  fill: #fbe2ca;
   transform-origin: 511.5px 355px;
   opacity: 0;
   transform: scale(0.3);
-  animation: starRevealAndGlow 0.95s cubic-bezier(0.16, 1, 0.3, 1) 1.35s forwards;
+  animation: starRevealAndGlow 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.15s forwards;
 }
 
 /* -----------------------------------------
@@ -324,6 +347,8 @@
   }
 
   .intro-bg-glow,
+  .intro-bg-plumes,
+  .intro-bg-fog,
   .intro-series-text,
   .intro-letter,
   .intro-line,
@@ -331,5 +356,27 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+
+  @keyframes introFadeIn {
+    from {
+      opacity: 0;
+    }
+
+
+  to {
+    opacity: 1;
+  }
+}
+
+  @keyframes introFogFadeIn {
+    from {
+      opacity: 0;
+    }
+
+  to {
+    opacity: 0.35;
   }
 }

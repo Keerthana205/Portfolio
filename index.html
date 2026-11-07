@@ -22,104 +22,234 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/navigation.css">
   <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/intro.css?v=7.0">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/projects.css?v=7.1">
+
+  <!-- Direct Interactive Overrides for Text Selection & Tag Hover Colors -->
+  <style id="projects-interactivity-override">
+    /* Prevent clipping on hover scale and shadows */
+    .project-card .project-tags,
+    .project-card.slot-0 .project-tags {
+      overflow: visible !important;
+      padding: 6px 16px !important;
+    }
+
+    /* Universal Selectability & Cursors across all cards */
+    .project-card,
+    .project-card .project-info,
+    .project-card .project-name,
+    .project-card .project-category-bar,
+    .project-card .cat-text,
+    .project-card .project-desc,
+    .project-card .project-tags,
+    .project-card .project-tag-pill {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+
+    .project-card .project-name,
+    .project-card .cat-text,
+    .project-card .project-desc {
+      cursor: text !important;
+    }
+
+    .project-card .project-tag-pill {
+      cursor: pointer !important;
+    }
+
+    /* High-Contrast Visible Text Selection Highlights */
+    .project-card.slot-0 ::selection,
+    .project-card.slot-0 *::selection {
+      background: #260308 !important;
+      color: #F8E7D5 !important;
+    }
+
+    .project-card ::selection,
+    .project-card *::selection {
+      background: #C99A68 !important;
+      color: #260308 !important;
+    }
+
+    /* Tag Pill Distinct Hover Jewel Tones */
+    .project-tag-pill.tag-ai-ml:hover,
+    .project-tag-pill[data-tag*="ai"]:hover,
+    .project-tag-pill[data-tag*="ml"]:hover {
+      background-color: #5b21b6 !important;
+      border-color: #7c3aed !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(91, 33, 182, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    .project-tag-pill.tag-accessibility:hover,
+    .project-tag-pill[data-tag*="accessib"]:hover {
+      background-color: #9f1239 !important;
+      border-color: #e11d48 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(159, 18, 57, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    .project-tag-pill.tag-web-dev:hover,
+    .project-tag-pill[data-tag*="web"]:hover,
+    .project-tag-pill[data-tag*="dev"]:hover {
+      background-color: #0f766e !important;
+      border-color: #14b8a6 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(15, 118, 110, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    .project-tag-pill.tag-fullstack:hover,
+    .project-tag-pill[data-tag*="full"]:hover,
+    .project-tag-pill[data-tag*="stack"]:hover {
+      background-color: #9a3412 !important;
+      border-color: #ea580c !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(154, 52, 18, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    .project-tag-pill.tag-frontend:hover,
+    .project-tag-pill[data-tag*="front"]:hover {
+      background-color: #1d4ed8 !important;
+      border-color: #3b82f6 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(29, 78, 216, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    .project-tag-pill.tag-weather-api:hover,
+    .project-tag-pill[data-tag*="weather"]:hover,
+    .project-tag-pill[data-tag*="api"]:hover {
+      background-color: #854d0e !important;
+      border-color: #ca8a04 !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(133, 77, 14, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+  </style>
 </head>
 
 <body>
   <!-- Cinematic Intro Title Screen (PRD 4.1 & Exact Visual Reference) -->
   <aside id="intro-screen" aria-label="Portfolio Series Intro: Keerthana Devan">
-    <!-- Cinematic Vignette & Ambient Radial Glow -->
-    <div class="intro-bg-vignette" aria-hidden="true"></div>
+    <!-- Cinematic Background Atmosphere: Ambient Glow, Plumes, Smoky Fog & Vignette -->
     <div class="intro-bg-glow" aria-hidden="true"></div>
+    <div class="intro-bg-plumes" aria-hidden="true"></div>
+
+    <svg class="intro-bg-fog" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <filter id="atmosphericSmoke" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.0028 0.0018" numOctaves="4" seed="27" result="noise" />
+        <feColorMatrix type="matrix" in="noise" result="clouds" values="
+          0   0   0   0   0.16
+          0   0   0   0   0.022
+          0   0   0   0   0.035
+        1.2 0 0 0 -0.40" />
+        <feGaussianBlur stdDeviation="8.5" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#atmosphericSmoke)" />
+    </svg>
+
+    <div class="intro-bg-vignette" aria-hidden="true"></div>
 
     <!-- Scalable 16:9 Composition Container -->
     <div class="intro-content-wrapper">
-            <svg class="intro-svg" viewBox="0 0 1024 576" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="intro-title-text">
+      <svg class="intro-svg" viewBox="0 0 1024 576" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+        aria-labelledby="intro-title-text">
         <title id="intro-title-text">PORTFOLIO SERIES — KEERTHANA DEVAN</title>
 
         <defs>
-          <linearGradient id="topLineGradLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#fcf1e2" stop-opacity="0" />
-            <stop offset="35%" stop-color="#fcf1e2" stop-opacity="0.8" />
-            <stop offset="100%" stop-color="#fcf1e2" stop-opacity="0.95" />
+          <linearGradient id="topLineGradLeft" gradientUnits="userSpaceOnUse" x1="245" y1="178" x2="335" y2="178">
+            <stop offset="0%" stop-color="#f6dec6" stop-opacity="0" />
+            <stop offset="35%" stop-color="#f6dec6" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#f6dec6" stop-opacity="1" />
           </linearGradient>
-          <linearGradient id="topLineGradRight" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#fcf1e2" stop-opacity="0.95" />
-            <stop offset="65%" stop-color="#fcf1e2" stop-opacity="0.8" />
-            <stop offset="100%" stop-color="#fcf1e2" stop-opacity="0" />
+          <linearGradient id="topLineGradRight" gradientUnits="userSpaceOnUse" x1="689" y1="178" x2="781" y2="178">
+            <stop offset="0%" stop-color="#f6dec6" stop-opacity="1" />
+            <stop offset="65%" stop-color="#f6dec6" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#f6dec6" stop-opacity="0" />
           </linearGradient>
-          <linearGradient id="lineGradLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#fdf1de" stop-opacity="0" />
-            <stop offset="35%" stop-color="#fdf1de" stop-opacity="0.75" />
-            <stop offset="100%" stop-color="#fdf1de" stop-opacity="0.95" />
+          <linearGradient id="lineGradLeft" gradientUnits="userSpaceOnUse" x1="344" y1="355" x2="484" y2="355">
+            <stop offset="0%" stop-color="#fbe2ca" stop-opacity="0" />
+            <stop offset="35%" stop-color="#fbe2ca" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#fbe2ca" stop-opacity="1" />
           </linearGradient>
-          <linearGradient id="lineGradRight" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#fdf1de" stop-opacity="0.95" />
-            <stop offset="65%" stop-color="#fdf1de" stop-opacity="0.75" />
-            <stop offset="100%" stop-color="#fdf1de" stop-opacity="0" />
+          <linearGradient id="lineGradRight" gradientUnits="userSpaceOnUse" x1="539" y1="355" x2="679" y2="355">
+            <stop offset="0%" stop-color="#fbe2ca" stop-opacity="1" />
+            <stop offset="65%" stop-color="#fbe2ca" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#fbe2ca" stop-opacity="0" />
           </linearGradient>
         </defs>
 
         <!-- Top Group: Flank Lines & PORTFOLIO SERIES -->
         <g class="intro-top-group">
-          <line class="intro-line intro-line-top-left" x1="244" y1="178" x2="335" y2="178" stroke="url(#topLineGradLeft)" />
-          <text class="intro-series-text" x="512" y="181" text-anchor="middle">PORTFOLIO SERIES</text>
-          <line class="intro-line intro-line-top-right" x1="691" y1="178" x2="782" y2="178" stroke="url(#topLineGradRight)" />
+          <line class="intro-line intro-line-top-left" x1="245" y1="178" x2="335" y2="178"
+            stroke="url(#topLineGradLeft)" stroke-width="1.25" />
+          <text class="intro-series-text" x="512" y="182" text-anchor="middle">PORTFOLIO SERIES</text>
+          <line class="intro-line intro-line-top-right" x1="689" y1="178" x2="781" y2="178"
+            stroke="url(#topLineGradRight)" stroke-width="1.25" />
         </g>
 
-        <!-- Main Arched Title: KEERTHANA DEVAN (Symmetrically Balanced Level Arch) -->
+        <!-- Main Arched Title: KEERTHANA DEVAN (Restored Exact Traced Vector Paths) -->
         <g class="intro-title-group" role="heading" aria-level="1" aria-label="KEERTHANA DEVAN">
-          <g class="intro-letter intro-letter-0">
-            <text x="194.0" y="344" font-size="116" text-anchor="middle" transform="rotate(-6.2, 194.0, 344)">K</text>
-          </g>
-          <g class="intro-letter intro-letter-1">
-            <text x="243.0" y="330" font-size="110" text-anchor="middle" transform="rotate(-5.3, 243.0, 330)">E</text>
-          </g>
-          <g class="intro-letter intro-letter-2">
-            <text x="284.5" y="322" font-size="105" text-anchor="middle" transform="rotate(-4.4, 284.5, 322)">E</text>
-          </g>
-          <g class="intro-letter intro-letter-3">
-            <text x="328.5" y="317" font-size="101" text-anchor="middle" transform="rotate(-3.5, 328.5, 317)">R</text>
-          </g>
-          <g class="intro-letter intro-letter-4">
-            <text x="378.0" y="312" font-size="97" text-anchor="middle" transform="rotate(-2.6, 378.0, 312)">T</text>
-          </g>
-          <g class="intro-letter intro-letter-5">
-            <text x="423.0" y="311" font-size="95" text-anchor="middle" transform="rotate(-1.7, 423.0, 311)">H</text>
-          </g>
-          <g class="intro-letter intro-letter-6">
-            <text x="477.5" y="309" font-size="94" text-anchor="middle" transform="rotate(-0.8, 477.5, 309)">A</text>
-          </g>
-          <g class="intro-letter intro-letter-7">
-            <text x="527.0" y="309" font-size="94" text-anchor="middle" transform="rotate(0.8, 527.0, 309)">N</text>
-          </g>
-          <g class="intro-letter intro-letter-8">
-            <text x="579.0" y="311" font-size="95" text-anchor="middle" transform="rotate(1.7, 579.0, 311)">A</text>
-          </g>
-          <g class="intro-letter intro-letter-9">
-            <text x="650.0" y="312" font-size="97" text-anchor="middle" transform="rotate(2.6, 650.0, 312)">D</text>
-          </g>
-          <g class="intro-letter intro-letter-10">
-            <text x="694.5" y="317" font-size="101" text-anchor="middle" transform="rotate(3.5, 694.5, 317)">E</text>
-          </g>
-          <g class="intro-letter intro-letter-11">
-            <text x="736.0" y="322" font-size="105" text-anchor="middle" transform="rotate(4.4, 736.0, 322)">V</text>
-          </g>
-          <g class="intro-letter intro-letter-12">
-            <text x="783.5" y="330" font-size="110" text-anchor="middle" transform="rotate(5.3, 783.5, 330)">A</text>
-          </g>
-          <g class="intro-letter intro-letter-13">
-            <text x="836.0" y="344" font-size="116" text-anchor="middle" transform="rotate(6.2, 836.0, 344)">N</text>
-          </g>
+          <!-- KEERTHANA -->
+          <path id="letter-0" class="intro-letter intro-letter-0" data-char="K"
+            d="M 209.0 233.0 L 222.0 233.0 L 202.0 273.0 L 216.0 332.0 L 199.0 336.0 L 191.0 294.0 L 189.0 292.0 L 187.0 296.0 L 183.0 340.0 L 166.0 345.0 L 178.0 234.0 L 194.0 234.0 L 189.0 273.0 L 209.0 234.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-1" class="intro-letter intro-letter-1" data-char="E"
+            d="M 239.0 232.0 L 264.0 232.0 L 263.0 243.0 L 245.0 244.0 L 243.0 270.0 L 257.0 269.0 L 257.0 272.0 L 256.0 281.0 L 241.0 283.0 L 239.0 306.0 L 239.0 317.0 L 258.0 313.0 L 257.0 325.0 L 227.0 331.0 L 223.0 331.0 L 223.0 318.0 L 231.0 236.0 L 232.0 233.0 L 239.0 233.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-2" class="intro-letter intro-letter-2" data-char="E"
+            d="M 301.0 230.0 L 305.0 231.0 L 304.0 241.0 L 286.0 242.0 L 284.0 266.0 L 298.0 266.0 L 298.0 275.0 L 297.0 277.0 L 283.0 278.0 L 281.0 304.0 L 281.0 310.0 L 300.0 308.0 L 299.0 319.0 L 265.0 323.0 L 273.0 231.0 L 301.0 231.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-3" class="intro-letter intro-letter-3" data-char="R"
+            d="M 314.0 230.0 L 339.0 230.0 L 346.0 233.0 L 350.0 238.0 L 350.0 262.0 L 347.0 268.0 L 340.0 273.0 L 350.0 315.0 L 336.0 315.0 L 328.0 278.0 L 325.0 276.0 L 323.0 316.0 L 308.0 318.0 L 314.0 231.0 Z M 329.0 239.0 L 327.0 241.0 L 326.0 267.0 L 331.0 267.0 L 335.0 264.0 L 338.0 254.0 L 336.0 240.0 L 330.0 239.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-4" class="intro-letter intro-letter-4" data-char="T"
+            d="M 360.0 228.0 L 398.0 228.0 L 398.0 238.0 L 385.0 238.0 L 382.0 313.0 L 367.0 313.0 L 371.0 238.0 L 359.0 239.0 L 360.0 229.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-5" class="intro-letter intro-letter-5" data-char="H"
+            d="M 433.0 227.0 L 446.0 227.0 L 443.0 311.0 L 429.0 311.0 L 431.0 271.0 L 417.0 271.0 L 416.0 311.0 L 401.0 311.0 L 405.0 228.0 L 419.0 228.0 L 418.0 260.0 L 431.0 260.0 L 433.0 228.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-6" class="intro-letter intro-letter-6" data-char="A"
+            d="M 469.0 227.0 L 484.0 227.0 L 498.5 310.0 L 484.5 310.0 L 481.5 291.5 L 467.0 291.5 L 466.0 310.0 L 455.0 310.0 Z M 475.0 250.5 L 468.5 281.5 L 480.0 281.5 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-7" class="intro-letter intro-letter-7" data-char="N"
+            d="M 507.0 227.0 L 521.0 228.0 L 537.0 273.0 L 537.0 227.0 L 548.0 228.0 L 548.0 310.0 L 536.0 309.0 L 518.0 259.0 L 517.0 310.0 L 507.0 310.0 L 507.0 228.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-8" class="intro-letter intro-letter-8" data-char="A"
+            d="M 572.0 227.0 L 586.0 227.0 L 603.0 311.0 L 589.0 311.0 L 586.0 292.5 L 570.0 292.5 L 567.5 310.5 L 556.0 310.5 Z M 578.0 250.5 L 572.0 282.5 L 584.5 282.5 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <!-- DEVAN -->
+          <path id="letter-9" class="intro-letter intro-letter-9" data-char="D"
+            d="M 630.0 229.0 L 651.0 229.0 L 660.0 233.0 L 668.0 244.0 L 671.0 258.0 L 671.0 291.0 L 666.0 306.0 L 657.0 313.0 L 631.0 313.0 L 630.0 230.0 Z M 645.0 238.0 L 646.0 304.0 L 652.0 303.0 L 657.0 294.0 L 656.0 249.0 L 654.0 242.0 L 646.0 238.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-10" class="intro-letter intro-letter-10" data-char="E"
+            d="M 678.0 230.0 L 709.0 231.0 L 710.0 241.0 L 693.0 240.0 L 693.0 264.0 L 707.0 265.0 L 707.0 276.0 L 694.0 275.0 L 694.0 306.0 L 712.0 307.0 L 711.0 319.0 L 680.0 316.0 L 678.0 231.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-11" class="intro-letter intro-letter-11" data-char="V"
+            d="M 715.0 231.0 L 729.0 231.0 L 730.0 233.0 L 739.0 290.0 L 741.0 289.0 L 747.0 232.0 L 758.0 232.0 L 745.0 322.0 L 733.0 321.0 L 715.0 232.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-12" class="intro-letter intro-letter-12" data-char="A"
+            d="M 773.0 233.0 L 787.0 233.0 L 807.5 330.0 L 793.0 329.0 L 790.0 306.0 L 774.0 306.0 L 771.5 324.5 L 760.0 324.0 Z M 779.5 259.0 L 775.5 295.0 L 786.5 295.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
+          <path id="letter-13" class="intro-letter intro-letter-13" data-char="N"
+            d="M 811.0 235.0 L 825.0 236.0 L 846.0 294.0 L 847.0 286.0 L 842.0 236.0 L 854.0 237.0 L 862.0 338.0 L 862.0 347.0 L 849.0 343.0 L 825.0 274.0 L 828.0 336.0 L 817.0 334.0 L 811.0 236.0 Z"
+            fill="#fbe2ca" fill-rule="evenodd" />
         </g>
 
         <!-- Bottom Group: Dividing Lines & 4-Pointed Celestial Star -->
         <g class="intro-bottom-group">
-          <line class="intro-line intro-line-bottom-left" x1="344" y1="355" x2="484" y2="355" stroke="url(#lineGradLeft)" />
-          <path class="intro-star" d="M 511.5 345.5 L 513.5 353.2 L 521.5 355 L 513.5 356.8 L 511.5 364.5 L 509.5 356.8 L 501.5 355 L 509.5 353.2 Z" fill="#fdf1de" />
-          <line class="intro-line intro-line-bottom-right" x1="538" y1="355" x2="679" y2="355" stroke="url(#lineGradRight)" />
+          <line class="intro-line intro-line-bottom-left" x1="344" y1="355" x2="484" y2="355"
+            stroke="url(#lineGradLeft)" stroke-width="1.25" />
+          <path class="intro-star"
+            d="M 511.5 346 L 513.5 353.5 L 521 355 L 513.5 356.5 L 511.5 364 L 509.5 356.5 L 502 355 L 509.5 353.5 Z"
+            fill="#fbe2ca" />
+          <line class="intro-line intro-line-bottom-right" x1="539" y1="355" x2="679" y2="355"
+            stroke="url(#lineGradRight)" stroke-width="1.25" />
         </g>
       </svg>
     </div>
@@ -186,8 +316,9 @@
   <main id="main-content">
     <!-- Home Section (01) — Exact Recreation of Image 1 Reference -->
     <script>
-      if (new URLSearchParams(window.location.search).get('test_view') === 'about') {
-        document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('test_view') === 'about') {
+        document.addEventListener('DOMContentLoaded', function () {
           const homeEl = document.getElementById('home');
           if (homeEl) homeEl.style.display = 'none';
           const aboutLink = document.querySelector('a[href="#about"]');
@@ -214,12 +345,15 @@
             <h1 class="hero-heading">
               <span class="hero-heading-line hero-heading-hello">Hello,</span>
               <span class="hero-heading-line hero-heading-italic">
-                <span class="hero-heading-prefix">I’m </span><span class="hero-typewriter-target" data-text="Keerthana Devan.">Keerthana Devan.</span><span class="hero-typewriter-cursor" aria-hidden="true"></span>
+                <span class="hero-heading-prefix">I’m </span><span class="hero-typewriter-target"
+                  data-text="Keerthana Devan.">Keerthana Devan.</span><span class="hero-typewriter-cursor"
+                  aria-hidden="true"></span>
               </span>
             </h1>
 
             <p class="hero-description">
-              Final-year CSE student interested in software development, AI, and web technologies. I enjoy experimenting with ideas, learning new tools, and building projects that combine functionality with thoughtful design.
+              Final-year CSE student interested in software development, AI, and web technologies. I enjoy experimenting
+              with ideas, learning new tools, and building projects that combine functionality with thoughtful design.
             </p>
 
             <div class="hero-actions">
@@ -240,9 +374,8 @@
         <div class="hero-visual-wrapper" aria-hidden="true">
           <div class="hero-character-box">
             <img src="assets/images/hero-illustration.png"
-                 alt="Keerthana Devan — Illustration of developer at desk with laptop"
-                 class="hero-character-img"
-                 loading="eager" />
+              alt="Keerthana Devan — Illustration of developer at desk with laptop" class="hero-character-img"
+              loading="eager" />
           </div>
         </div>
       </div>
@@ -265,31 +398,24 @@
       <div class="about-container">
         <!-- Left Column: Character in Arch with Books -->
         <div class="about-visual-column">
-          <div class="about-character-box">
+          <div class="about-character-box about-anim-elem about-anim-portrait">
             <img src="assets/images/about-illustration.png"
-                 alt="Keerthana Devan — Illustration of developer in arched frame with books"
-                 class="about-character-img"
-                 loading="lazy" />
+              alt="Keerthana Devan — Illustration of developer in arched frame with books" class="about-character-img"
+              loading="lazy" />
           </div>
         </div>
 
         <!-- Right Column: Header, Title, Biography & Interests -->
         <div class="about-content-column">
-          <!-- Section Tag with Horizontal Golden Line -->
-          <div class="about-tag-wrap">
-            <span class="about-tag">ABOUT ME</span>
-            <span class="about-tag-line" aria-hidden="true"></span>
-          </div>
-
           <!-- Main Heading -->
-          <h2 class="about-heading">
+          <h2 class="about-heading about-anim-elem about-anim-heading">
             A little about me.
           </h2>
 
           <!-- Two-Column Cards: 01 Education & 02 Leadership & Involvement -->
           <div class="about-cards-grid">
             <!-- Column 1: Education -->
-            <div class="about-card-col">
+            <div class="about-card-col about-anim-elem about-anim-card-1">
               <div class="about-card-col-header">
                 <span class="card-col-num">01</span>
                 <span class="card-col-sep" aria-hidden="true">—</span>
@@ -298,9 +424,10 @@
               <div class="about-feature-card">
                 <div class="about-card-main">
                   <div class="about-card-icon-box" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                      <path d="M6 12v5c3 3 9 3 12 0v-5" />
                     </svg>
                   </div>
                   <div class="about-card-info">
@@ -311,13 +438,14 @@
                 </div>
                 <div class="about-card-divider" aria-hidden="true"></div>
                 <p class="about-card-desc">
-                  Currently pursuing my final year, exploring different areas of technology through academic and personal projects.
+                  Currently pursuing my final year, exploring different areas of technology through academic and
+                  personal projects.
                 </p>
               </div>
             </div>
 
             <!-- Column 2: Leadership & Involvement -->
-            <div class="about-card-col">
+            <div class="about-card-col about-anim-elem about-anim-card-2">
               <div class="about-card-col-header">
                 <span class="card-col-num">02</span>
                 <span class="card-col-sep" aria-hidden="true">—</span>
@@ -326,11 +454,12 @@
               <div class="about-feature-card">
                 <div class="about-card-main">
                   <div class="about-card-icon-box" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                   </div>
                   <div class="about-card-info">
@@ -341,17 +470,19 @@
                 </div>
                 <div class="about-card-divider" aria-hidden="true"></div>
                 <p class="about-card-desc">
-                  Serving as the Vice Chair of IEEE Student Branch, involved in organising events, coordinating student initiatives, and collaborating with teams.
+                  Serving as the Vice Chair of IEEE Student Branch, involved in organising events, coordinating student
+                  initiatives, and collaborating with teams.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- 4 Interest Elements with Vertical Separators -->
-          <div class="about-interests-row">
+          <!-- 4 Interest Elements with Vertical Separators (Group 5) -->
+          <div class="about-interests-row about-anim-elem about-anim-interests">
             <div class="interest-item">
               <div class="interest-icon-box">
-                <svg class="interest-icon" viewBox="0 0 54 36" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="interest-icon" viewBox="0 0 54 36" fill="none" stroke="currentColor" stroke-width="2.6"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="14 7 3 18 14 29"></polyline>
                   <line x1="31" y1="4" x2="23" y2="32"></line>
                   <polyline points="40 7 51 18 40 29"></polyline>
@@ -364,8 +495,11 @@
 
             <div class="interest-item">
               <div class="interest-icon-box">
-                <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+                <svg class="interest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z">
+                  </path>
                   <circle cx="8" cy="11.5" r="1.3" fill="currentColor" stroke="none"></circle>
                   <circle cx="12" cy="7.5" r="1.3" fill="currentColor" stroke="none"></circle>
                   <circle cx="16" cy="11" r="1.3" fill="currentColor" stroke="none"></circle>
@@ -379,13 +513,16 @@
 
             <div class="interest-item">
               <div class="interest-icon-box">
-                <svg class="interest-icon" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="interest-icon" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <line x1="23" y1="2" x2="23" y2="6"></line>
                   <line x1="8.5" y1="8" x2="11.5" y2="11"></line>
                   <line x1="37.5" y1="8" x2="34.5" y2="11"></line>
                   <line x1="3" y1="22.5" x2="7" y2="22.5"></line>
                   <line x1="43" y1="22.5" x2="39" y2="22.5"></line>
-                  <path d="M14 22.5c0-4.97 4.03-9 9-9s9 4.03 9 9c0 3.2-1.67 6-4.17 7.62-.97.63-1.83 1.88-1.83 3.05v1.83h-6v-1.83c0-1.17-.86-2.42-1.83-3.05C15.67 28.5 14 25.7 14 22.5z"></path>
+                  <path
+                    d="M14 22.5c0-4.97 4.03-9 9-9s9 4.03 9 9c0 3.2-1.67 6-4.17 7.62-.97.63-1.83 1.88-1.83 3.05v1.83h-6v-1.83c0-1.17-.86-2.42-1.83-3.05C15.67 28.5 14 25.7 14 22.5z">
+                  </path>
                   <line x1="18" y1="38.5" x2="28" y2="38.5"></line>
                   <line x1="20" y1="42.5" x2="26" y2="42.5"></line>
                 </svg>
@@ -397,7 +534,8 @@
 
             <div class="interest-item">
               <div class="interest-icon-box">
-                <svg class="interest-icon" viewBox="0 0 54 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="interest-icon" viewBox="0 0 54 44" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="25" cy="23" r="11"></circle>
                   <ellipse cx="25" cy="23" rx="22" ry="7.5" transform="rotate(-23 25 23)"></ellipse>
                   <path d="M46 3l1 3.5 3.5 1-3.5 1-1 3.5-1-3.5-3.5-1 3.5-1z" fill="currentColor" stroke="none"></path>
@@ -418,14 +556,154 @@
       </a>
     </section>
 
-    <!-- Projects Section Anchor (03) -->
-    <section id="projects" class="section" style="border-top: 1px solid var(--color-border-subtle);">
-      <div class="container">
-        <div class="section-tag">03 / Selected Works</div>
-        <h2 class="heading-2">Featured <span class="heading-italic">Projects</span></h2>
-        <p class="text-lead" style="margin-top: var(--space-sm);">
-          Showcasing actual projects with verified implementation details and interactive case studies.
-        </p>
+    <!-- Projects Showcase Section (02 / SELECTED WORK) -->
+    <section id="projects" aria-label="Selected Work — Projects Showcase">
+      <!-- Ambient Center Radial Glow -->
+      <div class="projects-ambient-glow" aria-hidden="true"></div>
+
+      <!-- Section Header -->
+      <div class="projects-header">
+        <h2 class="projects-title">Things I’ve built.</h2>
+        <p class="projects-subtitle">Ideas, experiments, and digital experiences.</p>
+      </div>
+
+      <!-- Overlapping 3-Card Composition (5 Slots for Continuous Horizontal Slide) -->
+      <div class="projects-showcase-wrap" role="region" aria-label="Featured projects carousel">
+
+        <!-- Slot -1 (Left): UniX -->
+        <article class="project-card slot--1" data-project-id="unix" aria-label="UniX project card">
+          <button class="project-expand-btn" aria-label="Open UniX live project" title="View UniX">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="laptop-mockup" aria-hidden="true">
+            <div class="laptop-screen-bezel">
+              <div class="laptop-camera-dot"></div>
+              <div class="laptop-screen-display">
+                <img src="assets/projects/unix-preview.png" alt="UniX Campus Ecosystem platform preview"
+                  loading="lazy" />
+                <div class="laptop-screen-sheen"></div>
+              </div>
+            </div>
+            <div class="laptop-base">
+              <div class="laptop-notch"></div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-name">UniX</h3>
+            <div class="project-category-bar">
+              <span class="cat-line" aria-hidden="true"></span>
+              <span class="cat-text">CAMPUS ECOSYSTEM</span>
+              <span class="cat-line" aria-hidden="true"></span>
+            </div>
+            <p class="project-desc">An all-in-one e-campus platform for skill sharing, tutoring, marketplace,
+              lost-and-found, and real-time communication.</p>
+            <div class="project-tags">
+              <span class="project-tag-pill tag-web-dev" data-tag="web-dev">Web Development</span>
+              <span class="project-tag-pill tag-fullstack" data-tag="fullstack">Full-stack</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slot 0 (Center / Featured): SignBridge -->
+        <article class="project-card slot-0" data-project-id="signbridge" aria-label="SignBridge featured project card">
+          <button class="project-expand-btn" aria-label="Open SignBridge project repository" title="View SignBridge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="laptop-mockup" aria-hidden="true">
+            <div class="laptop-screen-bezel">
+              <div class="laptop-camera-dot"></div>
+              <div class="laptop-screen-display">
+                <img src="assets/projects/signbridge-preview.png" alt="SignBridge AI Interview Platform preview"
+                  loading="lazy" />
+                <div class="laptop-screen-sheen"></div>
+              </div>
+            </div>
+            <div class="laptop-base">
+              <div class="laptop-notch"></div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-name">SignBridge</h3>
+            <div class="project-category-bar">
+              <span class="cat-line" aria-hidden="true"></span>
+              <span class="cat-text">AI INTERVIEW PLATFORM</span>
+              <span class="cat-line" aria-hidden="true"></span>
+            </div>
+            <p class="project-desc">An AI-powered interview platform enabling real-time sign language
+              translation and
+              speech-to-caption conversion for accessible communication.</p>
+            <div class="project-tags">
+              <span class="project-tag-pill tag-ai-ml" data-tag="ai-ml">AI / ML</span>
+              <span class="project-tag-pill tag-accessibility" data-tag="accessibility">Accessibility</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slot 1 (Right): SkySense -->
+        <article class="project-card slot-1" data-project-id="skysense" aria-label="SkySense project card">
+          <button class="project-expand-btn" aria-label="Open SkySense live project" title="View SkySense">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="laptop-mockup" aria-hidden="true">
+            <div class="laptop-screen-bezel">
+              <div class="laptop-camera-dot"></div>
+              <div class="laptop-screen-display">
+                <img src="assets/projects/skysense-preview.png" alt="SkySense Weather Dashboard preview"
+                  loading="lazy" />
+                <div class="laptop-screen-sheen"></div>
+              </div>
+            </div>
+            <div class="laptop-base">
+              <div class="laptop-notch"></div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-name">SkySense</h3>
+            <div class="project-category-bar">
+              <span class="cat-line" aria-hidden="true"></span>
+              <span class="cat-text">WEATHER DASHBOARD</span>
+              <span class="cat-line" aria-hidden="true"></span>
+            </div>
+            <p class="project-desc">A responsive weather dashboard featuring real-time updates, forecasts,
+              smart
+              location search, and personalized outdoor insights.</p>
+            <div class="project-tags">
+              <span class="project-tag-pill tag-frontend" data-tag="frontend">Front-End</span>
+              <span class="project-tag-pill tag-weather-api" data-tag="weather-api">Weather API</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Bottom Explore Controls -->
+      <div class="projects-explore-bar" role="navigation" aria-label="Project showcase navigation">
+        <button class="projects-arrow-btn projects-nav-prev" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <span class="projects-explore-text">EXPLORE PROJECTS</span>
+        <button class="projects-arrow-btn projects-nav-next" aria-label="Next project">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Botanical Corner Leaves -->
+      <div class="projects-leaf-bg projects-leaf-left" aria-hidden="true">
+        <img src="assets/projects/leaves_left.png" alt="" />
+      </div>
+      <div class="projects-leaf-bg projects-leaf-right" aria-hidden="true">
+        <img src="assets/projects/leaves_right.png" alt="" />
       </div>
     </section>
 
@@ -512,6 +790,7 @@
   <script src="data/certifications.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/intro.js"></script>
+  <script src="js/projects.js?v=6.0"></script>
   <script src="js/main.js"></script>
 </body>
 

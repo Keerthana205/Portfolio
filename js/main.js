@@ -42,6 +42,9 @@
 
     // Typewriter writing effect for "Keerthana Devan."
     initTypewriter();
+
+    // Scroll-triggered refined entrance animation for About section
+    initAboutEntrance();
   }
 
   function initTypewriter() {
@@ -139,10 +142,153 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initApp);
-  } else {
-    initApp();
+  /**
+   * Refined, scroll-triggered entrance animation for About section
+   * Elements drift smoothly down from uppermost part of screen (120–180px)
+   * with a feather-light deceleration curve.
+   * Replays on every Home → About transition.
+   */
+  function initAboutEntrance() {
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return;
+
+    // Accessibility check: do not animate if user prefers reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      aboutSection.classList.add('about-anim-done');
+      return;
+    }
+
+    let isAboutRevealed = false;
+    let settleTimer = null;
+
+    function playAboutEntrance() {
+      if (isAboutRevealed) return;
+      isAboutRevealed = true;
+
+      if (settleTimer) clearTimeout(settleTimer);
+
+      aboutSection.classList.add('about-animated');
+
+      // Total stagger sequence finishes at ~1330ms, settle at 1400ms
+      settleTimer = setTimeout(function () {
+        aboutSection.classList.add('about-anim-done');
+        aboutSection.classList.remove('about-anim-ready');
+      }, 1400);
+    }
+
+    function resetAboutEntrance() {
+      if (!isAboutRevealed) return;
+      isAboutRevealed = false;
+
+      if (settleTimer) clearTimeout(settleTimer);
+
+      // Instant reset to ready state without transition because About is completely off-screen
+      aboutSection.classList.remove('about-animated', 'about-anim-done');
+      aboutSection.classList.add('about-anim-ready');
+    }
+
+    // Set initial ready state
+    aboutSection.classList.add('about-anim-ready');
+
+    function checkAboutScroll() {
+      const rect = aboutSection.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+
+      // 1. Entering About from Home above:
+      // When About has scrolled at least 30% into the viewport from above
+      if (!isAboutRevealed && rect.top <= vh * 0.70 && rect.bottom >= vh * 0.20) {
+        playAboutEntrance();
+      }
+
+      // 2. Returned to Home above:
+      // When About is completely off-screen at the bottom of the viewport
+      if (isAboutRevealed && rect.top >= vh - 20) {
+        resetAboutEntrance();
+      }
+    }
+
+    // 1. Passive scroll and resize listeners
+    window.addEventListener('scroll', checkAboutScroll, { passive: true });
+    window.addEventListener('resize', checkAboutScroll, { passive: true });
+
+    // 2. IntersectionObserver tracking
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function () {
+          checkAboutScroll();
+        });
+      }, {
+        threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+      });
+      observer.observe(aboutSection);
+    }
+
+    // 3. Navigation sectionEnter custom event
+    window.addEventListener('sectionEnter', function (e) {
+      if (!e.detail) return;
+      if (e.detail.sectionId === 'about') {
+        const rect = aboutSection.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        if (rect.top <= vh * 0.75) {
+          playAboutEntrance();
+        }
+      } else if (e.detail.sectionId === 'home') {
+        setTimeout(checkAboutScroll, 400);
+      }
+    });
+
+    // 4. Navbar links click handlers
+    const aboutNavLinks = document.querySelectorAll('a[href="#about"]');
+    aboutNavLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (isAboutRevealed) {
+          resetAboutEntrance();
+        }
+        // Poll briefly during smooth scroll to trigger right when arriving at About
+        let attempts = 0;
+        const scrollCheckInterval = setInterval(function () {
+          attempts++;
+          checkAboutScroll();
+          if (isAboutRevealed || attempts > 25) {
+            clearInterval(scrollCheckInterval);
+          }
+        }, 40);
+      });
+    });
+
+    const homeNavLinks = document.querySelectorAll('a[href="#home"], .nav-brand');
+    homeNavLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        setTimeout(checkAboutScroll, 450);
+      });
+    });
+
+    // 5. Initial load / direct anchor landing
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAboutLanding = window.location.hash === '#about' || urlParams.get('test_view') === 'about';
+
+    if (isAboutLanding) {
+      const introScreen = document.getElementById('intro-screen');
+      const alreadySeen = sessionStorage.getItem('keerthana_portfolio_intro_seen') === 'true';
+      const skipIntro = urlParams.get('skip_intro') === 'true';
+
+      if (introScreen && !alreadySeen && !skipIntro && introScreen.style.display !== 'none') {
+        window.addEventListener('introFinished', function () {
+          setTimeout(playAboutEntrance, 250);
+        }, { once: true });
+      } else {
+        setTimeout(playAboutEntrance, 150);
+      }
+    } else {
+      checkAboutScroll();
+    }
   }
-})();
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  }) ();
 

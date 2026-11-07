@@ -16,17 +16,6 @@
 
     if (!header) return;
 
-    // Header scroll background effect
-    function onScroll() {
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
     // Mobile menu toggle
     if (navToggle && navMenu) {
       navToggle.addEventListener('click', function () {
@@ -55,7 +44,7 @@
         if (href && href.startsWith('#')) {
           e.preventDefault();
           const targetId = href.substring(1);
-          
+
           // Instantly switch active state with zero lag
           updateActiveNav(targetId);
 

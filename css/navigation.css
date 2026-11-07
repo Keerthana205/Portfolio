@@ -12,18 +12,10 @@
   height: var(--header-height);
   z-index: var(--z-header);
   background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: background var(--duration-normal) var(--ease-smooth),
-              box-shadow var(--duration-normal) var(--ease-smooth),
-              border-color var(--duration-normal) var(--ease-smooth);
-}
-
-.site-header.scrolled {
-  background: rgba(30, 2, 6, 0.92);
-  border-bottom: 1px solid rgba(201, 154, 104, 0.18);
-  box-shadow: 0 4px 24px rgba(23, 3, 6, 0.6);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border-bottom: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .nav-container {

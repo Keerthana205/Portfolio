@@ -1,0 +1,53 @@
+
+# Browser and testing profiles
+chrome_profile_index/
+chrome_tmp/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE settings
+.vscode/
+.idea/
+
+# Python temporary files
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Private keys
+*.pem
+*.key
+
+# Unused comparison and reference images
+assets/fonts/bebas.css
+assets/images/home-comparison-verified.png
+assets/images/home-responsive-mobile-verified.png
+assets/images/intro-comparison-verified.png
+assets/images/intro-level-verified.png
+assets/images/intro-with-letters-clean.png
+
+# Placeholder resume
+resume/resume.pdf
+
+# Unused project reference images
+assets/projects/corner_leaves_left.png
+assets/projects/corner_leaves_left_clean.png
+assets/projects/corner_leaves_right.png
+assets/projects/corner_leaves_right_clean.png
+assets/projects/ref_center_arrow.png
+assets/projects/ref_center_card_arrow.png
+assets/projects/ref_center_laptop.png
+assets/projects/ref_left_card.png
+assets/projects/ref_left_top_right.png

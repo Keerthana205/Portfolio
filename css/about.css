@@ -91,8 +91,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(clamp(14px, 2.0vh, 28px));
   height: 100%;
-  max-height: calc(100vh - clamp(140px, 18vh, 185px));
+  max-height: calc(100vh - clamp(185px, 23vh, 240px));
   width: auto;
   max-width: clamp(340px, 28vw, 540px);
 }
@@ -169,13 +170,14 @@
   align-items: stretch;
   justify-content: space-between;
   gap: clamp(16px, 2.2vw, 28px);
-  margin: 0 0 clamp(14px, 2vh, 22px) 0;
+  margin: 0 0 clamp(20px, 3.0vh, 36px) 0;
   width: 100%;
   max-width: clamp(580px, 54vw, 1040px);
 }
 
 .about-card-col {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: clamp(8px, 1.1vh, 12px);
@@ -184,21 +186,24 @@
 .about-card-col-header {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .card-col-num {
   font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 1.35vw, 1.48rem);
-  font-weight: 500;
+  font-size: clamp(1.65rem, 1.95vw, 2.3rem);
+  font-weight: 600;
   color: var(--color-warm-cream);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .card-col-sep {
   color: rgba(201, 154, 104, 0.6);
   font-family: var(--font-serif);
-  font-size: clamp(1.05rem, 1.2vw, 1.3rem);
+  font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+  line-height: 1;
 }
 
 .card-col-title {
@@ -213,40 +218,27 @@
 /* Feature Card Frame */
 .about-feature-card {
   position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   border-radius: clamp(14px, 1.2vw, 18px);
   background: linear-gradient(155deg, rgba(38, 6, 14, 0.72) 0%, rgba(20, 2, 7, 0.65) 100%);
-  border: 1px solid rgba(201, 154, 104, 0.35);
+  border: 1px solid rgba(201, 154, 104, 0.30);
   padding: clamp(14px, 1.8vh, 20px) clamp(16px, 1.6vw, 22px);
-  box-shadow: 0 10px 28px rgba(15, 2, 5, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   transition: transform var(--duration-fast) var(--ease-smooth),
-    border-color var(--duration-fast) var(--ease-smooth),
-    box-shadow var(--duration-fast) var(--ease-smooth);
+    border-color var(--duration-fast) var(--ease-smooth);
 }
 
 .about-feature-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(201, 154, 104, 0.55);
-  box-shadow: 0 14px 34px rgba(15, 2, 5, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* Bottom golden glow flare */
-.about-feature-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 22%;
-  right: 22%;
-  height: 2px;
-  background: radial-gradient(ellipse at center, rgba(245, 195, 125, 0.95) 0%, rgba(201, 154, 104, 0.5) 55%, transparent 100%);
-  filter: blur(0.5px);
-  box-shadow: 0 -1px 12px rgba(240, 170, 90, 0.75);
-  pointer-events: none;
+  border-color: rgba(201, 154, 104, 0.50);
 }
 
 /* Card Top Section: Icon + Role/Org/Dates */
@@ -254,6 +246,8 @@
   display: flex;
   align-items: flex-start;
   gap: clamp(12px, 1.2vw, 16px);
+  min-height: clamp(66px, 8.2vh, 84px);
+  flex-shrink: 0;
 }
 
 .about-card-icon-box {
@@ -319,6 +313,7 @@
 
 /* Card Body Description */
 .about-card-desc {
+  flex: 1;
   font-family: var(--font-sans);
   font-size: clamp(0.84rem, 0.9vw, 0.96rem);
   font-weight: 400;
@@ -336,7 +331,7 @@
   justify-content: space-between;
   width: clamp(580px, 54vw, 1020px);
   margin-left: -20px;
-  margin-top: 0;
+  margin-top: clamp(28px, 4.0vh, 48px);
 }
 
 .interest-item {
@@ -526,5 +521,121 @@
 
   .interest-item {
     padding: 10px;
+  }
+}
+
+/* ==========================================================================
+ * 7. Scroll-Triggered Feather-Light Entrance Animation
+ * Drifting down from uppermost part of screen (120–180px) like delicate leaves.
+ * Replays on every Home → About transition.
+ * ========================================================================== */
+
+/* Prepared state (set by JS).
+   Elements start high above with opacity 0 and customized vertical displacement.
+   Note: No transition here so resetting off-screen is instantaneous with zero reverse motion. */
+#about.about-anim-ready .about-anim-elem {
+  opacity: 0;
+  transform: translateY(-140px);
+  will-change: opacity, transform;
+}
+
+/* Individual group vertical displacements (approx 120–180px) */
+#about.about-anim-ready .about-anim-portrait {
+  transform: translateY(-140px);
+}
+
+#about.about-anim-ready .about-anim-tag {
+  transform: translateY(-130px);
+}
+
+#about.about-anim-ready .about-anim-heading {
+  transform: translateY(-120px);
+}
+
+#about.about-anim-ready .about-anim-card-1 {
+  transform: translateY(-150px);
+}
+
+#about.about-anim-ready .about-anim-card-2 {
+  transform: translateY(-165px);
+}
+
+#about.about-anim-ready .about-anim-interests {
+  transform: translateY(-180px);
+}
+
+/* Triggered state: forward float down into exact original positions.
+   Transitions are strictly scoped to .about-animated so motion only occurs forward into place. */
+#about.about-animated .about-anim-elem {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1050ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1050ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Coordinated subtle stagger with gentle pacing (Total sequence: ~1330ms) */
+/* Group 1: Portrait illustration */
+#about.about-animated .about-anim-portrait {
+  transition-delay: 0ms;
+}
+
+/* Group 2: ABOUT ME label (if present) */
+#about.about-animated .about-anim-tag {
+  transition-delay: 30ms;
+}
+
+/* Group 3: Main heading: "A little about me." */
+#about.about-animated .about-anim-heading {
+  transition-delay: 70ms;
+}
+
+/* Group 4: Education content */
+#about.about-animated .about-anim-card-1 {
+  transition-delay: 140ms;
+}
+
+/* Group 5: Leadership & Involvement content */
+#about.about-animated .about-anim-card-2 {
+  transition-delay: 210ms;
+}
+
+/* Group 6: Build, Design, Learn and Explore feature row as a coordinated group */
+#about.about-animated .about-anim-interests {
+  transition-delay: 280ms;
+}
+
+/* Instant reset without transitions when resetting offscreen */
+#about.about-anim-no-transition .about-anim-elem {
+  transition: none !important;
+}
+
+/* Maintain hover interactions during and after entrance */
+#about.about-animated .interest-item:hover,
+#about.about-anim-done .interest-item:hover {
+  transform: translateY(-3px);
+}
+
+#about.about-animated .about-feature-card:hover,
+#about.about-anim-done .about-feature-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Clean completion state: revert will-change and transition overrides */
+#about.about-anim-done .about-anim-elem {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+/* Accessibility: respects user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #about.about-anim-ready .about-anim-elem,
+  #about.about-animated .about-anim-elem,
+  #about.about-anim-done .about-anim-elem {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
   }
 }
