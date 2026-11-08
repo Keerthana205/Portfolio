@@ -58,7 +58,7 @@
   <link rel="stylesheet" href="css/intro.css?v=7.0">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/about.css">
-  <link rel="stylesheet" href="css/projects.css?v=8.7">
+  <link rel="stylesheet" href="css/projects.css?v=8.9">
 
   <!-- Direct Interactive Overrides for Text Selection & Tag Hover Colors -->
   <style id="projects-interactivity-override">
@@ -741,13 +741,13 @@
       <div class="projects-explore-bar" role="navigation" aria-label="Project showcase navigation">
         <button class="projects-arrow-btn projects-nav-prev" aria-label="Previous project">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
         <span class="projects-explore-text">EXPLORE PROJECTS</span>
         <button class="projects-arrow-btn projects-nav-next" aria-label="Next project">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-width="1.8" stroke-linecap="round"
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-width="2.0" stroke-linecap="round"
               stroke-linejoin="round" />
           </svg>
         </button>
@@ -793,6 +793,11 @@
                     cRight.className = 'project-card slot-0';
                     cLeft.className = 'project-card slot-1';
                   }
+                  // Force reflow and restore transition styling so carousel animates smoothly on user clicks
+                  void wrap.offsetWidth;
+                  requestAnimationFrame(function () {
+                    cards.forEach(function (c) { c.style.transition = ''; });
+                  });
                 }
               }
               window.scrollTo(0, sec.offsetTop);

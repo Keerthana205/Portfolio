@@ -110,6 +110,10 @@
             slots.left = wrap.querySelector('.project-card.slot--1');
             slots.center = wrap.querySelector('.project-card.slot-0');
             slots.right = wrap.querySelector('.project-card.slot-1');
+            // Re-enable transition for smooth rotations
+            wrap.querySelectorAll('.project-card').forEach(function (c) {
+              c.style.transition = '';
+            });
             return;
           }
 

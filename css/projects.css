@@ -755,8 +755,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 1.8vw, 24px);
-  margin-top: clamp(4px, 0.8vh, 10px);
+  gap: clamp(16px, 1.8vw, 25px);
+  margin-top: clamp(5px, 0.9vh, 12px);
   z-index: 10;
   user-select: none;
   flex-shrink: 0;
@@ -767,7 +767,7 @@
   border: none;
   color: var(--color-warm-cream);
   cursor: pointer;
-  padding: 4px;
+  padding: clamp(4px, 0.5vw, 6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -776,13 +776,13 @@
 }
 
 .projects-arrow-btn svg {
-  width: 18px;
-  height: 18px;
+  width: clamp(20px, 1.5vw, 22.5px);
+  height: clamp(20px, 1.5vw, 22.5px);
 }
 
 .projects-arrow-btn:hover {
   color: #ffffff;
-  transform: scale(1.22);
+  transform: scale(1.16);
 }
 
 .projects-arrow-btn:active {
@@ -791,9 +791,9 @@
 
 .projects-explore-text {
   font-family: var(--font-sans);
-  font-size: clamp(0.66rem, 0.72vw, 0.76rem);
+  font-size: clamp(0.76rem, 0.88vw, 0.90rem);
   font-weight: 500;
-  letter-spacing: clamp(0.18em, 0.22vw, 0.24em);
+  letter-spacing: clamp(0.16em, 0.19vw, 0.21em);
   color: var(--color-warm-cream);
   text-transform: uppercase;
 }

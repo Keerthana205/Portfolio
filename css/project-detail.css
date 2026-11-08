@@ -69,8 +69,8 @@ body.project-detail-body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: clamp(28px, 4.2vh, 46px);
-  padding-bottom: clamp(16px, 2.5vh, 32px);
+  padding-top: clamp(20px, 2.8vh, 34px);
+  padding-bottom: clamp(14px, 2vh, 24px);
   box-sizing: border-box;
 }
 
@@ -90,7 +90,7 @@ body.project-detail-body {
    ========================================================================== */
 .detail-back-bar {
   margin-top: 0;
-  margin-bottom: clamp(16px, 2.5vh, 28px);
+  margin-bottom: clamp(12px, 1.8vh, 20px);
 }
 
 .detail-back-link {
@@ -258,17 +258,17 @@ body.project-detail-body {
   width: 100%;
 }
 
-/* SVG Orbital Arc and Celestial Sparkle — Elevated Stacking & Generous Spacing Above Laptop */
+/* SVG Orbital Arc and Celestial Sparkle — Refined Framing Behind Laptop Mockup */
 .detail-orbital-svg {
   position: absolute;
-  top: -24%;
+  top: -16.5%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 124%;
-  max-width: 720px;
-  height: 128%;
+  transform: translateX(-51.2%);
+  width: 112%;
+  max-width: 640px;
+  height: 114%;
   pointer-events: none;
-  z-index: 3;
+  z-index: 1;
   overflow: visible;
 }
 
@@ -326,6 +326,22 @@ body.project-detail-body {
   transition: transform 0.35s ease;
 }
 
+/* Project-Specific Screenshot Presentation Refinements */
+.laptop-display-unix img {
+  transform: scale(1.10) translateY(-4.2%);
+  transform-origin: center top;
+}
+
+.laptop-display-signbridge img {
+  transform: scale(1.06) translateY(2%);
+  transform-origin: center center;
+}
+
+.laptop-display-skysense img {
+  transform: scale(1.068);
+  transform-origin: center center;
+}
+
 .detail-laptop-mockup .laptop-screen-sheen {
   position: absolute;
   inset: 0;
@@ -372,8 +388,8 @@ body.project-detail-body {
   height: 1px;
   background-color: var(--color-muted-gold);
   opacity: 0.32;
-  margin-top: clamp(20px, 3vh, 36px);
-  margin-bottom: clamp(22px, 3.2vh, 38px);
+  margin-top: clamp(14px, 2vh, 24px);
+  margin-bottom: clamp(16px, 2.2vh, 26px);
 }
 
 /* ==========================================================================
@@ -381,14 +397,14 @@ body.project-detail-body {
    ========================================================================== */
 .detail-info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.15fr 1fr;
+  grid-template-columns: 1fr 1fr 1.25fr 0.95fr;
   gap: 0;
   position: relative;
   align-items: stretch;
 }
 
 .detail-info-col {
-  padding: 0 clamp(16px, 1.8vw, 26px);
+  padding: 0 clamp(12px, 1.4vw, 20px);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -450,8 +466,8 @@ body.project-detail-body {
 
 .detail-col-text {
   font-family: var(--font-sans);
-  font-size: clamp(12.8px, 0.9vw, 14.2px);
-  line-height: 1.68;
+  font-size: clamp(12.8px, 0.88vw, 14px);
+  line-height: 1.62;
   color: rgba(246, 223, 193, 0.86);
   margin: 0;
 }
@@ -462,7 +478,7 @@ body.project-detail-body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(6px, 0.9vh, 10px);
+  gap: clamp(5px, 0.7vh, 8px);
 }
 
 .detail-features-list li {
@@ -470,8 +486,8 @@ body.project-detail-body {
   align-items: flex-start;
   gap: 8px;
   font-family: var(--font-sans);
-  font-size: clamp(12.4px, 0.88vw, 13.8px);
-  line-height: 1.52;
+  font-size: clamp(12.4px, 0.86vw, 13.6px);
+  line-height: 1.46;
   color: rgba(246, 223, 193, 0.86);
 }
 
