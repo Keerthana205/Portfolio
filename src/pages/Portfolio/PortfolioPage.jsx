@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollFlow } from "../../hooks/useScrollFlow.js";
 import PortfolioNav from "./components/PortfolioNav.jsx";
 import FloatingNav from "./components/FloatingNav.jsx";
+import CandleGlow from "./components/CandleGlow.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import AboutSection from "./components/AboutSection.jsx";
 import EducationSection from "./components/EducationSection.jsx";
@@ -355,6 +356,7 @@ export default function PortfolioPage() {
       </div>
       <PortfolioNav />
       <FloatingNav />
+      <CandleGlow />
       <HeroSection />
       <AboutSection />
       <EducationSection />
