@@ -4,7 +4,7 @@ import { AlertCircle, ArrowUpRight, CheckCircle2, Github, Linkedin, Mail, MapPin
 import { socialLinks } from "../../../data/portfolioContent.js";
 import SectionHeading from "./SectionHeading.jsx";
 
-const EMAIL = "keerthanadevan@gmail.com";
+const EMAIL = "keerthanadevan15@gmail.com";
 const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT;
 let didWarnMissingFormEndpoint = false;
 

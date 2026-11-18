@@ -98,7 +98,7 @@ export const skillGroups = [
 export const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/keerthana-devan",
+    href: "https://linkedin.com/in/keerthana-devan-ba523a293",
   },
   {
     label: "GitHub",
