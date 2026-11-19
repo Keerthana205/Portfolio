@@ -4,10 +4,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function splitIntoChars(el) {
-  const existing = el.querySelectorAll("[data-char]");
+  const target = el.querySelector("[data-hero-animated]") || el;
+  const existing = target.querySelectorAll("[data-char]");
   if (existing.length) return Array.from(existing);
-  el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
-  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
   nodes.forEach((node) => {
@@ -31,7 +31,7 @@ function splitIntoChars(el) {
     });
     node.replaceWith(frag);
   });
-  return Array.from(el.querySelectorAll("[data-char]"));
+  return Array.from(target.querySelectorAll("[data-char]"));
 }
 
 export default function HeroSection() {
@@ -44,12 +44,13 @@ export default function HeroSection() {
 
     const HERO_TYPE_DELAY = 0.4;
     const typed = [
-      { sel: ".hero-copy__eyebrow", dur: 0.45 },
-      { sel: "#hero-title", dur: 0.9 },
+      { sel: ".hero-copy__eyebrow", dur: 0.4 },
+      { sel: "#hero-title", dur: 0.8 },
     ];
-    const role = root.querySelector(".hero-copy__role");
     const intro = root.querySelector(".hero-copy__intro");
     const actions = root.querySelector(".hero-copy__actions");
+    let title = null;
+    let onTitleShimmerEnd = null;
     const ctx = gsap.context(() => {
       const chars = [];
       let cursor = 0;
@@ -60,7 +61,7 @@ export default function HeroSection() {
         if (!elementChars.length) return;
         chars.push(...elementChars);
       });
-      const rest = [role, intro].filter(Boolean);
+      const rest = intro ? [intro] : [];
       const tl = gsap.timeline({ paused: true, delay: HERO_TYPE_DELAY });
 
       typed.forEach(({ sel, dur }) => {
@@ -108,6 +109,19 @@ export default function HeroSection() {
         );
       }
 
+      title = root.querySelector("#hero-title");
+      onTitleShimmerEnd = (event) => {
+        if (event.animationName === "heroShimmer") title?.classList.remove("is-shimmering");
+      };
+      if (title) {
+        title.addEventListener("animationend", onTitleShimmerEnd);
+        tl.call(() => {
+          title.classList.remove("is-shimmering");
+          void title.offsetWidth;
+          title.classList.add("is-shimmering");
+        }, null, cursor + 0.1);
+      }
+
       const playEntrance = () => {
         gsap.set(chars, { opacity: 0 });
         if (rest.length) gsap.set(rest, { opacity: 0, y: 18 });
@@ -122,7 +136,10 @@ export default function HeroSection() {
       });
       playEntrance();
     }, root);
-    return () => ctx.revert();
+    return () => {
+      if (title && onTitleShimmerEnd) title.removeEventListener("animationend", onTitleShimmerEnd);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -134,15 +151,16 @@ export default function HeroSection() {
         </div>
         <div className="page-container hero-section__inner hero-inner">
           <div className="hero-copy" ref={copyRef}>
-            <p className="hero-copy__eyebrow">Hey, I’m</p>
-            <h1 id="hero-title">
-              Keerthana Devan
-            </h1>
-            <p className="hero-copy__role">
-              4th Year CSE Student <span aria-hidden="true">|</span> Aspiring Software Engineer
+            <p className="hero-copy__eyebrow">
+              <span className="visually-hidden">Hey, I&#8217;m</span>
+              <span data-hero-animated aria-hidden="true">Hey, I&#8217;m</span>
             </p>
+            <h1 id="hero-title">
+              <span className="visually-hidden">Keerthana Devan</span>
+              <span data-hero-animated aria-hidden="true">Keerthana Devan</span>
+            </h1>
             <p className="hero-copy__intro">
-              A curious builder who loves turning ideas into meaningful, user-focused solutions.
+              Final-year Computer Science and Engineering student interested in software development, with a curiosity for exploring new tools and building projects that combine functionality with thoughtful design.
             </p>
             <div className="hero-copy__actions">
               <a className="button button--ivory" href="#projects">
@@ -162,6 +180,8 @@ export default function HeroSection() {
             <img
               src="/assets/characters/portfolio-home.webp"
               alt="Keerthana smiling with her hand resting against her cheek"
+              width="768"
+              height="768"
               fetchPriority="high"
               data-reveal
             />

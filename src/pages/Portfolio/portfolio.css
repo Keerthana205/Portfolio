@@ -1,8 +1,11 @@
+:root {
+  --grain-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20180%20180%22%3E%3Cfilter%20id%3D%22grain%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.85%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22%20result%3D%22noise%22%2F%3E%3CfeColorMatrix%20in%3D%22noise%22%20type%3D%22matrix%22%20values%3D%220%200%200%200%201%200%200%200%200%201%200%200%200%200%201%20.33%20.33%20.33%200%200%22%20result%3D%22alphaNoise%22%2F%3E%3CfeFlood%20flood-color%3D%22%23fff0e4%22%20flood-opacity%3D%220.1%22%20result%3D%22tint%22%2F%3E%3CfeComposite%20in%3D%22tint%22%20in2%3D%22alphaNoise%22%20operator%3D%22in%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20filter%3D%22url(%23grain)%22%2F%3E%3C%2Fsvg%3E");
+}
+
 /* Base and portfolio color tokens */
 .portfolio-page {
   --portfolio-wine: #35040f;
   --portfolio-wine-dark: #27020b;
-  --portfolio-wine-light: #68172a;
   --portfolio-ivory: #fff0e4;
   --portfolio-cream: #ffede1;
   --portfolio-gold: #e6bf69;
@@ -82,6 +85,7 @@
 /* Hero pinning and 3D receding parallax */
 .hero-pin {
   height: 100vh;
+  height: 100dvh;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -90,7 +94,9 @@
 .hero-stage {
   position: relative;
   height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   perspective: 1200px;
   overflow: clip;
 }
@@ -228,6 +234,7 @@
   isolation: isolate;
   color: var(--portfolio-ivory);
   background:
+    var(--grain-texture) 0 0 / 180px 180px repeat,
     radial-gradient(ellipse at 68% 50%, rgb(101 19 39 / 38%), transparent 48%),
     linear-gradient(132deg, #39040f 0%, #2d020d 54%, #3b0713 100%);
 }
@@ -271,6 +278,18 @@
   content: "";
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hero-type-word {
   display: inline-block;
   white-space: nowrap;
@@ -298,7 +317,6 @@
 }
 
 
-.hero-copy__role,
 .hero-copy__intro {
   max-width: 30rem;
   margin: 0 0 0.8rem 1.25rem;
@@ -307,13 +325,8 @@
   line-height: 1.6;
 }
 
-.hero-copy__role span {
-  padding-inline: 0.3rem;
-  color: var(--portfolio-gold);
-}
-
 .hero-copy__intro {
-  max-width: 27rem;
+  max-width: 44rem;
   margin-top: 1.05rem;
 }
 
@@ -357,6 +370,7 @@
 }
 
 .button--ivory {
+  --sheen-color: rgb(230 191 105 / 0.45);
   color: var(--portfolio-wine-dark);
   background: var(--portfolio-ivory);
 }
@@ -443,8 +457,7 @@
   transform: translateX(12.24%);
 }
 
-.about-section__wave,
-.hero-section__wave {
+.about-section__wave {
   position: absolute;
   z-index: 3;
   right: 0;
@@ -521,7 +534,8 @@
 
 .about-section .section-heading__title-row::after,
 .education-section .section-heading__title-row::after,
-.leadership-section .section-heading__title-row::after {
+.leadership-section .section-heading__title-row::after,
+.skills-section .section-heading__title-row::after {
   content: "";
   display: inline-block;
   width: clamp(6.5rem, 19vw, 19.5rem);
@@ -726,10 +740,10 @@
 
 .leadership-section__lily {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: -2px;
+  left: -2.5rem;
   z-index: 1;
-  width: min(clamp(7.5rem, 10vw, 9.5rem), max(2.75rem, calc(50vw - 37.5rem)));
+  width: min(clamp(11rem, 15vw, 15rem), max(5rem, calc(50vw - 37.5rem + 2.5rem)));
   height: auto;
   pointer-events: none;
   user-select: none;
@@ -780,6 +794,7 @@
   padding-block: clamp(3.5rem, 6.5vw, 5.25rem);
   color: var(--portfolio-ivory);
   background:
+    var(--grain-texture) 0 0 / 180px 180px repeat,
     radial-gradient(ellipse at 10% 12%, rgb(110 20 41 / 26%), transparent 42%),
     linear-gradient(150deg, #36030e, #26020a 70%, #34040f);
 }
@@ -881,7 +896,8 @@
 }
 
 .deck-card:focus-visible {
-  outline: none;
+  outline: 2px solid #e6bf69 !important;
+  outline-offset: 4px;
 }
 
 /* Vertical project name spine exposed on left */
@@ -1080,7 +1096,23 @@
 }
 
 .project-info-panel__header {
+  position: relative;
   margin-bottom: 1.35rem;
+}
+
+.project-info-panel__status {
+  position: absolute;
+  top: 0.4rem;
+  right: 0;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid rgb(230 191 105 / 42%);
+  border-radius: 999px;
+  background: rgb(230 191 105 / 10%);
+  color: var(--portfolio-gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
 }
 
 .project-info-panel__title {
@@ -1312,6 +1344,7 @@
 }
 
 .skill-group li {
+  --sheen-color: rgb(184 137 58 / 0.30);
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -1347,10 +1380,6 @@
   font-weight: 700;
 }
 
-.skill-group li.skill-badge--cplusplus svg text {
-  font-size: 13px;
-}
-
 .skill-group li:hover {
   border-color: rgb(189 96 61 / 45%);
   color: #20100c;
@@ -1369,6 +1398,7 @@
   padding-block: clamp(3.5rem, 6vw, 5rem);
   color: var(--portfolio-ivory);
   background:
+    var(--grain-texture) 0 0 / 180px 180px repeat,
     radial-gradient(ellipse at 15% 15%, rgb(108 17 39 / 28%), transparent 42%),
     linear-gradient(145deg, #35030f 0%, #27020b 72%, #3b0713 100%);
 }
@@ -1453,6 +1483,11 @@
   font-size: 0.95rem;
 }
 
+.contact-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -1513,24 +1548,20 @@
   font-size: 0.9rem;
   line-height: 1.4;
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
   transform: translateX(calc(100% + 1.25rem));
   transition:
     opacity 350ms ease,
-    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0s linear 350ms;
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-toast.is-visible {
   opacity: 1;
-  visibility: visible;
   pointer-events: auto;
   transform: translateX(0);
   transition:
     opacity 350ms ease,
-    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 0s;
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-toast.is-exiting {
@@ -1621,6 +1652,7 @@
   top: auto;
   width: clamp(13.5rem, 16vw, 17rem);
   height: auto;
+  aspect-ratio: 724 / 2173;
   filter: brightness(0.82) saturate(0.78) sepia(0.18) hue-rotate(320deg);
   opacity: 0.9;
   pointer-events: none;
@@ -1811,7 +1843,6 @@
     white-space: nowrap;
   }
 
-  .hero-copy__role,
   .hero-copy__intro {
     margin-left: 0.9rem;
     font-size: 0.87rem;
@@ -1842,10 +1873,6 @@
   }
 
   .about-section__wave,
-  .hero-section__wave {
-    height: clamp(1.4rem, 3.5vw, 2.2rem);
-  }
-
   .about-section {
     padding-block: 1.85rem 1.35rem;
   }
@@ -2084,10 +2111,6 @@
     margin-left: 0.4rem;
     font-size: clamp(1.75rem, 8.2vw, 2.05rem);
     white-space: nowrap;
-  }
-
-  .hero-copy__role {
-    max-width: 18rem;
   }
 
   .hero-copy__actions {
@@ -2373,41 +2396,12 @@
   }
 }
 
-.candle-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 760px;
-  height: 760px;
-  margin: -380px 0 0 -380px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 800;
-  opacity: 0;
-  mix-blend-mode: screen;
-  background: radial-gradient(circle, rgb(230 191 105 / 0.20) 0%, rgb(190 90 70 / 0.10) 32%, rgb(120 20 40 / 0.05) 55%, transparent 72%);
-  transition: opacity 420ms ease;
-  will-change: transform, opacity;
-}
-
-.candle-glow.is-on {
-  opacity: 1;
-}
-
 .button,
 .project-action-btn,
 .deck-next-pill,
 .skill-group li {
   position: relative;
   overflow: hidden;
-}
-
-.button--ivory {
-  --sheen-color: rgb(230 191 105 / 0.45);
-}
-
-.skill-group li {
-  --sheen-color: rgb(184 137 58 / 0.30);
 }
 
 .button::after,
@@ -2450,3 +2444,104 @@
     transition: transform 720ms cubic-bezier(.22, .61, .36, 1), opacity 120ms ease;
   }
 }
+
+/* Heading hairlines redraw whenever their heading enters view. */
+.section-heading__title-row::after {
+  transform-origin: left center;
+  transition: transform 900ms cubic-bezier(.22, .61, .36, 1) 250ms;
+}
+
+.section-heading.is-draw-ready:not(.is-drawn) .section-heading__title-row::after {
+  transform: scaleX(0);
+  transition-duration: 200ms;
+  transition-delay: 0ms;
+}
+
+.section-heading.is-drawn .section-heading__title-row::after {
+  transform: scaleX(1);
+}
+
+.projects-section .section-heading__title-row,
+.contact-section .section-heading__title-row {
+  position: relative;
+}
+
+.skills-section .section-heading__title-row {
+  display: flex;
+  width: 100%;
+}
+
+.skills-section .section-heading__title-row h2 {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.skills-section .section-heading__title-row::after {
+  flex: 1 1 auto;
+  min-width: 2.5rem;
+}
+
+.projects-section .section-heading__title-row::after,
+.contact-section .section-heading__title-row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.45rem);
+  width: clamp(5rem, 12vw, 9rem);
+  height: 1.5px;
+  background: rgb(230 191 105 / 70%);
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes botanicalSway {
+    from { rotate: -3.5deg; }
+    to { rotate: 3.5deg; }
+  }
+
+  .about-section__plant {
+    transform-origin: 50% 100%;
+    animation: botanicalSway 6s ease-in-out -2.3s infinite alternate;
+  }
+
+  .leadership-section__lily {
+    transform-origin: 0% 100%;
+    animation: botanicalSway 7s ease-in-out -5.1s infinite alternate;
+  }
+
+  .contact-section__flower {
+    transform-origin: 100% 100%;
+    animation: botanicalSway 5.5s ease-in-out -1.7s infinite alternate;
+  }
+}
+
+.about-section__plant,
+.contact-section__flower {
+  translate: 0 var(--parallax-y, 0px);
+}
+
+@keyframes heroShimmer {
+  from { background-position: 160% 0, 0 0; }
+  to { background-position: -60% 0, 0 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy h1.is-shimmering {
+    width: max-content;
+    padding-right: 0.15em;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-image:
+      linear-gradient(105deg, transparent 30%, #e6bf69 44%, #b8893a 50%, #e6bf69 56%, transparent 70%),
+      linear-gradient(var(--portfolio-ivory), var(--portfolio-ivory));
+    background-size: 260% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: heroShimmer 2400ms ease-in-out 1 forwards;
+  }
+}
+
+
+
+

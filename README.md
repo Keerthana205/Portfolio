@@ -75,7 +75,7 @@ The endpoint is the public form URL from the Formspree form configured to delive
 
 ## Deployment
 
-Build with `npm run build` and serve the generated `dist/` directory. Set `VITE_FORMSPREE_ENDPOINT` in the hosting provider's environment settings, and configure an SPA rewrite to `index.html` for the `/portfolio` and `/intro` routes (for example, with Vercel or Netlify).
+Build with `npm run build` and serve the generated `dist/` directory. Set `VITE_FORMSPREE_ENDPOINT` in the hosting provider's environment settings. The `public/_redirects` file configures the SPA rewrite for Netlify; `vercel.json` configures the same `/index.html` rewrite for Vercel so `/portfolio` and `/intro` also work on refresh.
 
 ## Author
 

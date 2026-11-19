@@ -124,6 +124,8 @@ export default function ContactSection() {
         className="contact-section__flower"
         src="/assets/decor/red-hibiscus.webp"
         alt=""
+        width="724"
+        height="2173"
         aria-hidden="true"
         loading="lazy"
         decoding="async"
@@ -160,7 +162,7 @@ export default function ContactSection() {
             ))}
             <li>
               <MapPin size={17} aria-hidden="true" />
-              <span>Cherthala, Kerala</span>
+              <span>Cherthala,Alappuzha,Kerala,IN</span>
             </li>
           </ul>
         </div>
@@ -173,23 +175,25 @@ export default function ContactSection() {
             aria-hidden="true"
             style={{ position: "absolute", left: "-9999px" }}
           />
-          <label>
-            Your Name
-                <input
+          <div className="contact-form__field">
+            <label htmlFor="contact-name">Your Name</label>
+            <input
+              id="contact-name"
               name="name"
               type="text"
               autoComplete="name"
               placeholder="Enter your name"
-                  maxLength={100}
+              maxLength={100}
               required
               aria-invalid={fieldErrors.name ? true : undefined}
               aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
             />
             {fieldErrors.name && <span className="contact-form__error" id="contact-name-error">{fieldErrors.name}</span>}
-          </label>
-          <label>
-            Your Email
+          </div>
+          <div className="contact-form__field">
+            <label htmlFor="contact-email">Your Email</label>
             <input
+              id="contact-email"
               name="email"
               type="email"
               autoComplete="email"
@@ -200,10 +204,11 @@ export default function ContactSection() {
               aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
             />
             {fieldErrors.email && <span className="contact-form__error" id="contact-email-error">{fieldErrors.email}</span>}
-          </label>
-          <label>
-            Message
+          </div>
+          <div className="contact-form__field">
+            <label htmlFor="contact-message">Message</label>
             <textarea
+              id="contact-message"
               name="message"
               rows="4"
               placeholder="Write your message..."
@@ -213,7 +218,7 @@ export default function ContactSection() {
               aria-describedby={fieldErrors.message ? "contact-message-error" : undefined}
             />
             {fieldErrors.message && <span className="contact-form__error" id="contact-message-error">{fieldErrors.message}</span>}
-          </label>
+          </div>
           <button className="button button--ivory contact-form__submit" type="submit" disabled={status === "submitting"}>
             {status === "submitting" ? (
               <>Sending... <span className="contact-form__spinner" aria-hidden="true" /></>
@@ -228,8 +233,6 @@ export default function ContactSection() {
           className={`contact-toast${toastType ? ` contact-toast--${toastType}` : ""}${toastVisible ? " is-visible" : ""}${toastExiting ? " is-exiting" : ""}`}
           role="status"
           aria-live="polite"
-          aria-hidden={!toastVisible}
-          inert={!toastVisible || toastExiting}
         >
           {toastType && (
             toastType === "success" ? (

@@ -12,7 +12,7 @@ import gsap from "gsap";
  * - tallEnterBonus: accelerates enter zone for tall elements so they become fully visible even faster.
  * - tallExitViewportThreshold: exit start position for tall elements.
  */
-export const SCROLL_FLOW_CONFIG = {
+const SCROLL_FLOW_CONFIG = {
   enterY: 50,
   exitY: -60,
   enterViewportThreshold: 0.90,

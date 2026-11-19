@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import gsap from "gsap";
+import SmokeTrail from "./SmokeTrail.jsx";
 import "./intro.css";
 
 const NAME_AFTER_MARK = "EERTHANA DEVAN";
@@ -115,8 +116,15 @@ export default function IntroPage({ forceReplay = false }) {
     const characterFallback = scene.querySelector(
       ".intro-character-fallback",
     );
+    const userAgent = navigator.userAgent;
+    const isIOS =
+      /iPad|iPhone|iPod/.test(userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari =
+      /Safari/.test(userAgent) &&
+      !/(Chrome|Chromium|CriOS|FxiOS|EdgiOS|OPR|Android)/.test(userAgent);
     const useAnimatedImageFallback =
-      !characterVideo.canPlayType('video/webm; codecs="vp9"');
+      isIOS || isSafari || !characterVideo.canPlayType('video/webm; codecs="vp9"');
     let character = characterVideo;
     let fallbackTimer;
     let safetyTimer;
@@ -169,10 +177,11 @@ export default function IntroPage({ forceReplay = false }) {
         exitIntro(false);
       }
     };
+    const handleVideoError = () => exitIntro(false);
 
     if (characterVideo) {
       characterVideo.addEventListener("ended", handleVideoEnded);
-      characterVideo.addEventListener("error", () => exitIntro(false));
+      characterVideo.addEventListener("error", handleVideoError);
     }
 
     if (reducedMotion) {
@@ -187,6 +196,10 @@ export default function IntroPage({ forceReplay = false }) {
       safetyTimer = window.setTimeout(() => exitIntro(false), 3000);
       return () => {
         window.clearTimeout(safetyTimer);
+        if (characterVideo) {
+          characterVideo.removeEventListener("ended", handleVideoEnded);
+          characterVideo.removeEventListener("error", handleVideoError);
+        }
         document.body.style.overflow = previousOverflow;
       };
     }
@@ -307,6 +320,7 @@ export default function IntroPage({ forceReplay = false }) {
       window.clearTimeout(safetyTimer);
       if (characterVideo) {
         characterVideo.removeEventListener("ended", handleVideoEnded);
+        characterVideo.removeEventListener("error", handleVideoError);
       }
       document.body.style.overflow = previousOverflow;
       if (characterVideo && !characterVideo.paused) {
@@ -337,6 +351,7 @@ export default function IntroPage({ forceReplay = false }) {
   return (
     <main className="intro-scene" ref={sceneRef}>
       <BackgroundLayers />
+      <SmokeTrail />
 
       <section className="intro-content" aria-labelledby="intro-title">
         <button className="skip-intro" type="button" onClick={skipIntro}>
@@ -348,6 +363,8 @@ export default function IntroPage({ forceReplay = false }) {
             className="intro-logo"
             src="/assets/brand/keerthana-logo.webp"
             alt=""
+            width="800"
+            height="540"
           />
           <h1 className="intro-name" id="intro-title" aria-label="Keerthana Devan">
             {NAME_AFTER_MARK.split("").map((letter, index) =>
@@ -400,6 +417,8 @@ export default function IntroPage({ forceReplay = false }) {
           className="intro-character intro-character-fallback"
           data-src="/assets/characters/intro-character-waving-transparent-fallback.webp"
           alt=""
+          width="600"
+          height="338"
           aria-hidden="true"
           hidden
           onError={() => {

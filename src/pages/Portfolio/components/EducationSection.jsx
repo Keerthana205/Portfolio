@@ -13,7 +13,7 @@ export default function EducationSection() {
         </div>
         <ol className="education-list">
           {education.map((item, index) => {
-            const Icon = icons[index];
+            const Icon = icons[index] || BookOpen;
             return (
               <li className="education-item" key={item.qualification} data-scroll-flow>
                 <span className="education-item__icon" aria-hidden="true">

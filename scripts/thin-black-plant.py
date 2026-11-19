@@ -5,7 +5,7 @@ from PIL import Image, ImageChops, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source-assets" / "decor" / "black-plant.png"
-OUTPUT = ROOT / "public" / "assets" / "decor" / "black-plant-thin.png"
+OUTPUT = ROOT / "public" / "assets" / "decor" / "black-plant-thin.webp"
 UPSCALE = 2
 
 
@@ -24,7 +24,7 @@ def main():
 
     result = original.copy()
     result.putalpha(eroded)
-    result.save(OUTPUT, optimize=True)
+    result.save(OUTPUT, format="WEBP", quality=90, method=6)
     print(f"Created {OUTPUT.name}: {width}x{height}, {OUTPUT.stat().st_size:,} bytes")
 
 

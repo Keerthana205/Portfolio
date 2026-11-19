@@ -48,7 +48,7 @@ export default function PortfolioNav() {
   return (
     <header className="portfolio-nav">
       <a className="portfolio-nav__brand" href="#home" aria-label="Keerthana Devan, home">
-        <img src="/assets/brand/keerthana-logo.webp" alt="" />
+        <img src="/assets/brand/keerthana-logo.webp" alt="" width="800" height="540" />
       </a>
       <button
         className="portfolio-nav__menu-button"

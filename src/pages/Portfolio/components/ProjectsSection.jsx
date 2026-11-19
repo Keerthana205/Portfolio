@@ -69,7 +69,13 @@ function DeckCard({
 
       {/* Main card preview image: descriptions, horizontal titles, tags, and buttons removed */}
       <div className="deck-card__preview">
-        <img src={project.image} alt={project.imageAlt} loading="lazy" />
+        <img
+          src={project.image}
+          alt={project.imageAlt}
+          width={{ unix: 1082, signbridge: 1365, skysense: 870 }[project.id]}
+          height={{ unix: 792, signbridge: 768, skysense: 632 }[project.id]}
+          loading="lazy"
+        />
       </div>
     </article>
   );
@@ -83,6 +89,8 @@ function TechIconBadge({ tech }) {
           src={tech.icon}
           alt={tech.name}
           className="project-tech-badge__img"
+          width="26"
+          height="26"
         />
       );
     }
@@ -141,6 +149,9 @@ function ProjectInfoPanel({ project, isActive }) {
           <span data-tw-shown>{project.name}</span>
           <span data-tw-rest aria-hidden="true" />
         </h3>
+        {project.status && (
+          <span className="project-info-panel__status">{project.status}</span>
+        )}
         {project.tagline && (
           <p
             className="project-info-panel__tagline"
@@ -999,6 +1010,7 @@ export default function ProjectsSection() {
               <div
                 className="projects-deck-stage"
                 ref={deckStageRef}
+                role="group"
                 aria-label="Interactive 3D project card deck. Drag the front card sideways or click an exposed card to navigate."
                 onPointerEnter={(event) => handleDeckZonePointerEnter("stage", event)}
                 onPointerLeave={(event) => handleDeckZonePointerLeave("stage", event)}
@@ -1031,7 +1043,7 @@ export default function ProjectsSection() {
                 <div
                   className="deck-dots"
                   ref={deckDotsRef}
-                  role="tablist"
+                  role="group"
                   aria-label="Project card indicators"
                   onPointerEnter={(event) => handleDeckZonePointerEnter("dots", event)}
                   onPointerLeave={(event) => handleDeckZonePointerLeave("dots", event)}
@@ -1040,8 +1052,7 @@ export default function ProjectsSection() {
                     <button
                       key={p.id}
                       type="button"
-                      role="tab"
-                      aria-selected={displayProjectId === p.id}
+                      aria-current={displayProjectId === p.id ? "true" : undefined}
                       aria-label={`View ${p.name}`}
                       className={`deck-dot${displayProjectId === p.id ? " is-active" : ""}`}
                       onClick={() => bringToFront(p.id)}

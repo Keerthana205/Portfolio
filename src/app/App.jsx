@@ -19,14 +19,15 @@ function PortfolioLayout() {
   })();
 
   const isIntroActive =
-    (location.pathname === "/" || location.pathname === "/intro") &&
-    (!hasSeenIntro || isReplay);
+    location.pathname === "/intro" ||
+    (location.pathname === "/" && (!hasSeenIntro || isReplay));
 
   return (
     <>
       <div
         className="portfolio-host"
         aria-hidden={isIntroActive ? "true" : undefined}
+        inert={isIntroActive}
         style={
           isIntroActive
             ? { pointerEvents: "none", userSelect: "none" }

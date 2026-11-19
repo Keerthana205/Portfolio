@@ -25,7 +25,7 @@ export default function AboutSection() {
             I’m in my final year of B.Tech in Computer Science and Engineering at the College of
             Engineering Cherthala. Throughout my degree, I’ve built a strong foundation in
             programming and software development through projects involving frontend development,
-            application logic, and data handling. I aspire to become a Software Engineer.
+            application logic, and data handling.
           </p>
         </div>
         <div className="about-section__media">
@@ -33,13 +33,17 @@ export default function AboutSection() {
             <figure className="about-section__polaroid">
               <img
                 className="about-section__plant"
-                src="/assets/decor/black-plant-thin.png"
+                src="/assets/decor/black-plant-thin.webp"
                 alt=""
+                width="582"
+                height="767"
                 aria-hidden="true"
               />
               <img
         src="/assets/characters/portfolio-about-polaroid.webp"
                 alt="Polaroid-style portrait of Keerthana smiling and making a peace sign"
+                width="768"
+                height="768"
                 loading="lazy"
                 decoding="async"
               />

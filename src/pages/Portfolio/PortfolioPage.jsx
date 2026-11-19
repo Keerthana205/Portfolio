@@ -1,12 +1,12 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollFlow } from "../../hooks/useScrollFlow.js";
+import { useDecorParallax } from "../../hooks/useDecorParallax.js";
 import PortfolioNav from "./components/PortfolioNav.jsx";
 import FloatingNav from "./components/FloatingNav.jsx";
-import CandleGlow from "./components/CandleGlow.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import AboutSection from "./components/AboutSection.jsx";
 import EducationSection from "./components/EducationSection.jsx";
@@ -25,7 +25,7 @@ const SMOOTH_EASE = 0.12;
 // SCROLL-TRIGGERED REVEAL CONFIGURATION (Matching Reference Site Parameters)
 // Tweak timing, distances, easing, and stagger values here:
 // ============================================================================
-export const SCROLL_REVEAL_CONFIG = {
+const SCROLL_REVEAL_CONFIG = {
   yOffset: 42,                  // Initial vertical travel in px (42px)
   zDepth: -60,                  // Initial depth push in px (-60px)
   perspective: 1200,            // Perspective field in px (1200px)
@@ -46,6 +46,13 @@ export default function PortfolioPage() {
   const pageRef = useRef(null);
 
   useScrollFlow(pageRef);
+  useDecorParallax(pageRef);
+
+  useEffect(() => {
+    if (location.pathname !== "/portfolio") return undefined;
+    const refreshFrame = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => window.cancelAnimationFrame(refreshFrame);
+  }, [location.pathname]);
 
   useLayoutEffect(() => {
     const root = pageRef.current;
@@ -224,7 +231,7 @@ export default function PortfolioPage() {
           const current = navigateRef.current;
           current.navigate(
             { pathname: current.pathname, hash: href },
-            { replace: false, preventScrollReset: true },
+            { replace: true, preventScrollReset: true },
           );
         } catch {
           // A route change can invalidate the anchor navigation during the click.
@@ -335,6 +342,11 @@ export default function PortfolioPage() {
     }
 
     ScrollTrigger.refresh();
+    const refreshAfterWindowLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refreshAfterWindowLoad, { once: true });
+    if (document.readyState === "complete") {
+      requestAnimationFrame(refreshAfterWindowLoad);
+    }
 
     return () => {
       if (context) context.revert();
@@ -345,6 +357,7 @@ export default function PortfolioPage() {
       }
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", refreshAfterWindowLoad);
       root.removeEventListener("click", onAnchorClick);
     };
   }, []);
@@ -356,7 +369,6 @@ export default function PortfolioPage() {
       </div>
       <PortfolioNav />
       <FloatingNav />
-      <CandleGlow />
       <HeroSection />
       <AboutSection />
       <EducationSection />

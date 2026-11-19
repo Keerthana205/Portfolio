@@ -6,13 +6,13 @@ export const education = [
   },
   {
     period: "2023",
-    qualification: "Higher Secondary (XII)",
+    qualification: "Class 12 (Higher Secondary)",
     institution: "NSS HSS Panavally",
   },
   {
     period: "2021",
-    qualification: "Secondary (X)",
-    institution: "NSS HSS Panavally",
+    qualification: "Class 10 (SSLC)",
+    institution: "NSS HS Panavally",
   },
 ];
 
@@ -20,16 +20,15 @@ export const projects = [
   {
     id: "unix",
     name: "UniX",
-    tagline: "Exclusively for your campus community.",
+    tagline: "Campus Ecosystem",
     image: "/assets/projects/unix-card.webp",
     imageAlt: "UniX campus community platform design",
     description:
       "A campus community platform for skill sharing, tutoring, trading, and lost & found — all in one place, exclusively for your university.",
     tags: ["Campus", "Community"],
     repoUrl: "https://github.com/Keerthana205/UniX",
-    liveUrl: "https://github.com/Keerthana205/UniX",
+    liveUrl: "https://keerthana205.github.io/UniX",
     techStack: [
-      { name: "React", icon: "/assets/skills/react.svg" },
       { name: "Firebase", icon: "/assets/skills/firebase.png" },
       { name: "JavaScript", icon: "/assets/skills/javascript.png" },
       { name: "CSS3", icon: "/assets/skills/css3.png" },
@@ -39,11 +38,11 @@ export const projects = [
   {
     id: "signbridge",
     name: "SignBridge",
-    tagline: "Bridging silence with intelligence.",
+    tagline: "AI Interview Platform",
     image: "/assets/projects/signbridge.webp",
     imageAlt: "SignBridge project design showing its sign-language interview interface",
     description:
-      "An AI-powered interview platform for Deaf and Hard-of-Hearing individuals, enabling real-time sign language recognition and structured practice.",
+      "An AI-powered interview platform for Deaf and Hard-of-Hearing individuals, enabling real-time sign language recognition and speech-to-caption conversion for accessible communication.",
     tags: ["AI/ML", "MediaPipe", "Python"],
     status: "Under Development",
     repoUrl: "https://github.com/Akashvg2005/signbridge",
@@ -58,20 +57,19 @@ export const projects = [
   {
     id: "skysense",
     name: "SkySense",
-    tagline: "Know the weather. Plan your day.",
+    tagline: "Weather Dashboard",
     image: "/assets/projects/skysense-card.webp",
     imageAlt: "SkySense weather dashboard design",
     description:
-      "A simple weather dashboard that provides real-time weather updates for any city with a clean, responsive and user-friendly interface.",
+      "A responsive weather dashboard featuring real-time updates, forecasts, smart location search, and personalized outdoor insights.",
     tags: ["Weather", "Planning"],
     repoUrl: "https://github.com/Keerthana205/SkySense",
     liveUrl: "https://keerthana205.github.io/SkySense/",
     techStack: [
-      { name: "HTML5", icon: "/assets/skills/html5.png" },
-      { name: "CSS3", icon: "/assets/skills/css3.png" },
+      { name: "HTML", icon: "/assets/skills/html5.png" },
+      { name: "CSS", icon: "/assets/skills/css3.png" },
       { name: "JavaScript", icon: "/assets/skills/javascript.png" },
-      { name: "Realtime API", type: "zap" },
-      { name: "Weather API", type: "cloud" },
+      { name: "FastAPI", icon: "/assets/skills/fastapi.svg" },
     ],
   },
 ];
@@ -79,11 +77,11 @@ export const projects = [
 export const skillGroups = [
   {
     title: "Programming",
-    skills: ["C", "C++", "Java", "Python"],
+    skills: ["C", "Java", "Python"],
   },
   {
     title: "Web Development",
-    skills: ["HTML", "CSS", "JavaScript", "React"],
+    skills: ["HTML", "CSS", "JavaScript"],
   },
   {
     title: "Databases",
@@ -91,7 +89,7 @@ export const skillGroups = [
   },
   {
     title: "Tools & Platforms",
-    skills: ["Git", "GitHub", "VS Code"],
+    skills: ["Git", "GitHub"],
   },
 ];
 

@@ -7,6 +7,8 @@ export default function LeadershipSection() {
         className="leadership-section__lily"
         src="/assets/decor/red-lily.webp"
         alt=""
+        width="720"
+        height="1080"
         aria-hidden="true"
         loading="lazy"
         decoding="async"
@@ -25,8 +27,7 @@ export default function LeadershipSection() {
             <span>2026 – 2027</span>
           </div>
           <p className="leadership-card__note">
-            Driving impactful student initiatives and hands-on technical programs to strengthen
-            the IEEE community at CECTL.
+            Involved in student initiatives, event coordination and collaborative activities
           </p>
         </article>
       </div>
