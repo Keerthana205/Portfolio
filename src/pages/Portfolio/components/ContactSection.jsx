@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { AlertCircle, ArrowUpRight, CheckCircle2, Github, Linkedin, Mail, MapPin, Send, X } from "lucide-react";
 import { socialLinks } from "../../../data/portfolioContent.js";
+import { assetUrl } from "../../../assetUrl.js";
 import SectionHeading from "./SectionHeading.jsx";
 
 const EMAIL = "keerthanadevan15@gmail.com";
@@ -122,7 +123,7 @@ export default function ContactSection() {
     <section className="contact-section" id="contact" aria-labelledby="contact-title" data-reveal-group data-nav-theme="dark">
       <img
         className="contact-section__flower"
-        src="/assets/decor/red-hibiscus.webp"
+        src={assetUrl("assets/decor/red-hibiscus.webp")}
         alt=""
         width="724"
         height="2173"

@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import gsap from "gsap";
+import { assetUrl } from "../../assetUrl.js";
 import SmokeTrail from "./SmokeTrail.jsx";
 import "./intro.css";
 
@@ -361,7 +362,7 @@ export default function IntroPage({ forceReplay = false }) {
         <div className="name-lockup">
           <img
             className="intro-logo"
-            src="/assets/brand/keerthana-logo.webp"
+            src={assetUrl("assets/brand/keerthana-logo.webp")}
             alt=""
             width="800"
             height="540"
@@ -401,7 +402,7 @@ export default function IntroPage({ forceReplay = false }) {
       <div className="character-stage">
         <video
           className="intro-character intro-character-video"
-          src="/assets/characters/intro-character-waving-transparent-full.webm"
+          src={assetUrl("assets/characters/intro-character-waving-transparent-full.webm")}
           aria-label="Animated character smiling and waving both hands"
           muted
           playsInline
@@ -415,7 +416,7 @@ export default function IntroPage({ forceReplay = false }) {
         />
         <img
           className="intro-character intro-character-fallback"
-          data-src="/assets/characters/intro-character-waving-transparent-fallback.webp"
+          data-src={assetUrl("assets/characters/intro-character-waving-transparent-fallback.webp")}
           alt=""
           width="600"
           height="338"

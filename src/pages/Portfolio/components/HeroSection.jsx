@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import { ArrowUpRight, Download } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { assetUrl } from "../../../assetUrl.js";
 
 function splitIntoChars(el) {
   const target = el.querySelector("[data-hero-animated]") || el;
@@ -168,7 +169,7 @@ export default function HeroSection() {
               </a>
               <a
                 className="button button--outline"
-                href="/assets/Keerthana_Devan_Resume.pdf"
+                href={assetUrl("assets/Keerthana_Devan_Resume.pdf")}
                 download="Keerthana_Devan_Resume.pdf"
               >
                 <Download size={21} strokeWidth={2.2} aria-hidden="true" />
@@ -178,7 +179,7 @@ export default function HeroSection() {
           </div>
           <div className="hero-portrait">
             <img
-              src="/assets/characters/portfolio-home.webp"
+              src={assetUrl("assets/characters/portfolio-home.webp")}
               alt="Keerthana smiling with her hand resting against her cheek"
               width="768"
               height="768"

@@ -1,19 +1,20 @@
 import { Code2, Database, Github, Globe2, Wrench } from "lucide-react";
 import { skillGroups } from "../../../data/portfolioContent.js";
+import { assetUrl } from "../../../assetUrl.js";
 import SectionHeading from "./SectionHeading.jsx";
 
 export default function SkillsSection() {
   const icons = [Code2, Globe2, Database, Wrench];
   const logoSources = {
-    Java: "/assets/skills/java.png",
-    Python: "/assets/skills/python.png",
-    HTML: "/assets/skills/html5.png",
-    CSS: "/assets/skills/css3.png",
-    JavaScript: "/assets/skills/javascript.png",
-    MySQL: "/assets/skills/mysql.svg",
-    SQL: "/assets/skills/sql.svg",
-    Firebase: "/assets/skills/firebase.png",
-    Git: "/assets/skills/git.png",
+    Java: assetUrl("assets/skills/java.png"),
+    Python: assetUrl("assets/skills/python.png"),
+    HTML: assetUrl("assets/skills/html5.png"),
+    CSS: assetUrl("assets/skills/css3.png"),
+    JavaScript: assetUrl("assets/skills/javascript.png"),
+    MySQL: assetUrl("assets/skills/mysql.svg"),
+    SQL: assetUrl("assets/skills/sql.svg"),
+    Firebase: assetUrl("assets/skills/firebase.png"),
+    Git: assetUrl("assets/skills/git.png"),
   };
 
   return (

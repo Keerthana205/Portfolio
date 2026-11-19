@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Mail, Menu, X } from "lucide-react";
+import { assetUrl } from "../../../assetUrl.js";
 
 const sectionLinks = [
   { label: "Home", href: "#home" },
@@ -48,7 +49,7 @@ export default function PortfolioNav() {
   return (
     <header className="portfolio-nav">
       <a className="portfolio-nav__brand" href="#home" aria-label="Keerthana Devan, home">
-        <img src="/assets/brand/keerthana-logo.webp" alt="" width="800" height="540" />
+        <img src={assetUrl("assets/brand/keerthana-logo.webp")} alt="" width="800" height="540" />
       </a>
       <button
         className="portfolio-nav__menu-button"

@@ -1,11 +1,12 @@
 import SectionHeading from "./SectionHeading.jsx";
+import { assetUrl } from "../../../assetUrl.js";
 
 export default function LeadershipSection() {
   return (
     <section className="content-section leadership-section" id="leadership" aria-labelledby="leadership-title" data-nav-theme="light">
       <img
         className="leadership-section__lily"
-        src="/assets/decor/red-lily.webp"
+        src={assetUrl("assets/decor/red-lily.webp")}
         alt=""
         width="720"
         height="1080"

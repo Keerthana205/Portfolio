@@ -2,6 +2,11 @@ import { BrowserRouter, Route, Routes, Outlet, Navigate, useLocation } from "rea
 import IntroPage from "../pages/Intro/IntroPage.jsx";
 import PortfolioPage from "../pages/Portfolio/PortfolioPage.jsx";
 
+const routerBasename =
+  import.meta.env.BASE_URL === "/"
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function PortfolioLayout() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -43,7 +48,7 @@ function PortfolioLayout() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <Routes>
         <Route element={<PortfolioLayout />}>
           <Route path="/" element={<IntroPage />} />

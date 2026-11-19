@@ -1,3 +1,5 @@
+import { assetUrl } from "../assetUrl.js";
+
 export const education = [
   {
     period: "Expected 2027",
@@ -21,7 +23,7 @@ export const projects = [
     id: "unix",
     name: "UniX",
     tagline: "Campus Ecosystem",
-    image: "/assets/projects/unix-card.webp",
+    image: assetUrl("assets/projects/unix-card.webp"),
     imageAlt: "UniX campus community platform design",
     description:
       "A campus community platform for skill sharing, tutoring, trading, and lost & found — all in one place, exclusively for your university.",
@@ -29,17 +31,17 @@ export const projects = [
     repoUrl: "https://github.com/Keerthana205/UniX",
     liveUrl: "https://keerthana205.github.io/UniX",
     techStack: [
-      { name: "Firebase", icon: "/assets/skills/firebase.png" },
-      { name: "JavaScript", icon: "/assets/skills/javascript.png" },
-      { name: "CSS3", icon: "/assets/skills/css3.png" },
-      { name: "HTML5", icon: "/assets/skills/html5.png" },
+      { name: "Firebase", icon: assetUrl("assets/skills/firebase.png") },
+      { name: "JavaScript", icon: assetUrl("assets/skills/javascript.png") },
+      { name: "CSS3", icon: assetUrl("assets/skills/css3.png") },
+      { name: "HTML5", icon: assetUrl("assets/skills/html5.png") },
     ],
   },
   {
     id: "signbridge",
     name: "SignBridge",
     tagline: "AI Interview Platform",
-    image: "/assets/projects/signbridge.webp",
+    image: assetUrl("assets/projects/signbridge.webp"),
     imageAlt: "SignBridge project design showing its sign-language interview interface",
     description:
       "An AI-powered interview platform for Deaf and Hard-of-Hearing individuals, enabling real-time sign language recognition and speech-to-caption conversion for accessible communication.",
@@ -47,18 +49,18 @@ export const projects = [
     status: "Under Development",
     repoUrl: "https://github.com/Akashvg2005/signbridge",
     techStack: [
-      { name: "Python", icon: "/assets/skills/python.png" },
-      { name: "React", icon: "/assets/skills/react.svg" },
+      { name: "Python", icon: assetUrl("assets/skills/python.png") },
+      { name: "React", icon: assetUrl("assets/skills/react.svg") },
       { name: "MediaPipe", type: "cpu" },
       { name: "OpenCV", type: "eye" },
-      { name: "HTML5", icon: "/assets/skills/html5.png" },
+      { name: "HTML5", icon: assetUrl("assets/skills/html5.png") },
     ],
   },
   {
     id: "skysense",
     name: "SkySense",
     tagline: "Weather Dashboard",
-    image: "/assets/projects/skysense-card.webp",
+    image: assetUrl("assets/projects/skysense-card.webp"),
     imageAlt: "SkySense weather dashboard design",
     description:
       "A responsive weather dashboard featuring real-time updates, forecasts, smart location search, and personalized outdoor insights.",
@@ -66,10 +68,10 @@ export const projects = [
     repoUrl: "https://github.com/Keerthana205/SkySense",
     liveUrl: "https://keerthana205.github.io/SkySense/",
     techStack: [
-      { name: "HTML", icon: "/assets/skills/html5.png" },
-      { name: "CSS", icon: "/assets/skills/css3.png" },
-      { name: "JavaScript", icon: "/assets/skills/javascript.png" },
-      { name: "FastAPI", icon: "/assets/skills/fastapi.svg" },
+      { name: "HTML", icon: assetUrl("assets/skills/html5.png") },
+      { name: "CSS", icon: assetUrl("assets/skills/css3.png") },
+      { name: "JavaScript", icon: assetUrl("assets/skills/javascript.png") },
+      { name: "FastAPI", icon: assetUrl("assets/skills/fastapi.svg") },
     ],
   },
 ];
