@@ -803,17 +803,6 @@
   margin-bottom: clamp(2.85rem, 5vw, 4rem);
 }
 
-.projects-section__arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--portfolio-gold);
-  line-height: 1;
-  flex-shrink: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
 .projects-section__container {
   width: min(100% - 3.5rem, 78rem);
   max-width: 1240px;

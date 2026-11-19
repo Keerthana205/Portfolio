@@ -1,6 +1,15 @@
-<p align="center">
-  <img src="docs/readme-hero.webp" width="100%" alt="A deep-wine portfolio banner with Keerthana Devan's gold and ivory K logo, name, and tagline." />
-</p>
+<table width="100%">
+  <tr>
+    <td align="center" bgcolor="#24020b">
+      <br />
+      <img src="public/assets/brand/keerthana-logo.webp" width="150" alt="Gold and ivory K logo with a gold swoosh and sparkles" />
+      <h1><font color="#e4be71">Keerthana Devan</font></h1>
+      <p><font color="#fff8eb">Final-year CSE student from Cherthala, Kerala</font></p>
+      <p><font color="#e4be71">✦ ━━━━━━━━━━━━━━━━━━ ✦</font></p>
+      <br />
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-24020b?style=for-the-badge&logo=react&logoColor=e4be71" alt="React 19" />

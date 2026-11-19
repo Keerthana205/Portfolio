@@ -991,11 +991,6 @@ export default function ProjectsSection() {
                 id="projects-title"
                 title="Featured Projects"
                 light
-                suffix={
-                  <span className="projects-section__arrow" aria-hidden="true">
-                    <ArrowRight size={22} strokeWidth={2} />
-                  </span>
-                }
               />
             </div>
 
